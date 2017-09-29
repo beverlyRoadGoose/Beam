@@ -4,7 +4,10 @@
 !/build/assets/
 !/build/assets/*
 
-/lib
+/lib/*
+!/lib/catch/
+!/lib/catch/*
+
 /Makefile
 /CMakeFiles
 /CMakeCache.txt
