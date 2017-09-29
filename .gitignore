@@ -1,0 +1,14 @@
+/.idea
+
+/build/*
+!/build/assets/
+!/build/assets/*
+
+/lib
+/Makefile
+/CMakeFiles
+/CMakeCache.txt
+/cmake-build-debug
+
+*.cmake
+*.DS_Store
