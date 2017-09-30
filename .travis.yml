@@ -16,7 +16,7 @@ before_install:
 
 install:
   - brew install cmake
-  - brew upgrade
+  - brew install wxmac
 
 branches:
   except:
@@ -28,4 +28,4 @@ before_script:
   - export CC=gcc
 
 script:
-  - cmake -DCMAKE_PREFIX_PATH=lib/wxWidgets/build-debug/ . && make
+  - cmake . && make
