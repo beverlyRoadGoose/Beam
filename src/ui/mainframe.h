@@ -21,8 +21,17 @@
 #define BEAM_MAINFRAME_H
 
 class MainFrame : public wxFrame {
+private:
+    wxMenuBar * menuBar;
+    wxMenu * fileMenu;
+    wxMenuItem * quitMenuItem;
+    DECLARE_EVENT_TABLE()
 public:
-    MainFrame(const wxString & title);
+    explicit MainFrame(const wxString & title);
+    void quit(wxCommandEvent & event);
+    wxMenuBar * getMenuBar();
+    wxMenu * getFileMenu();
+    wxMenuItem * getQuitMenuItem();
 };
 
 #endif BEAM_MAINFRAME_H

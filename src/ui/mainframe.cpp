@@ -18,5 +18,33 @@
 #include "mainframe.h"
 
 MainFrame::MainFrame(const wxString & title) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(600, 500)) {
-    Centre();
+    menuBar = new wxMenuBar();
+    fileMenu = new wxMenu;
+    quitMenuItem = new wxMenuItem(fileMenu, wxID_EXIT, wxT("&Quit\tCtrl+W"));
+
+    fileMenu->Append(quitMenuItem);
+    menuBar->Append(fileMenu, wxT("&File"));
+    this->SetMenuBar(menuBar);
+    
+    this->Centre();
 }
+
+void MainFrame::quit(wxCommandEvent & event) {
+    this->Close(true);
+}
+
+wxMenuBar * MainFrame::getMenuBar() {
+    return menuBar;
+}
+
+wxMenu * MainFrame::getFileMenu() {
+    return fileMenu;
+}
+
+wxMenuItem * MainFrame::getQuitMenuItem() {
+    return quitMenuItem;
+}
+
+BEGIN_EVENT_TABLE(MainFrame, wxFrame)
+    EVT_BUTTON(wxID_EXIT,  MainFrame::quit)
+END_EVENT_TABLE()
