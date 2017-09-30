@@ -5,9 +5,7 @@
 !/build/assets/
 !/build/assets/*
 
-/lib/*
-!/lib/catch/
-!/lib/catch/*
+/lib
 
 /Makefile
 /CMakeFiles
