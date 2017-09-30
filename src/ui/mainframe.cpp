@@ -23,10 +23,14 @@ MainFrame::MainFrame(const wxString & title) : wxFrame(NULL, wxID_ANY, title, wx
     podcastsMenu = new wxMenu;
     subscriptionsMenu = new wxMenu;
 
-    quitMenuItem = new wxMenuItem(podcastsMenu, wxID_EXIT, wxT("&Quit"));
-    menuBar->Append(podcastsMenu, wxT("&Podcasts"));
+    quitMenuItem = new wxMenuItem(podcastsMenu, wxID_EXIT, wxT("Quit"));
+    discoverPodcastsMenuItem = new wxMenuItem(podcastsMenu, ID_DISCOVER_PODCASTS, wxT("Discover podcasts"));
+    podcastsMenu->Append(discoverPodcastsMenuItem);
+    menuBar->Append(podcastsMenu, wxT("Podcasts"));
 
-    menuBar->Append(subscriptionsMenu, wxT("&Subscriptions"));
+    checkNewEpisodesMenuItem = new wxMenuItem(subscriptionsMenu, ID_CHECK_NEW_EPISODES, wxT("Check for new episodes"));
+    subscriptionsMenu->Append(checkNewEpisodesMenuItem);
+    menuBar->Append(subscriptionsMenu, wxT("Subscriptions"));
 
     this->SetMenuBar(menuBar);
     this->Centre();
@@ -34,6 +38,14 @@ MainFrame::MainFrame(const wxString & title) : wxFrame(NULL, wxID_ANY, title, wx
 
 void MainFrame::quit(wxCommandEvent & event) {
     this->Close(true);
+}
+
+void MainFrame::displayDiscoverPodcastsInterface(wxCommandEvent &event) {
+    // TODO discover podcasts
+}
+
+void MainFrame::displayCheckNewEpisodesInterface(wxCommandEvent &event) {
+    // TODO check for new episodes
 }
 
 wxMenuBar * MainFrame::getMenuBar() {
@@ -52,6 +64,16 @@ wxMenuItem * MainFrame::getQuitMenuItem() {
     return quitMenuItem;
 }
 
+wxMenuItem * MainFrame::getDiscoverPodcastsMenuItem() {
+    return discoverPodcastsMenuItem;
+}
+
+wxMenuItem * MainFrame::getCheckNewEpisodesMenuItem() {
+    return checkNewEpisodesMenuItem;
+}
+
 BEGIN_EVENT_TABLE(MainFrame, wxFrame)
     EVT_BUTTON(wxID_EXIT,  MainFrame::quit)
+    EVT_MENU(ID_DISCOVER_PODCASTS, MainFrame::displayDiscoverPodcastsInterface)
+    EVT_MENU(ID_CHECK_NEW_EPISODES, MainFrame::displayCheckNewEpisodesInterface)
 END_EVENT_TABLE()

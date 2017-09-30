@@ -23,17 +23,29 @@
 class MainFrame : public wxFrame {
 private:
     wxMenuBar * menuBar;
+
     wxMenu * podcastsMenu;
     wxMenu * subscriptionsMenu;
+
     wxMenuItem * quitMenuItem;
+    wxMenuItem * discoverPodcastsMenuItem;
+    wxMenuItem * checkNewEpisodesMenuItem;
+
     DECLARE_EVENT_TABLE()
 public:
     explicit MainFrame(const wxString & title);
     void quit(wxCommandEvent & event);
+    void displayDiscoverPodcastsInterface(wxCommandEvent & event);
+    void displayCheckNewEpisodesInterface(wxCommandEvent & event);
     wxMenuBar * getMenuBar();
     wxMenu * getPodcastsMenu();
     wxMenu * getSubscriptionsMenu();
     wxMenuItem * getQuitMenuItem();
+    wxMenuItem * getDiscoverPodcastsMenuItem();
+    wxMenuItem * getCheckNewEpisodesMenuItem();
 };
+
+const int ID_DISCOVER_PODCASTS = 101;
+const int ID_CHECK_NEW_EPISODES = 201;
 
 #endif
