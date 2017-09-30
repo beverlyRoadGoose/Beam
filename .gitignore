@@ -15,5 +15,7 @@
 /cmake-build-debug
 
 *.cbp
-*.cmake
 *.DS_Store
+
+/CTestTestfile.cmake
+/cmake_install.cmake
