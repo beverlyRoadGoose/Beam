@@ -23,16 +23,16 @@
 class MainFrame : public wxFrame {
 private:
     wxMenuBar * menuBar;
-    wxMenu * fileMenu;
     wxMenu * podcastsMenu;
+    wxMenu * subscriptionsMenu;
     wxMenuItem * quitMenuItem;
     DECLARE_EVENT_TABLE()
 public:
     explicit MainFrame(const wxString & title);
     void quit(wxCommandEvent & event);
     wxMenuBar * getMenuBar();
-    wxMenu * getFileMenu();
     wxMenu * getPodcastsMenu();
+    wxMenu * getSubscriptionsMenu();
     wxMenuItem * getQuitMenuItem();
 };
 

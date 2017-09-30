@@ -17,16 +17,16 @@
 
 #include "mainframe.h"
 
-MainFrame::MainFrame(const wxString & title) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(600, 500)) {
+MainFrame::MainFrame(const wxString & title) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(850, 600)) {
     menuBar = new wxMenuBar;
-    fileMenu = new wxMenu;
+
     podcastsMenu = new wxMenu;
+    subscriptionsMenu = new wxMenu;
 
-    quitMenuItem = new wxMenuItem(fileMenu, wxID_EXIT, wxT("&Quit\tCtrl+W"));
-    fileMenu->Append(quitMenuItem);
-
-    menuBar->Append(fileMenu, wxT("&File"));
+    quitMenuItem = new wxMenuItem(podcastsMenu, wxID_EXIT, wxT("&Quit"));
     menuBar->Append(podcastsMenu, wxT("&Podcasts"));
+
+    menuBar->Append(subscriptionsMenu, wxT("&Subscriptions"));
 
     this->SetMenuBar(menuBar);
     this->Centre();
@@ -40,12 +40,12 @@ wxMenuBar * MainFrame::getMenuBar() {
     return menuBar;
 }
 
-wxMenu * MainFrame::getFileMenu() {
-    return fileMenu;
-}
-
 wxMenu * MainFrame::getPodcastsMenu() {
     return podcastsMenu;
+}
+
+wxMenu * MainFrame::getSubscriptionsMenu() {
+    return subscriptionsMenu;
 }
 
 wxMenuItem * MainFrame::getQuitMenuItem() {
