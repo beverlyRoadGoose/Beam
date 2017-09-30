@@ -28,4 +28,4 @@ before_script:
   - export CC=gcc
 
 script:
-  - cmake -DCMAKE_PREFIX_PATH=lib/wxWidgets/build-debug/ .
+  - cmake -DCMAKE_PREFIX_PATH=lib/wxWidgets/build-debug/ . && make
