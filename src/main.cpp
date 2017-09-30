@@ -16,8 +16,6 @@
  */
 
 #include "main.h"
-
-#include "main.h"
 #include "ui/mainframe.h"
 
 IMPLEMENT_APP(Beam)
