@@ -12,13 +12,11 @@ matrix:
 
 before_install:
   - eval "${MATRIX_EVAL}"
-  - brew uninstall --force cmake
-  - brew uninstall --force boost
 
 install:
-  - brew install cmake
   - brew install wxmac
-  - brew install boost
+  - brew upgrade boost
+  - brew upgrade cmake
 
 branches:
   except:
