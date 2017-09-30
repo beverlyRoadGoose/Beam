@@ -15,14 +15,14 @@
  *
  */
 
-#include <src/entities/podcast.h>
-#include "main.h"
-#include "ui/mainframe.h"
+#include "podcast.h"
 
-IMPLEMENT_APP(Beam)
+Podcast::Podcast(std::string & name) {
+    this->name = name;
+}
 
-bool Beam::OnInit() {
-    MainFrame * mainFrame = new MainFrame(wxT("Beam"));
-    mainFrame->Show(true);
-    return true;
+Podcast::~Podcast() = default;
+
+std::string Podcast::getName() {
+    return this->name;
 }

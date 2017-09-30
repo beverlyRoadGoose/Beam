@@ -14,15 +14,3 @@
  *  limitations under the License.
  *
  */
-
-#include <src/entities/podcast.h>
-#include "main.h"
-#include "ui/mainframe.h"
-
-IMPLEMENT_APP(Beam)
-
-bool Beam::OnInit() {
-    MainFrame * mainFrame = new MainFrame(wxT("Beam"));
-    mainFrame->Show(true);
-    return true;
-}

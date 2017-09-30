@@ -19,8 +19,15 @@ include_directories(${PROJECT_SOURCE_DIR}/lib/wxWidgets/build-debug/lib/wx/inclu
 find_package(wxWidgets COMPONENTS adv core base REQUIRED)
 include(${wxWidgets_USE_FILE})
 
-set(HEADER_FILES src/main.h src/ui/mainframe.h)
-set(SOURCE_FILES src/main.cpp src/ui/mainframe.cpp)
+set(HEADER_FILES src/main.h src/ui/mainframe.h src/entities/podcast.h)
+set(SOURCE_FILES src/main.cpp src/ui/mainframe.cpp src/entities/podcast.cpp)
 
 add_executable(Beam ${HEADER_FILES} ${SOURCE_FILES})
 target_link_libraries(Beam ${wxWidgets_LIBRARIES})
+
+enable_testing()
+add_library(Catch lib/catch/catch.hpp lib/catch/catch.cpp)
+
+add_executable(podcast-tests tests/entities/podcasttests.cpp src/entities/podcast.h src/entities/podcast.cpp)
+target_link_libraries(podcast-tests Catch)
+add_test(NAME PodcastTests COMMAND podcast-tests)

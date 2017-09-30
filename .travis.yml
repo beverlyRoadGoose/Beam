@@ -28,4 +28,4 @@ before_script:
   - export CC=gcc
 
 script:
-  - cmake . && make
+  - cmake . && make && make test

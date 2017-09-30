@@ -25,4 +25,4 @@ public:
     virtual bool OnInit();
 };
 
-#endif BEAM_MAIN_H
+#endif

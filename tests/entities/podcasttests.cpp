@@ -15,14 +15,13 @@
  *
  */
 
-#include <src/entities/podcast.h>
-#include "main.h"
-#include "ui/mainframe.h"
+#define CATCH_CONFIG_MAIN
 
-IMPLEMENT_APP(Beam)
+#include <catch/catch.hpp>
+#include "entities/podcast.h"
 
-bool Beam::OnInit() {
-    MainFrame * mainFrame = new MainFrame(wxT("Beam"));
-    mainFrame->Show(true);
-    return true;
+TEST_CASE("new Podcast test", "[podcastTests]") {
+    std::string podcastName = "RadioLab";
+    Podcast podcast = Podcast(podcastName);
+    REQUIRE(podcast.getName() == podcastName);
 }

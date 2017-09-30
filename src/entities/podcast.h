@@ -15,14 +15,18 @@
  *
  */
 
-#include <src/entities/podcast.h>
-#include "main.h"
-#include "ui/mainframe.h"
+#ifndef BEAM_PODCAST_H
+#define BEAM_PODCAST_H
 
-IMPLEMENT_APP(Beam)
+#include <string>
 
-bool Beam::OnInit() {
-    MainFrame * mainFrame = new MainFrame(wxT("Beam"));
-    mainFrame->Show(true);
-    return true;
-}
+class Podcast {
+private:
+    std::string name;
+public:
+    Podcast(std::string & name);
+    ~Podcast();
+    std::string getName();
+};
+
+#endif
