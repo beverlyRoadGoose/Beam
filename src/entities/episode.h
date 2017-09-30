@@ -15,12 +15,18 @@
  *
  */
 
-#include "podcast.h"
+#ifndef BEAM_EPISODE_H
+#define BEAM_EPISODE_H
 
-Podcast::Podcast(const std::string & name) : name(name) {}
+#include <string>
 
-Podcast::~Podcast() = default;
+class Episode {
+private:
+    const std::string title;
+public:
+    Episode(const std::string & title);
+    ~Episode();
+    std::string getTitle();
+};
 
-std::string Podcast::getName() {
-    return this->name;
-}
+#endif //BEAM_EPISODE_H

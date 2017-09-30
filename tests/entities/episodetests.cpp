@@ -15,12 +15,13 @@
  *
  */
 
-#include "podcast.h"
+#define CATCH_CONFIG_MAIN
 
-Podcast::Podcast(const std::string & name) : name(name) {}
+#include <catch/catch.hpp>
+#include "entities/episode.h"
 
-Podcast::~Podcast() = default;
-
-std::string Podcast::getName() {
-    return this->name;
+TEST_CASE("new Episode test", "[episodeTests]") {
+    std::string episodeTitle = "Escape";
+    Episode episode = Episode(episodeTitle);
+    REQUIRE(episode.getTitle() == episodeTitle);
 }

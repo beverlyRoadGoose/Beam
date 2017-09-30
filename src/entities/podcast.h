@@ -22,9 +22,9 @@
 
 class Podcast {
 private:
-    std::string name;
+    const std::string name;
 public:
-    Podcast(std::string & name);
+    Podcast(const std::string & name);
     ~Podcast();
     std::string getName();
 };

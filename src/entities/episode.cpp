@@ -15,12 +15,12 @@
  *
  */
 
-#include "podcast.h"
+#include "episode.h"
 
-Podcast::Podcast(const std::string & name) : name(name) {}
+Episode::Episode(const std::string & title) : title(title) {}
 
-Podcast::~Podcast() = default;
+Episode::~Episode() = default;
 
-std::string Podcast::getName() {
-    return this->name;
+std::string Episode::getTitle() {
+    return this->title;
 }
