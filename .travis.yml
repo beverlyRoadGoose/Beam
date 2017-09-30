@@ -26,6 +26,11 @@ before_script:
   - ls
   - export CXX=g++
   - export CC=gcc
+  - cd lib
+  - curl -L https://sqlite.org/2017/sqlite-autoconf-3200100.tar.gz | tar zx
+  - mv sqlite-autoconf-3200100/ sqlite/
+  - cd sqlite && mkdir build-debug && cd build-debug && ../configure && make
+  - cd ../../..
 
 script:
   - cmake . && make && make test
