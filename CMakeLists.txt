@@ -38,7 +38,7 @@ find_package(wxWidgets COMPONENTS adv core base REQUIRED)
 include(${wxWidgets_USE_FILE})
 
 #sqlite libraries
-link_directories(${PROJECT_SOURCE_DIR}/lib/sqlite/build-debug/libs)
+link_directories(${PROJECT_SOURCE_DIR}/lib/sqlite/build-debug/.libs)
 
 set(HEADER_FILES
     src/main.h

@@ -1,1 +1,0 @@
-rm -rf CMakeFiles cmake_install.cmake CmakeCache.txt Makefile build/Beam build/episode-tests build/libCatch.a build/libTestUtils.a build/podcast-tests Testing CTestTestfile.cmake
