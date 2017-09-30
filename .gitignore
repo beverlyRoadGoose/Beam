@@ -4,14 +4,11 @@
 !/build/assets/
 !/build/assets/*
 
-/lib/*
-!/lib/catch/
-!/lib/catch/*
-
 /Makefile
 /CMakeFiles
 /CMakeCache.txt
 /cmake-build-debug
 
+*.cbp
 *.cmake
 *.DS_Store

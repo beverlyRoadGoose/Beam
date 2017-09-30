@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/EtherealT/Beam.svg?branch=master)](https://travis-ci.org/EtherealT/Beam)
+
 ## About
 Beam is a cross platform desktop podcast client still at the very beginning of development.
 I'm building it for my personal use and to learn the [wxWidgets](https://www.wxwidgets.org) GUI library.
