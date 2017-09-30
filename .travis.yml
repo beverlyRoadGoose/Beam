@@ -16,7 +16,6 @@ before_install:
 
 install:
   - brew install cmake
-  - brew install wxmac
   - brew upgrade
 
 branches:
