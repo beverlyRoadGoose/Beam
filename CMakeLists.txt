@@ -14,7 +14,6 @@
 #  limitations under the License.
 #
 
-
 cmake_minimum_required(VERSION 3.8)
 project(Beam)
 
@@ -23,6 +22,8 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmake)
 
 set(CMAKE_CXX_FLAGS "-I${PROJECT_SOURCE_DIR}/lib/wxWidgets/build-debug/lib/wx/include/osx_cocoa-unicode-3.0 -I/Users/tobi/Documents/programming/projects/Beam/lib/wxWidgets/include -D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXMAC__ -D__WXOSX__ -D__WXOSX_COCOA__  -stdlib=libc++ -std=c++11")
 set(CMAKE_SHARED_LINKER_FLAGS "-L${PROJECT_SOURCE_DIR}/lib/wxWidgets/build-debug/lib -framework IOKit -framework Carbon -framework Cocoa -framework AudioToolbox -framework System -framework OpenGL -lwx_osx_cocoau-3.0")
@@ -36,22 +37,25 @@ include_directories(${PROJECT_SOURCE_DIR}/lib/wxWidgets/build-debug/lib/wx/inclu
 find_package(wxWidgets COMPONENTS adv core base REQUIRED)
 include(${wxWidgets_USE_FILE})
 
+find_package (sqlite3 REQUIRED)
+include_directories(${SQLITE3_INCLUDE_DIRS})
+
 set(HEADER_FILES
     src/main.h
     src/ui/mainframe.h
     src/entities/podcast.h
     src/entities/episode.h
-)
+    src/database/databasemanager.h)
 
 set(SOURCE_FILES
     src/main.cpp
     src/ui/mainframe.cpp
     src/entities/podcast.cpp
     src/entities/episode.cpp
-)
+    src/database/databasemanager.cpp)
 
 add_executable(Beam ${HEADER_FILES} ${SOURCE_FILES})
-target_link_libraries(Beam ${wxWidgets_LIBRARIES})
+target_link_libraries(Beam ${wxWidgets_LIBRARIES} ${SQLITE3_LIBRARIES})
 
 #####################
 # Testing
@@ -68,3 +72,7 @@ add_test(NAME PodcastTests COMMAND podcast-tests)
 add_executable(episode-tests tests/entities/episodetests.cpp src/entities/episode.h src/entities/episode.cpp)
 target_link_libraries(episode-tests Catch TestUtils)
 add_test(NAME EpisodeTests COMMAND episode-tests)
+
+add_executable(database-manager-tests tests/database/databasemanagertests.cpp src/database/databasemanager.h src/database/databasemanager.cpp)
+target_link_libraries(database-manager-tests Catch TestUtils ${SQLITE3_LIBRARIES})
+add_test(NAME DatabaseManagerTests COMMAND database-manager-tests)
