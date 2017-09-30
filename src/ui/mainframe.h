@@ -34,4 +34,4 @@ public:
     wxMenuItem * getQuitMenuItem();
 };
 
-#endif BEAM_MAINFRAME_H
+#endif
