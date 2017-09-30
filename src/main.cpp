@@ -15,7 +15,6 @@
  *
  */
 
-#include <src/entities/podcast.h>
 #include "main.h"
 #include "ui/mainframe.h"
 
