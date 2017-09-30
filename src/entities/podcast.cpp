@@ -15,11 +15,16 @@
  *
  */
 
+#include <iostream>
 #include "podcast.h"
 
 Podcast::Podcast(const std::string & name) : name(name) {}
 
 Podcast::~Podcast() = default;
+
+boost::uuids::uuid Podcast::getId() {
+    return this->id;
+}
 
 std::string Podcast::getName() {
     return this->name;

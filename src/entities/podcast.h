@@ -19,13 +19,19 @@
 #define BEAM_PODCAST_H
 
 #include <string>
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include <boost/uuid/uuid_generators.hpp>
 
 class Podcast {
 private:
+    boost::uuids::random_generator generator;
+    const boost::uuids::uuid id = generator(); // generate a uuid for the podcast
     const std::string name;
 public:
-    Podcast(const std::string & name);
+    explicit Podcast(const std::string & name);
     ~Podcast();
+    boost::uuids::uuid getId();
     std::string getName();
 };
 

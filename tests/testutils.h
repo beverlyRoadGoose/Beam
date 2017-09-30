@@ -15,16 +15,15 @@
  *
  */
 
-#define CATCH_CONFIG_MAIN
+#ifndef BEAM_TESTUTILS_H
+#define BEAM_TESTUTILS_H
 
-#include <catch/catch.hpp>
-#include "tests/testutils.h"
-#include "entities/podcast.h"
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include <boost/uuid/uuid_generators.hpp>
 
-TEST_CASE("new Podcast test", "[podcastTests]") {
-    std::string podcastName = "RadioLab";
-    Podcast podcast = Podcast(podcastName);
-
-    REQUIRE(TestUtils::isValidUUID(podcast.getId()));
-    REQUIRE(podcast.getName() == podcastName);
+namespace TestUtils {
+    bool isValidUUID(const boost::uuids::uuid & id);
 }
+
+#endif //BEAM_TESTUTILS_H

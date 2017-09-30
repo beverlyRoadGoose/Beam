@@ -21,6 +21,10 @@ Episode::Episode(const std::string & title) : title(title) {}
 
 Episode::~Episode() = default;
 
+boost::uuids::uuid Episode::getId() {
+    return this->id;
+}
+
 std::string Episode::getTitle() {
     return this->title;
 }

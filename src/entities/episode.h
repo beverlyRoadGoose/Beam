@@ -19,13 +19,19 @@
 #define BEAM_EPISODE_H
 
 #include <string>
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include <boost/uuid/uuid_generators.hpp>
 
 class Episode {
 private:
+    boost::uuids::random_generator generator;
+    const boost::uuids::uuid id = generator(); // generate a uuid for the episode
     const std::string title;
 public:
-    Episode(const std::string & title);
+    explicit Episode(const std::string & title);
     ~Episode();
+    boost::uuids::uuid getId();
     std::string getTitle();
 };
 

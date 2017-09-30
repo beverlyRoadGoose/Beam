@@ -53,13 +53,18 @@ set(SOURCE_FILES
 add_executable(Beam ${HEADER_FILES} ${SOURCE_FILES})
 target_link_libraries(Beam ${wxWidgets_LIBRARIES})
 
+#####################
+# Testing
+#####################
+
 enable_testing()
 add_library(Catch lib/catch/catch.hpp lib/catch/catch.cpp)
+add_library(TestUtils tests/testutils.h tests/testutils.cpp)
 
 add_executable(podcast-tests tests/entities/podcasttests.cpp src/entities/podcast.h src/entities/podcast.cpp)
-target_link_libraries(podcast-tests Catch)
+target_link_libraries(podcast-tests Catch TestUtils)
 add_test(NAME PodcastTests COMMAND podcast-tests)
 
 add_executable(episode-tests tests/entities/episodetests.cpp src/entities/episode.h src/entities/episode.cpp)
-target_link_libraries(episode-tests Catch)
+target_link_libraries(episode-tests Catch TestUtils)
 add_test(NAME EpisodeTests COMMAND episode-tests)

@@ -15,16 +15,12 @@
  *
  */
 
-#define CATCH_CONFIG_MAIN
+#include <string>
+#include <regex>
+#include "testutils.h"
 
-#include <catch/catch.hpp>
-#include "tests/testutils.h"
-#include "entities/podcast.h"
-
-TEST_CASE("new Podcast test", "[podcastTests]") {
-    std::string podcastName = "RadioLab";
-    Podcast podcast = Podcast(podcastName);
-
-    REQUIRE(TestUtils::isValidUUID(podcast.getId()));
-    REQUIRE(podcast.getName() == podcastName);
+bool TestUtils::isValidUUID(const boost::uuids::uuid & id) {
+    std::string uuidString = boost::uuids::to_string(id);
+    static const std::regex regex("[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}");
+    return regex_match(uuidString, regex);
 }
