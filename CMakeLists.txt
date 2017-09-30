@@ -37,8 +37,8 @@ include_directories(${PROJECT_SOURCE_DIR}/lib/wxWidgets/build-debug/lib/wx/inclu
 find_package(wxWidgets COMPONENTS adv core base REQUIRED)
 include(${wxWidgets_USE_FILE})
 
-find_package (sqlite3 REQUIRED)
-include_directories(${SQLITE3_INCLUDE_DIRS})
+#sqlite libraries
+link_directories(${PROJECT_SOURCE_DIR}/lib/sqlite/build-debug/libs)
 
 set(HEADER_FILES
     src/main.h
@@ -55,7 +55,7 @@ set(SOURCE_FILES
     src/database/databasemanager.cpp)
 
 add_executable(Beam ${HEADER_FILES} ${SOURCE_FILES})
-target_link_libraries(Beam ${wxWidgets_LIBRARIES} ${SQLITE3_LIBRARIES})
+target_link_libraries(Beam ${wxWidgets_LIBRARIES} sqlite3)
 
 #####################
 # Testing
@@ -74,5 +74,5 @@ target_link_libraries(episode-tests Catch TestUtils)
 add_test(NAME EpisodeTests COMMAND episode-tests)
 
 add_executable(database-manager-tests tests/database/databasemanagertests.cpp src/database/databasemanager.h src/database/databasemanager.cpp)
-target_link_libraries(database-manager-tests Catch TestUtils ${SQLITE3_LIBRARIES})
+target_link_libraries(database-manager-tests Catch TestUtils sqlite3)
 add_test(NAME DatabaseManagerTests COMMAND database-manager-tests)
