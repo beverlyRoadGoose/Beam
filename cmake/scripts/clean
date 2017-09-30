@@ -1,1 +1,1 @@
-rm -rf CMakeFiles cmake_install.cmake CmakeCache.txt Makefile
+rm -rf CMakeFiles cmake_install.cmake CmakeCache.txt Makefile build/Beam build/episode-tests build/libCatch.a build/podcast-tests
