@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/EtherealT/Beam.svg?branch=master)](https://travis-ci.org/EtherealT/Beam)
+[![Build Status](https://travis-ci.org/EtherealT/Beam.svg?branch=master)](https://travis-ci.org/EtherealT/Beam) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## About
 Beam is a cross platform desktop podcast client still at the very beginning of development.
