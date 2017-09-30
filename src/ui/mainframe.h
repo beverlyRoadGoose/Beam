@@ -24,6 +24,7 @@ class MainFrame : public wxFrame {
 private:
     wxMenuBar * menuBar;
     wxMenu * fileMenu;
+    wxMenu * podcastsMenu;
     wxMenuItem * quitMenuItem;
     DECLARE_EVENT_TABLE()
 public:
@@ -31,6 +32,7 @@ public:
     void quit(wxCommandEvent & event);
     wxMenuBar * getMenuBar();
     wxMenu * getFileMenu();
+    wxMenu * getPodcastsMenu();
     wxMenuItem * getQuitMenuItem();
 };
 
