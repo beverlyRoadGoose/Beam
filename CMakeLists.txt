@@ -81,3 +81,13 @@ add_test(NAME EpisodeTests COMMAND episode-tests)
 add_executable(database-manager-tests tests/database/databasemanagertests.cpp src/database/databasemanager.h src/database/databasemanager.cpp)
 target_link_libraries(database-manager-tests Catch TestUtils sqlite3)
 add_test(NAME DatabaseManagerTests COMMAND database-manager-tests)
+
+add_executable(podcasts-repository-tests
+    tests/database/repositories/podcasts_repositories_tests.cpp
+    src/database/databasemanager.h
+    src/database/databasemanager.cpp
+    src/database/repositories/podcasts_repository.h
+    src/database/repositories/podcasts_repository.cpp
+)
+target_link_libraries(podcasts-repository-tests Catch sqlite3)
+add_test(NAME PodcastsRepositoryTests COMMAND podcasts-repository-tests)
