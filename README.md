@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/EtherealT/Beam.svg?branch=master)](https://travis-ci.org/EtherealT/Beam)
+[![GitHub version](https://badge.fury.io/gh/EtherealT%2FBeam.svg)](https://badge.fury.io/gh/EtherealT%2FBeam)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a937ca3c85cb4ba6b954523bac851116)](https://www.codacy.com/app/EtherealT/Beam?utm_source=github.com&utm_medium=referral&utm_content=EtherealT/Beam&utm_campaign=badger)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 

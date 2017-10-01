@@ -35,3 +35,6 @@ before_script:
 
 script:
   - cmake . && make && make test
+
+after_script:
+  - cat Testing/Temporary/LastTest.log
