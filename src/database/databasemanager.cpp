@@ -25,7 +25,8 @@ DatabaseManager::DatabaseManager() {
 DatabaseManager::~DatabaseManager() = default;
 
 void DatabaseManager::openDatabase() {
-    sqlite3_open(DATABASE_FILE.c_str(), &database);
+    int responseCode = sqlite3_open(DATABASE_FILE.c_str(), &database);
+    if (responseCode != SQLITE_OK) throw sqlite3_errmsg(database);
 }
 
 void DatabaseManager::closeDatabase() {
