@@ -15,17 +15,19 @@
  *
  */
 
-#ifndef BEAM_PODCASTS_REPOSITORY_H
-#define BEAM_PODCASTS_REPOSITORY_H
+#ifndef BEAM_EPISODES_REPOSITORY_H
+#define BEAM_EPISODES_REPOSITORY_H
+
 
 #include <database/databasemanager.h>
 
-class PodcastsRepository {
+class EpisodesRepository {
 private:
     DatabaseManager databaseManager;
 public:
-    PodcastsRepository();
-    ~PodcastsRepository();
+    EpisodesRepository();
+    ~EpisodesRepository();
 };
 
-#endif //BEAM_PODCASTS_REPOSITORY_H
+
+#endif //BEAM_EPISODES_REPOSITORY_H

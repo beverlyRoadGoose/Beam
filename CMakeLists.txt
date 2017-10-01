@@ -49,7 +49,8 @@ set(HEADER_FILES
     src/entities/podcast.h
     src/entities/episode.h
     src/database/databasemanager.h
-    src/database/repositories/podcasts_repository.h)
+    src/database/repositories/podcasts_repository.h
+    src/database/repositories/episodes_repository.h)
 
 set(SOURCE_FILES
     src/main.cpp
@@ -57,7 +58,8 @@ set(SOURCE_FILES
     src/entities/podcast.cpp
     src/entities/episode.cpp
     src/database/databasemanager.cpp
-    src/database/repositories/podcasts_repository.cpp)
+    src/database/repositories/podcasts_repository.cpp
+    src/database/repositories/episodes_repository.cpp)
 
 add_executable(Beam ${HEADER_FILES} ${SOURCE_FILES})
 target_link_libraries(Beam ${wxWidgets_LIBRARIES} sqlite3)
@@ -83,7 +85,7 @@ target_link_libraries(database-manager-tests Catch TestUtils sqlite3)
 add_test(NAME DatabaseManagerTests COMMAND database-manager-tests)
 
 add_executable(podcasts-repository-tests
-    tests/database/repositories/podcasts_repositories_tests.cpp
+    tests/database/repositories/podcasts_repository_tests.cpp
     src/database/databasemanager.h
     src/database/databasemanager.cpp
     src/database/repositories/podcasts_repository.h
@@ -91,3 +93,13 @@ add_executable(podcasts-repository-tests
 )
 target_link_libraries(podcasts-repository-tests Catch sqlite3)
 add_test(NAME PodcastsRepositoryTests COMMAND podcasts-repository-tests)
+
+add_executable(episodes-repository-tests
+        tests/database/repositories/episodes_repository_tests.cpp
+        src/database/databasemanager.h
+        src/database/databasemanager.cpp
+        src/database/repositories/episodes_repository.h
+        src/database/repositories/episodes_repository.cpp
+        )
+target_link_libraries(episodes-repository-tests Catch sqlite3)
+add_test(NAME EpisodesRepositoryTests COMMAND episodes-repository-tests)

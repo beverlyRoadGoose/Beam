@@ -15,17 +15,8 @@
  *
  */
 
-#ifndef BEAM_PODCASTS_REPOSITORY_H
-#define BEAM_PODCASTS_REPOSITORY_H
+#include "episodes_repository.h"
 
-#include <database/databasemanager.h>
+EpisodesRepository::EpisodesRepository() = default;
 
-class PodcastsRepository {
-private:
-    DatabaseManager databaseManager;
-public:
-    PodcastsRepository();
-    ~PodcastsRepository();
-};
-
-#endif //BEAM_PODCASTS_REPOSITORY_H
+EpisodesRepository::~EpisodesRepository() = default;

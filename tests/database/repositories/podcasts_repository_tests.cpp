@@ -15,17 +15,6 @@
  *
  */
 
-#ifndef BEAM_PODCASTS_REPOSITORY_H
-#define BEAM_PODCASTS_REPOSITORY_H
+#define CATCH_CONFIG_MAIN
 
-#include <database/databasemanager.h>
-
-class PodcastsRepository {
-private:
-    DatabaseManager databaseManager;
-public:
-    PodcastsRepository();
-    ~PodcastsRepository();
-};
-
-#endif //BEAM_PODCASTS_REPOSITORY_H
+#include <catch/catch.hpp>
