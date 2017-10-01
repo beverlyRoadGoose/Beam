@@ -48,14 +48,16 @@ set(HEADER_FILES
     src/ui/mainframe.h
     src/entities/podcast.h
     src/entities/episode.h
-    src/database/databasemanager.h)
+    src/database/databasemanager.h
+    src/database/repositories/podcasts_repository.h)
 
 set(SOURCE_FILES
     src/main.cpp
     src/ui/mainframe.cpp
     src/entities/podcast.cpp
     src/entities/episode.cpp
-    src/database/databasemanager.cpp)
+    src/database/databasemanager.cpp
+    src/database/repositories/podcasts_repository.cpp)
 
 add_executable(Beam ${HEADER_FILES} ${SOURCE_FILES})
 target_link_libraries(Beam ${wxWidgets_LIBRARIES} sqlite3)
