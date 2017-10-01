@@ -1,11 +1,30 @@
 [![Build Status](https://travis-ci.org/EtherealT/Beam.svg?branch=master)](https://travis-ci.org/EtherealT/Beam)
-[![GitHub version](https://badge.fury.io/gh/EtherealT%2FBeam.svg)](https://badge.fury.io/gh/EtherealT%2FBeam)
+[![GitHub version](https://badge.fury.io/gh/EtherealT%2FBeam.svg)](https://github.com/EtherealT/Beam/releases)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a937ca3c85cb4ba6b954523bac851116)](https://www.codacy.com/app/EtherealT/Beam?utm_source=github.com&utm_medium=referral&utm_content=EtherealT/Beam&utm_campaign=badger)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## About
 Beam is a cross platform desktop podcast client still at the very beginning of development.
 I'm building it for my personal use and to learn the [wxWidgets](https://www.wxwidgets.org) GUI library.
+
+## Building / Running
+
+##### Dependencies & Build tools
+
+- [wxWidgets](https://www.wxwidgets.org)
+- [SQLite](https://www.sqlite.org)
+- [Catch](http://catch-lib.net)
+- [CMake](https://cmake.org)
+
+To build from source, you need the tools listed installed on your system after which you can run the build script
+: ```./scripts/build.sh``` to build & ```./build/Beam``` to run the app.
+
+If your are working on OS X, you can run ```./scripts/osx-dependencies.sh```. This would automatically download and install
+the dependencies for you **except for CMake**. You can install that with Homebrew by running ```brew install cmake```.
+
+To run tests: ```make && make test```.
+
+**All scripts should be run from the project root directory**.
 
 ## License
 

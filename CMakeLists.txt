@@ -89,17 +89,15 @@ add_executable(podcasts-repository-tests
     src/database/databasemanager.h
     src/database/databasemanager.cpp
     src/database/repositories/podcasts_repository.h
-    src/database/repositories/podcasts_repository.cpp
-)
+    src/database/repositories/podcasts_repository.cpp)
 target_link_libraries(podcasts-repository-tests Catch sqlite3)
 add_test(NAME PodcastsRepositoryTests COMMAND podcasts-repository-tests)
 
 add_executable(episodes-repository-tests
-        tests/database/repositories/episodes_repository_tests.cpp
-        src/database/databasemanager.h
-        src/database/databasemanager.cpp
-        src/database/repositories/episodes_repository.h
-        src/database/repositories/episodes_repository.cpp
-        )
+    tests/database/repositories/episodes_repository_tests.cpp
+    src/database/databasemanager.h
+    src/database/databasemanager.cpp
+    src/database/repositories/episodes_repository.h
+    src/database/repositories/episodes_repository.cpp)
 target_link_libraries(episodes-repository-tests Catch sqlite3)
 add_test(NAME EpisodesRepositoryTests COMMAND episodes-repository-tests)
