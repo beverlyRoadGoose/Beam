@@ -26,10 +26,10 @@ DatabaseManager::DatabaseManager() {
 DatabaseManager::~DatabaseManager() = default;
 
 void DatabaseManager::openDatabase() {
-    int responseCode = sqlite3_open_v2(DATABASE_FILE.c_str(), &database, SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE, NULL);
-    if (responseCode != SQLITE_OK) {
+    int resultCode = sqlite3_open_v2(DATABASE_FILE.c_str(), &database, SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE, NULL);
+    if (resultCode != SQLITE_OK) {
         std::stringstream ss;
-        ss << "Error opening database: " << sqlite3_errmsg(database) << " (error code " << responseCode << ")";
+        ss << "Error opening database: " << sqlite3_errmsg(database) << " (error code " << resultCode << ")";
         throw ss.str();
     }
 }
@@ -39,11 +39,39 @@ void DatabaseManager::closeDatabase() {
 }
 
 void DatabaseManager::createPodcastsTable() {
+    int resultCode;
+    char * errorMessage = 0;
+
+    std::string sql =
+            "CREATE TABLE IF NOT EXISTS podcasts("
+            "id TEXT PRIMARY KEY NOT NULL,"
+            "name TEXT NOT NULL);";
+
     openDatabase();
+    resultCode = sqlite3_exec(database, sql.c_str(), nullptr, nullptr, &errorMessage);
+    if (resultCode != SQLITE_OK){
+        std::stringstream ss;
+        ss << "Error creating podcasts table: " << errorMessage << " (error code " << resultCode << ")";
+        throw ss.str();
+    }
     closeDatabase();
 }
 
 void DatabaseManager::createEpisodesTable() {
+    int resultCode;
+    char * errorMessage = 0;
+
+    std::string sql =
+            "CREATE TABLE IF NOT EXISTS episodes("
+            "id TEXT PRIMARY KEY NOT NULL,"
+            "name TEXT NOT NULL);";
+
     openDatabase();
+    resultCode = sqlite3_exec(database, sql.c_str(), nullptr, nullptr, &errorMessage);
+    if (resultCode != SQLITE_OK){
+        std::stringstream ss;
+        ss << "Error creating episodes table: " << errorMessage << " (error code " << resultCode << ")";
+        throw ss.str();
+    }
     closeDatabase();
 }
