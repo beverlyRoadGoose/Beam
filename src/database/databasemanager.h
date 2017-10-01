@@ -25,11 +25,14 @@ class DatabaseManager {
 private:
     std::string DATABASE_FILE = "db/Beam.sqlite";
     sqlite3 * database = nullptr;
+
+    void openDatabase();
+    void closeDatabase();
+    void createPodcastsTable();
+    void createEpisodesTable();
 public:
     DatabaseManager();
     ~DatabaseManager();
-    sqlite3 * openDatabase();
-    void closeDatabase();
 };
 
 #endif //BEAM_DATABASEMANAGER_H

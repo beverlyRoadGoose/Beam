@@ -17,15 +17,27 @@
 
 #include "databasemanager.h"
 
-DatabaseManager::DatabaseManager() = default;
+DatabaseManager::DatabaseManager() {
+    createPodcastsTable();
+    createEpisodesTable();
+}
 
 DatabaseManager::~DatabaseManager() = default;
 
-sqlite3 * DatabaseManager::openDatabase() {
+void DatabaseManager::openDatabase() {
     sqlite3_open(DATABASE_FILE.c_str(), &database);
-    return database;
 }
 
 void DatabaseManager::closeDatabase() {
     sqlite3_close(database);
+}
+
+void DatabaseManager::createPodcastsTable() {
+    openDatabase();
+    closeDatabase();
+}
+
+void DatabaseManager::createEpisodesTable() {
+    openDatabase();
+    closeDatabase();
 }
