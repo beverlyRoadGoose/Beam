@@ -15,6 +15,7 @@
  *
  */
 
+#include <sstream>
 #include "databasemanager.h"
 
 DatabaseManager::DatabaseManager() {
@@ -25,8 +26,12 @@ DatabaseManager::DatabaseManager() {
 DatabaseManager::~DatabaseManager() = default;
 
 void DatabaseManager::openDatabase() {
-    int responseCode = sqlite3_open(DATABASE_FILE.c_str(), &database);
-    if (responseCode != SQLITE_OK) throw sqlite3_errmsg(database);
+    int responseCode = sqlite3_open_v2(DATABASE_FILE.c_str(), &database, SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE, NULL);
+    if (responseCode != SQLITE_OK) {
+        std::stringstream ss;
+        ss << "Error opening database: " << sqlite3_errmsg(database) << " (error code " << responseCode << ")";
+        throw ss.str();
+    }
 }
 
 void DatabaseManager::closeDatabase() {
