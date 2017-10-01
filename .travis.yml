@@ -31,7 +31,6 @@ before_script:
   - cd .. && curl -L https://sqlite.org/2017/sqlite-autoconf-3200100.tar.gz | tar zx
   - mv sqlite-autoconf-3200100/ sqlite/
   - cd sqlite && mkdir build-debug && cd build-debug && ../configure && make && cd ../../..
-  - mkdir build && cd build && mkdir persistence && cd ..
 
 script:
   - cmake . && make && make test

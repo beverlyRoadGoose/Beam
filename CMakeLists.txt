@@ -40,6 +40,9 @@ include(${wxWidgets_USE_FILE})
 #sqlite libraries
 link_directories(${PROJECT_SOURCE_DIR}/lib/sqlite/build-debug/.libs)
 
+# create persistence dir during build
+add_custom_target(build-time-make-directory ALL COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/build/persistence)
+
 set(HEADER_FILES
     src/main.h
     src/ui/mainframe.h
