@@ -39,6 +39,7 @@ void PodcastsRepository::insert(Podcast podcast) {
     if (resultCode != SQLITE_OK){
         std::stringstream ss;
         ss << "Error inserting podcast: " << errorMessage << " (error code " << resultCode << ")";
+        sqlite3_free(errorMessage);
         throw ss.str();
     }
     databaseManager.closeDatabase();

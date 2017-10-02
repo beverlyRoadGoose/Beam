@@ -52,6 +52,7 @@ void DatabaseManager::createPodcastsTable() {
     if (resultCode != SQLITE_OK){
         std::stringstream ss;
         ss << "Error creating podcasts table: " << errorMessage << " (error code " << resultCode << ")";
+        sqlite3_free(errorMessage);
         throw ss.str();
     }
     closeDatabase();
@@ -71,6 +72,7 @@ void DatabaseManager::createEpisodesTable() {
     if (resultCode != SQLITE_OK){
         std::stringstream ss;
         ss << "Error creating episodes table: " << errorMessage << " (error code " << resultCode << ")";
+        sqlite3_free(errorMessage);
         throw ss.str();
     }
     closeDatabase();
