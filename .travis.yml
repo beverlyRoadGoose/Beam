@@ -26,6 +26,8 @@ branches:
    - dev
 
 before_script:
+  - export CXX=g++
+  - export CC=gcc
   - ./.travis/before_script.sh
 
 script:
