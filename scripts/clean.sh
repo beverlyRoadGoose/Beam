@@ -11,5 +11,7 @@ rm -rf build/Beam
 rm -rf build/libCatch.a
 rm -rf build/podcast-tests
 rm -rf build/episode-tests
+rm -rf build/episodes-repository-tests
+rm -rf build/podcasts-repository-tests
 rm -rf build/libTestUtils.a
 rm -rf build/database-manager-tests
