@@ -15,8 +15,29 @@
  *
  */
 
+#include <iostream>
 #include "podcasts_repository.h"
 
 PodcastsRepository::PodcastsRepository() = default;
 
 PodcastsRepository::~PodcastsRepository() = default;
+
+void PodcastsRepository::saveNewPodcast() {
+    // TODO
+}
+
+Podcast PodcastsRepository::getById(boost::uuids::uuid id) {
+    // TODO
+}
+
+std::vector<Podcast> PodcastsRepository::getAll() {
+    // TODO
+}
+
+void PodcastsRepository::deleteById(boost::uuids::uuid id) {
+    // TODO
+}
+
+void PodcastsRepository::deleteAll() {
+    // TODO
+}

@@ -18,6 +18,10 @@
 #ifndef BEAM_PODCASTS_REPOSITORY_H
 #define BEAM_PODCASTS_REPOSITORY_H
 
+#include <vector>
+#include <entities/podcast.h>
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_io.hpp>
 #include <database/databasemanager.h>
 
 class PodcastsRepository {
@@ -26,6 +30,11 @@ private:
 public:
     PodcastsRepository();
     ~PodcastsRepository();
+    void saveNewPodcast();
+    Podcast getById(boost::uuids::uuid id);
+    std::vector<Podcast> getAll();
+    void deleteById(boost::uuids::uuid id);
+    void deleteAll();
 };
 
 #endif //BEAM_PODCASTS_REPOSITORY_H

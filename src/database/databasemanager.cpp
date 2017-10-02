@@ -75,3 +75,7 @@ void DatabaseManager::createEpisodesTable() {
     }
     closeDatabase();
 }
+
+sqlite3 * DatabaseManager::getDatabase() {
+    return database;
+}

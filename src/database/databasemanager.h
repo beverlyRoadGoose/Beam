@@ -33,6 +33,7 @@ private:
 public:
     DatabaseManager();
     ~DatabaseManager();
+    sqlite3 * getDatabase();
 };
 
 #endif //BEAM_DATABASEMANAGER_H

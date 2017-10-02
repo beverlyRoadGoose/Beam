@@ -15,7 +15,6 @@
  *
  */
 
-#include <string>
 #include <regex>
 #include "testutils.h"
 
