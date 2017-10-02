@@ -1,5 +1,8 @@
 language: cpp
 
+os:
+  - osx
+
 compiler:
   - gcc
 
@@ -14,16 +17,17 @@ before_install:
   - eval "${MATRIX_EVAL}"
 
 install:
-  - brew install wxmac
-  - brew upgrade boost
-  - brew upgrade cmake
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install wxmac; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew upgrade boost; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew upgrade cmake; fi
 
 branches:
   except:
    - dev
 
 before_script:
-  - ./scripts/travis-osx-before-script.sh
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./scripts/travis-osx-before-script.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./scripts/travis-linux-before-script.sh; fi
 
 script:
   - cmake . && make && make test
