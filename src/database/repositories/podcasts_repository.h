@@ -27,6 +27,7 @@
 class PodcastsRepository {
 private:
     DatabaseManager databaseManager;
+    static int getAllCallback(void * data, int argc, char **argv, char **columnName);
 public:
     PodcastsRepository();
     ~PodcastsRepository();

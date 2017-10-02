@@ -20,6 +20,8 @@
 
 Podcast::Podcast(const std::string & name) : name(name) {}
 
+Podcast::Podcast(boost::uuids::uuid & id, std::string & name) : id(id), name(name) { }
+
 Podcast::~Podcast() = default;
 
 boost::uuids::uuid Podcast::getId() {

@@ -17,7 +17,10 @@
 
 #include <sstream>
 #include <iostream>
+#include <boost/lexical_cast.hpp>
 #include "podcasts_repository.h"
+
+std::vector<Podcast> allPodcasts;
 
 PodcastsRepository::PodcastsRepository() = default;
 
@@ -50,7 +53,26 @@ Podcast PodcastsRepository::getById(boost::uuids::uuid id) {
 }
 
 std::vector<Podcast> PodcastsRepository::getAll() {
-    // TODO
+    sqlite3 * database;
+    char * errorMessage = 0;
+    int resultCode;
+    char * sql = const_cast<char *>("SELECT * FROM podcasts");
+
+    databaseManager.openDatabase();
+    database = databaseManager.getDatabase();
+
+    allPodcasts = std::vector<Podcast>();
+
+    resultCode = sqlite3_exec(database, sql, getAllCallback, nullptr, &errorMessage);
+    if (resultCode != SQLITE_OK){
+        std::stringstream ss;
+        ss << "Error reading all podcasts from db: " << errorMessage << " (error code " << resultCode << ")";
+        sqlite3_free(errorMessage);
+        throw ss.str();
+    }
+    databaseManager.closeDatabase();
+
+    return allPodcasts;
 }
 
 void PodcastsRepository::deleteById(boost::uuids::uuid id) {
@@ -59,4 +81,13 @@ void PodcastsRepository::deleteById(boost::uuids::uuid id) {
 
 void PodcastsRepository::deleteAll() {
     // TODO
+}
+
+int PodcastsRepository::getAllCallback(void * data, int argc, char **argv, char **columnName) {
+    boost::uuids::uuid podcastId = boost::lexical_cast<boost::uuids::uuid>(argv[0]);
+    std::string podcastName = argv[1];
+    Podcast podcast = Podcast(podcastId, podcastName);
+    allPodcasts.push_back(podcast);
+
+    return 0;
 }

@@ -25,6 +25,6 @@ TEST_CASE("insert new podcast", "[podcastsRepositoryTests]") {
     std::string podcastName = "Test Podcast";
     Podcast podcast = Podcast(podcastName);
     PodcastsRepository podcastsRepository = PodcastsRepository();
-
     podcastsRepository.insert(podcast);
+    REQUIRE(podcastsRepository.getAll().size() == 1);
 }
