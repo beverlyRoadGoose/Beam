@@ -26,8 +26,10 @@ branches:
    - dev
 
 before_script:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./scripts/travis-osx-before-script.sh; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./scripts/travis-linux-before-script.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export CXX=g++; fi 
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export CC=gcc; fi 
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./.travis/osx-before-script.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.travis/linux-before-script.sh; fi
 
 script:
   - cmake . && make && make test
