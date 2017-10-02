@@ -1,5 +1,8 @@
 language: cpp
 
+os:
+  - osx
+
 compiler:
   - gcc
 
@@ -14,23 +17,19 @@ before_install:
   - eval "${MATRIX_EVAL}"
 
 install:
-  - brew install wxmac
-  - brew upgrade boost
-  - brew upgrade cmake
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install wxmac; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew upgrade boost; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew upgrade cmake; fi
 
 branches:
   except:
    - dev
 
 before_script:
-  - ls
-  - export CXX=g++
-  - export CC=gcc
-  - mkdir lib && cd lib && mkdir catch && cd catch && touch catch.hpp && touch catch.cpp
-  - curl -L https://github.com/philsquared/Catch/releases/download/v1.10.0/catch.hpp >> catch.hpp
-  - cd .. && curl -L https://sqlite.org/2017/sqlite-autoconf-3200100.tar.gz | tar zx
-  - mv sqlite-autoconf-3200100/ sqlite/
-  - cd sqlite && mkdir build-debug && cd build-debug && ../configure && make && cd ../../..
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export CXX=g++; fi 
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export CC=gcc; fi 
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./.travis/osx-before-script.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.travis/linux-before-script.sh; fi
 
 script:
   - cmake . && make && make test
