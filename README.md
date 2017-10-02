@@ -19,7 +19,7 @@ I'm building it for my personal use and to learn the [wxWidgets](https://www.wxw
 To build from source, you need the tools listed installed on your system after which you can run the build script
 : ```./scripts/build.sh``` to build & ```./build/Beam``` to run the app.
 
-If your are working on OS X, you can run ```./scripts/osx-dependencies.sh```. This would automatically download and install
+If your are working on OS X, you can run ```./scripts/osx_dependencies.sh```. This would automatically download and install
 the dependencies for you **except for CMake**. You can install that with Homebrew by running ```brew install cmake```
 
 To run tests: ```make && make test```
