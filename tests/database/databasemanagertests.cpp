@@ -23,4 +23,3 @@
 TEST_CASE("open database connection test", "[databaseManagerTests]") {
     DatabaseManager databaseManager = DatabaseManager();
 }
-

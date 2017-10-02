@@ -18,3 +18,13 @@
 #define CATCH_CONFIG_MAIN
 
 #include <catch/catch.hpp>
+#include <entities/podcast.h>
+#include <database/repositories/podcasts_repository.h>
+
+TEST_CASE("insert new podcast", "[podcastsRepositoryTests]") {
+    std::string podcastName = "Test Podcast";
+    Podcast podcast = Podcast(podcastName);
+    PodcastsRepository podcastsRepository = PodcastsRepository();
+
+    podcastsRepository.insert(podcast);
+}

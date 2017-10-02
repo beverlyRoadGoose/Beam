@@ -86,6 +86,8 @@ add_test(NAME DatabaseManagerTests COMMAND database-manager-tests)
 
 add_executable(podcasts-repository-tests
     tests/database/repositories/podcasts_repository_tests.cpp
+    src/entities/podcast.h
+    src/entities/podcast.cpp
     src/database/databasemanager.h
     src/database/databasemanager.cpp
     src/database/repositories/podcasts_repository.h

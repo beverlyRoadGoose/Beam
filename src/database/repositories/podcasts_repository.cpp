@@ -15,6 +15,7 @@
  *
  */
 
+#include <sstream>
 #include <iostream>
 #include "podcasts_repository.h"
 
@@ -23,7 +24,24 @@ PodcastsRepository::PodcastsRepository() = default;
 PodcastsRepository::~PodcastsRepository() = default;
 
 void PodcastsRepository::insert(Podcast podcast) {
-    // TODO
+    sqlite3 * database;
+    char * errorMessage = 0;
+    std::stringstream ss;
+    int resultCode;
+
+    ss << "VALUES ('" << podcast.getId() << "', '" << podcast.getName() << "');";
+    std::string sql = "INSERT INTO podcasts (ID,NAME) " + ss.str();
+
+    databaseManager.openDatabase();
+    database = databaseManager.getDatabase();
+
+    resultCode = sqlite3_exec(database, sql.c_str(), nullptr, nullptr, &errorMessage);
+    if (resultCode != SQLITE_OK){
+        std::stringstream ss;
+        ss << "Error inserting podcast: " << errorMessage << " (error code " << resultCode << ")";
+        throw ss.str();
+    }
+    databaseManager.closeDatabase();
 }
 
 Podcast PodcastsRepository::getById(boost::uuids::uuid id) {
