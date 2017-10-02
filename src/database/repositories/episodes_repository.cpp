@@ -20,3 +20,23 @@
 EpisodesRepository::EpisodesRepository() = default;
 
 EpisodesRepository::~EpisodesRepository() = default;
+
+void EpisodesRepository::insert(Episode episode) {
+    // TODO
+}
+
+Episode EpisodesRepository::getById(boost::uuids::uuid id) {
+    // TODO
+}
+
+std::vector<Episode> EpisodesRepository::getAll() {
+    // TODO
+}
+
+void EpisodesRepository::deleteById(boost::uuids::uuid id) {
+    // TODO
+}
+
+void EpisodesRepository::deleteAll() {
+    // TODO
+}

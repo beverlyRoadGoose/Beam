@@ -22,7 +22,7 @@ PodcastsRepository::PodcastsRepository() = default;
 
 PodcastsRepository::~PodcastsRepository() = default;
 
-void PodcastsRepository::saveNewPodcast() {
+void PodcastsRepository::insert(Podcast podcast) {
     // TODO
 }
 

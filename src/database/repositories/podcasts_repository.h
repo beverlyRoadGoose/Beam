@@ -30,7 +30,7 @@ private:
 public:
     PodcastsRepository();
     ~PodcastsRepository();
-    void saveNewPodcast();
+    void insert(Podcast podcast);
     Podcast getById(boost::uuids::uuid id);
     std::vector<Podcast> getAll();
     void deleteById(boost::uuids::uuid id);

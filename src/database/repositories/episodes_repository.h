@@ -18,7 +18,10 @@
 #ifndef BEAM_EPISODES_REPOSITORY_H
 #define BEAM_EPISODES_REPOSITORY_H
 
-
+#include <vector>
+#include <entities/episode.h>
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_io.hpp>
 #include <database/databasemanager.h>
 
 class EpisodesRepository {
@@ -27,7 +30,11 @@ private:
 public:
     EpisodesRepository();
     ~EpisodesRepository();
+    void insert(Episode episode);
+    Episode getById(boost::uuids::uuid id);
+    std::vector<Episode> getAll();
+    void deleteById(boost::uuids::uuid id);
+    void deleteAll();
 };
-
 
 #endif //BEAM_EPISODES_REPOSITORY_H
