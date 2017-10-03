@@ -1,8 +1,6 @@
 language: cpp
 
-os:
-  - osx
-  - linux
+sudo: required
 
 compiler:
   - gcc
@@ -13,6 +11,8 @@ matrix:
       osx_image: xcode8
       env:
         - MATRIX_EVAL="brew install gcc && CC=gcc-6 && CXX=g++-6"
+    - os: linux
+      sudo: required
 
 before_install:
   - eval "${MATRIX_EVAL}"
