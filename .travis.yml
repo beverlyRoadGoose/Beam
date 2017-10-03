@@ -2,6 +2,7 @@ language: cpp
 
 os:
   - osx
+  - linux
 
 compiler:
   - gcc
@@ -17,9 +18,7 @@ before_install:
   - eval "${MATRIX_EVAL}"
 
 install:
-  - brew install wxmac
-  - brew upgrade boost
-  - brew upgrade cmake
+  - ./.travis/osx_install.sh
 
 branches:
   except:
@@ -31,7 +30,8 @@ before_script:
   - ./.travis/before_script.sh
 
 script:
-  - cmake . && make && make test
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cmake . && make && make test; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./scripts/build.sh && make test; fi
 
 after_script:
   - cat Testing/Temporary/LastTest.log
