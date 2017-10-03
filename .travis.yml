@@ -18,7 +18,7 @@ before_install:
   - eval "${MATRIX_EVAL}"
 
 install:
-  - ./.travis/osx_install.sh
+  - ./.travis/install.sh
 
 branches:
   except:

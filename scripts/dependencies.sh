@@ -19,6 +19,15 @@
 echo ---------- starting dependencies setup ----------
 echo
 
+# cmake
+if [ "$(uname)" == "Darwin" ]; then # osx
+    brew install cmake
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # linux
+    sudo apt-get install cmake
+fi
+
+
+
 # create a libraries directory if it doesnt exist
 if [ ! -d "lib" ]; then
     echo libraries directory doesn\'t exist, creating it.
