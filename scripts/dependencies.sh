@@ -20,9 +20,9 @@ echo ---------- starting dependencies setup ----------
 echo
 
 # cmake
-if [ "$(uname)" == "Darwin" ]; then # osx
+if [[ "$(uname)" == "Darwin" ]]; then # osx
     brew install cmake
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # linux
+elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # linux
     sudo apt-get install cmake
 fi
 
@@ -120,9 +120,9 @@ cd build-debug
 
 echo ---------- building wxWidgets: this could take 20 minutes or more ----------
 
-if [ "$(uname)" == "Darwin" ]; then # osx
+if [[ "$(uname)" == "Darwin" ]]; then # osx
     ../configure --enable-debug --enable-monolithic --with-macosx-version-min=10.9
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # linux
+elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # linux
     ../configure --enable-debug --enable-monolithic
 fi
 

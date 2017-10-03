@@ -23,7 +23,7 @@ cd .. && curl -L https://sqlite.org/2017/sqlite-autoconf-3200100.tar.gz | tar zx
 mv sqlite-autoconf-3200100/ sqlite/
 cd sqlite && mkdir build-debug && cd build-debug && ../configure && make && cd ../..
 
-if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # linux
+if [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # linux
     curl -L https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.3.1/wxWidgets-3.0.3.1.zip -o wxWidgets.zip
     mkdir wxWidgets
     unzip wxWidgets.zip -d wxWidgets

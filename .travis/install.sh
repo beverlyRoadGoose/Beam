@@ -16,13 +16,13 @@
 #  limitations under the License.
 #
 
-if [ "$(uname)" == "Darwin" ]; then # osx
+if [[ "$(uname)" == "Darwin" ]]; then # osx
 
     brew install wxmac
     brew upgrade boost
     brew upgrade cmake
 
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # linux
+elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # linux
 
     sudo apt-get update
     sudo apt-get install build-essential
