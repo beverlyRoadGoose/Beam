@@ -17,6 +17,7 @@
 
 #include <sstream>
 #include "testutils.h"
+#include <database/repositories/podcasts_repository.h>
 
 bool TestUtils::isValidUUID(const boost::uuids::uuid & id) {
     std::string uuidString = boost::uuids::to_string(id);
@@ -31,4 +32,9 @@ bool TestUtils::isValidUUID(const boost::uuids::uuid & id) {
         ss << "Invalid uuid: " << *ex.what();
         throw ss.str();
     }
+}
+
+void TestUtils::emptyDatabase() {
+    PodcastsRepository podcastsRepository = PodcastsRepository();
+    podcastsRepository.deleteAll();
 }

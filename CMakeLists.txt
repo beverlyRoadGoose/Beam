@@ -80,17 +80,37 @@ target_link_libraries(Beam ${wxWidgets_LIBRARIES} sqlite3)
 
 enable_testing()
 add_library(Catch lib/catch/catch.hpp lib/catch/catch.cpp)
-add_library(TestUtils tests/testutils.h tests/testutils.cpp)
 
-add_executable(podcast-tests tests/entities/podcasttests.cpp src/entities/podcast.h src/entities/podcast.cpp)
-target_link_libraries(podcast-tests Catch TestUtils)
+add_library(TestUtils
+    tests/testutils.h
+    tests/testutils.cpp
+    src/database/repositories/podcasts_repository.h
+    src/database/repositories/podcasts_repository.cpp)
+
+add_executable(podcast-tests
+    tests/entities/podcasttests.cpp
+    src/entities/podcast.h
+    src/entities/podcast.cpp
+    src/database/databasemanager.h
+    src/database/databasemanager.cpp)
+target_link_libraries(podcast-tests Catch TestUtils sqlite3)
 add_test(NAME PodcastTests COMMAND podcast-tests)
 
-add_executable(episode-tests tests/entities/episodetests.cpp src/entities/episode.h src/entities/episode.cpp)
-target_link_libraries(episode-tests Catch TestUtils)
+add_executable(episode-tests
+    tests/entities/episodetests.cpp
+    src/entities/episode.h
+    src/entities/episode.cpp
+    src/entities/podcast.h
+    src/entities/podcast.cpp
+    src/database/databasemanager.h
+    src/database/databasemanager.cpp)
+target_link_libraries(episode-tests Catch TestUtils sqlite3)
 add_test(NAME EpisodeTests COMMAND episode-tests)
 
-add_executable(database-manager-tests tests/database/databasemanagertests.cpp src/database/databasemanager.h src/database/databasemanager.cpp)
+add_executable(database-manager-tests
+    tests/database/databasemanagertests.cpp
+    src/database/databasemanager.h
+    src/database/databasemanager.cpp)
 target_link_libraries(database-manager-tests Catch TestUtils sqlite3)
 add_test(NAME DatabaseManagerTests COMMAND database-manager-tests)
 
@@ -102,7 +122,7 @@ add_executable(podcasts-repository-tests
     src/database/databasemanager.cpp
     src/database/repositories/podcasts_repository.h
     src/database/repositories/podcasts_repository.cpp)
-target_link_libraries(podcasts-repository-tests Catch sqlite3)
+target_link_libraries(podcasts-repository-tests Catch TestUtils sqlite3)
 add_test(NAME PodcastsRepositoryTests COMMAND podcasts-repository-tests)
 
 add_executable(episodes-repository-tests

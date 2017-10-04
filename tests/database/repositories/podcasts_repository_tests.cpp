@@ -19,9 +19,12 @@
 
 #include <catch/catch.hpp>
 #include <entities/podcast.h>
+#include "tests/testutils.h"
 #include <database/repositories/podcasts_repository.h>
 
 TEST_CASE("insert new podcast", "[podcastsRepositoryTests]") {
+    TestUtils::emptyDatabase();
+
     std::string podcastName = "Test Podcast";
     Podcast podcast = Podcast(podcastName);
     PodcastsRepository podcastsRepository = PodcastsRepository();
@@ -30,6 +33,8 @@ TEST_CASE("insert new podcast", "[podcastsRepositoryTests]") {
 }
 
 TEST_CASE("get podcast by id", "[podcastsRepositoryTests]") {
+    TestUtils::emptyDatabase();
+
     std::string podcastName = "Test Podcast";
     PodcastsRepository podcastsRepository = PodcastsRepository();
 
@@ -41,6 +46,8 @@ TEST_CASE("get podcast by id", "[podcastsRepositoryTests]") {
 }
 
 TEST_CASE("update podcast", "[podcastsRepositoryTests]") {
+    TestUtils::emptyDatabase();
+
     std::string podcastName = "Test Podcast";
     std::string updatedName = "Updated test podcast";
     PodcastsRepository podcastsRepository = PodcastsRepository();
@@ -53,4 +60,16 @@ TEST_CASE("update podcast", "[podcastsRepositoryTests]") {
 
     Podcast retrievedPodcast = podcastsRepository.getById(originalPodcast.getId());
     REQUIRE(retrievedPodcast.getName() == updatedName);
+}
+
+TEST_CASE("delete podcast by id", "[podcastsRepositoryTests]") {
+    TestUtils::emptyDatabase();
+
+    std::string podcastName = "Test Podcast";
+    Podcast podcast = Podcast(podcastName);
+    PodcastsRepository podcastsRepository = PodcastsRepository();
+    podcastsRepository.insert(podcast);
+
+    podcastsRepository.deleteById(podcast.getId());
+    REQUIRE(podcastsRepository.getAll().empty());
 }

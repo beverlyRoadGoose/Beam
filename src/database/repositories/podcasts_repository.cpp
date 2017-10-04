@@ -63,7 +63,7 @@ void PodcastsRepository::update(Podcast podcast) {
     resultCode = sqlite3_exec(database, ss.str().c_str(), nullptr, nullptr, &errorMessage);
     if (resultCode != SQLITE_OK){
         std::stringstream ss;
-        ss << "Error updating podcast id: " << errorMessage << " (error code " << resultCode << ")";
+        ss << "Error updating podcast: " << errorMessage << " (error code " << resultCode << ")";
         sqlite3_free(errorMessage);
         throw ss.str();
     }
@@ -127,11 +127,43 @@ std::vector<Podcast> PodcastsRepository::getAll() {
 }
 
 void PodcastsRepository::deleteById(boost::uuids::uuid id) {
-    // TODO
+    sqlite3 * database;
+    char * errorMessage = 0;
+    int resultCode;
+
+    std::stringstream ss;
+    ss << "DELETE FROM podcasts WHERE id='" << id << "'";
+
+    databaseManager.openDatabase();
+    database = databaseManager.getDatabase();
+
+    resultCode = sqlite3_exec(database, ss.str().c_str(), nullptr, nullptr, &errorMessage);
+    if (resultCode != SQLITE_OK){
+        std::stringstream ss;
+        ss << "Error deleting podcast: " << errorMessage << " (error code " << resultCode << ")";
+        sqlite3_free(errorMessage);
+        throw ss.str();
+    }
+    databaseManager.closeDatabase();
 }
 
 void PodcastsRepository::deleteAll() {
-    // TODO
+    sqlite3 * database;
+    char * errorMessage = 0;
+    int resultCode;
+    char * sql = const_cast<char *>("DELETE FROM podcasts");
+
+    databaseManager.openDatabase();
+    database = databaseManager.getDatabase();
+
+    resultCode = sqlite3_exec(database, sql, nullptr, nullptr, &errorMessage);
+    if (resultCode != SQLITE_OK){
+        std::stringstream ss;
+        ss << "Error emptying podcasts table: " << errorMessage << " (error code " << resultCode << ")";
+        sqlite3_free(errorMessage);
+        throw ss.str();
+    }
+    databaseManager.closeDatabase();
 }
 
 int PodcastsRepository::getAllCallback(void * data, int argc, char **argv, char **columnName) {

@@ -24,6 +24,7 @@
 
 namespace TestUtils {
     bool isValidUUID(const boost::uuids::uuid & id);
+    void emptyDatabase();
 }
 
 #endif //BEAM_TESTUTILS_H
