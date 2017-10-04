@@ -72,7 +72,9 @@ add_library(beam-ui
     src/ui/mainframe.h
     src/ui/mainframe.cpp
     src/ui/panels/podcasts_panel.cpp
-    src/ui/panels/podcasts_panel.h)
+    src/ui/panels/podcasts_panel.h
+    src/ui/widgets/podcasts_list_item_panel.cpp
+    src/ui/widgets/podcasts_list_item_panel.h)
 target_link_libraries(beam-ui ${wxWidgets_LIBRARIES})
 
 add_executable(Beam src/main.h src/main.cpp)

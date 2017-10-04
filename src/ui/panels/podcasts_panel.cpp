@@ -20,11 +20,13 @@
 PodcastsPanel::PodcastsPanel(wxWindow * parent) : wxPanel(parent) {
     panelSizer = new wxBoxSizer(wxHORIZONTAL);
 
-    podcastsListBox = new wxListBox(this, ID_PODCASTS_LISTBOX, wxPoint(-1, -1), wxSize(-1, -1));
-    panelSizer->Add(podcastsListBox, 1, wxALL | wxEXPAND, 2);
+    podcastsListPanel = new wxPanel(this);
+    podcastsListPanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
+    panelSizer->Add(podcastsListPanel, 1, wxALL | wxEXPAND, 4);
 
     episodesListPanel = new wxPanel(this);
-    panelSizer->Add(episodesListPanel, 5, wxALL | wxEXPAND, 2);
+    episodesListPanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
+    panelSizer->Add(episodesListPanel, 5, wxALL | wxEXPAND, 4);
 
     this->SetSizer(panelSizer);
 }
