@@ -18,6 +18,7 @@
 #include <sstream>
 #include "testutils.h"
 #include <database/repositories/podcasts_repository.h>
+#include <database/repositories/episodes_repository.h>
 
 bool TestUtils::isValidUUID(const boost::uuids::uuid & id) {
     std::string uuidString = boost::uuids::to_string(id);
@@ -37,4 +38,15 @@ bool TestUtils::isValidUUID(const boost::uuids::uuid & id) {
 void TestUtils::emptyDatabase() {
     PodcastsRepository podcastsRepository = PodcastsRepository();
     podcastsRepository.deleteAll();
+
+    EpisodesRepository episodesRepository = EpisodesRepository();
+    episodesRepository.deleteAll();
+}
+
+Podcast TestUtils::createPodcastForTest(std::string podcastName) {
+    Podcast podcast = Podcast(podcastName);
+    PodcastsRepository podcastsRepository = PodcastsRepository();
+    podcastsRepository.insert(podcast);
+
+    return podcast;
 }

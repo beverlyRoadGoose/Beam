@@ -27,12 +27,16 @@ class Episode {
 private:
     boost::uuids::random_generator generator;
     const boost::uuids::uuid id = generator(); // generate a uuid for the episode
-    const std::string title;
+    const boost::uuids::uuid podcastId;
+    std::string title;
 public:
-    explicit Episode(const std::string & title);
+    Episode(const boost::uuids::uuid & podcastId, const std::string & title);
+    Episode(const boost::uuids::uuid & id, const boost::uuids::uuid & podcastId, std::string & title);
     ~Episode();
     boost::uuids::uuid getId();
+    boost::uuids::uuid getPodcastId();
     std::string getTitle();
+    void setTitle(std::string & title);
 };
 
 #endif //BEAM_EPISODE_H

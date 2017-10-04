@@ -65,6 +65,7 @@ void DatabaseManager::createEpisodesTable() {
     std::string sql =
             "CREATE TABLE IF NOT EXISTS episodes("
             "id TEXT PRIMARY KEY NOT NULL,"
+            "podcastId TEXT PRIMARY KEY NOT NULL,"
             "name TEXT NOT NULL);";
 
     openDatabase();

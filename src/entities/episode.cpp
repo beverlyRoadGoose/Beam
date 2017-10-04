@@ -17,7 +17,9 @@
 
 #include "episode.h"
 
-Episode::Episode(const std::string & title) : title(title) {}
+Episode::Episode(const boost::uuids::uuid & podcastId, const std::string & title) : podcastId(podcastId), title(title) {}
+
+Episode::Episode(const boost::uuids::uuid & id, const boost::uuids::uuid & podcastId, std::string & title) : id(id), podcastId(podcastId), title(title) {}
 
 Episode::~Episode() = default;
 
@@ -25,6 +27,14 @@ boost::uuids::uuid Episode::getId() {
     return this->id;
 }
 
+boost::uuids::uuid Episode::getPodcastId() {
+    return this->podcastId;
+}
+
 std::string Episode::getTitle() {
     return this->title;
+}
+
+void Episode::setTitle(std::string & title) {
+    this->title = title;
 }

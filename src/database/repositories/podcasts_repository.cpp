@@ -20,7 +20,7 @@
 #include <boost/lexical_cast.hpp>
 #include "podcasts_repository.h"
 
-std::vector<Podcast> allPodcasts;
+std::vector<Podcast> retrievedPodcastsList;
 Podcast * podcastRetrievedById = nullptr;
 
 PodcastsRepository::PodcastsRepository() = default;
@@ -81,7 +81,7 @@ Podcast PodcastsRepository::getById(boost::uuids::uuid id) {
     databaseManager.openDatabase();
     database = databaseManager.getDatabase();
 
-    resultCode = sqlite3_exec(database, ss.str().c_str(), getByIdCallback, nullptr, &errorMessage);
+    resultCode = sqlite3_exec(database, ss.str().c_str(), getSingleCallback, nullptr, &errorMessage);
     if (resultCode != SQLITE_OK){
         std::stringstream ss;
         ss << "Error retrieving podcast by id: " << errorMessage << " (error code " << resultCode << ")";
@@ -112,9 +112,9 @@ std::vector<Podcast> PodcastsRepository::getAll() {
     databaseManager.openDatabase();
     database = databaseManager.getDatabase();
 
-    allPodcasts = std::vector<Podcast>();
+    retrievedPodcastsList = std::vector<Podcast>();
 
-    resultCode = sqlite3_exec(database, sql, getAllCallback, nullptr, &errorMessage);
+    resultCode = sqlite3_exec(database, sql, getListCallback, nullptr, &errorMessage);
     if (resultCode != SQLITE_OK){
         std::stringstream ss;
         ss << "Error reading all podcasts from db: " << errorMessage << " (error code " << resultCode << ")";
@@ -123,7 +123,7 @@ std::vector<Podcast> PodcastsRepository::getAll() {
     }
     databaseManager.closeDatabase();
 
-    return allPodcasts;
+    return retrievedPodcastsList;
 }
 
 void PodcastsRepository::deleteById(boost::uuids::uuid id) {
@@ -166,18 +166,20 @@ void PodcastsRepository::deleteAll() {
     databaseManager.closeDatabase();
 }
 
-int PodcastsRepository::getAllCallback(void * data, int argc, char **argv, char **columnName) {
+int PodcastsRepository::getListCallback(void *data, int argc, char **argv, char **columnName) {
     boost::uuids::uuid podcastId = boost::lexical_cast<boost::uuids::uuid>(argv[0]);
     std::string podcastName = argv[1];
+
     Podcast podcast = Podcast(podcastId, podcastName);
-    allPodcasts.push_back(podcast);
+    retrievedPodcastsList.push_back(podcast);
 
     return 0;
 }
 
-int PodcastsRepository::getByIdCallback(void *data, int argc, char **argv, char **columnName) {
+int PodcastsRepository::getSingleCallback(void *data, int argc, char **argv, char **columnName) {
     boost::uuids::uuid podcastId = boost::lexical_cast<boost::uuids::uuid>(argv[0]);
     std::string podcastName = argv[1];
+
     podcastRetrievedById = new Podcast(podcastId, podcastName);
 
     return 0;

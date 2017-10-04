@@ -21,10 +21,12 @@
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_io.hpp>
 #include <boost/uuid/uuid_generators.hpp>
+#include <src/entities/podcast.h>
 
 namespace TestUtils {
     bool isValidUUID(const boost::uuids::uuid & id);
     void emptyDatabase();
+    Podcast createPodcastForTest(std::string podcastName);
 }
 
 #endif //BEAM_TESTUTILS_H

@@ -27,11 +27,17 @@
 class EpisodesRepository {
 private:
     DatabaseManager databaseManager;
+
+    static bool verifyPodcastExists(boost::uuids::uuid id);
+    static int getListCallback(void *data, int argc, char **argv, char **columnName);
+    static int getSingleCallback(void *data, int argc, char **argv, char **columnName);
 public:
     EpisodesRepository();
     ~EpisodesRepository();
     void insert(Episode episode);
+    void update(Episode episode);
     Episode getById(boost::uuids::uuid id);
+    std::vector<Episode> getByPodcastId(boost::uuids::uuid id);
     std::vector<Episode> getAll();
     void deleteById(boost::uuids::uuid id);
     void deleteAll();

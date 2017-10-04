@@ -30,7 +30,7 @@ private:
     std::string name;
 public:
     explicit Podcast(const std::string & name);
-    Podcast(boost::uuids::uuid & id, std::string & name);
+    Podcast(const boost::uuids::uuid & id, std::string & name);
     ~Podcast();
     boost::uuids::uuid getId();
     std::string getName();

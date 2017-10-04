@@ -85,51 +85,63 @@ add_library(TestUtils
     tests/testutils.h
     tests/testutils.cpp
     src/database/repositories/podcasts_repository.h
-    src/database/repositories/podcasts_repository.cpp)
+    src/database/repositories/podcasts_repository.cpp
+    src/database/repositories/episodes_repository.h
+    src/database/repositories/episodes_repository.cpp)
 
 add_executable(podcast-tests
-    tests/entities/podcasttests.cpp
     src/entities/podcast.h
     src/entities/podcast.cpp
+    src/entities/episode.h
+    src/entities/episode.cpp
     src/database/databasemanager.h
-    src/database/databasemanager.cpp)
+    src/database/databasemanager.cpp
+    tests/entities/podcasttests.cpp)
 target_link_libraries(podcast-tests Catch TestUtils sqlite3)
 add_test(NAME PodcastTests COMMAND podcast-tests)
 
 add_executable(episode-tests
-    tests/entities/episodetests.cpp
     src/entities/episode.h
     src/entities/episode.cpp
     src/entities/podcast.h
     src/entities/podcast.cpp
     src/database/databasemanager.h
-    src/database/databasemanager.cpp)
+    src/database/databasemanager.cpp
+    tests/entities/episodetests.cpp)
 target_link_libraries(episode-tests Catch TestUtils sqlite3)
 add_test(NAME EpisodeTests COMMAND episode-tests)
 
 add_executable(database-manager-tests
-    tests/database/databasemanagertests.cpp
     src/database/databasemanager.h
-    src/database/databasemanager.cpp)
+    src/database/databasemanager.cpp
+    tests/database/databasemanagertests.cpp)
 target_link_libraries(database-manager-tests Catch TestUtils sqlite3)
 add_test(NAME DatabaseManagerTests COMMAND database-manager-tests)
 
 add_executable(podcasts-repository-tests
-    tests/database/repositories/podcasts_repository_tests.cpp
     src/entities/podcast.h
     src/entities/podcast.cpp
+    src/entities/episode.h
+    src/entities/episode.cpp
     src/database/databasemanager.h
     src/database/databasemanager.cpp
     src/database/repositories/podcasts_repository.h
-    src/database/repositories/podcasts_repository.cpp)
+    src/database/repositories/podcasts_repository.cpp
+    tests/database/repositories/podcasts_repository_tests.cpp)
 target_link_libraries(podcasts-repository-tests Catch TestUtils sqlite3)
 add_test(NAME PodcastsRepositoryTests COMMAND podcasts-repository-tests)
 
 add_executable(episodes-repository-tests
-    tests/database/repositories/episodes_repository_tests.cpp
+    src/entities/episode.h
+    src/entities/episode.cpp
+    src/entities/podcast.h
+    src/entities/podcast.cpp
     src/database/databasemanager.h
     src/database/databasemanager.cpp
     src/database/repositories/episodes_repository.h
-    src/database/repositories/episodes_repository.cpp)
+    src/database/repositories/episodes_repository.cpp
+    src/database/repositories/podcasts_repository.h
+    src/database/repositories/podcasts_repository.cpp
+    tests/database/repositories/episodes_repository_tests.cpp)
 target_link_libraries(episodes-repository-tests Catch sqlite3)
 add_test(NAME EpisodesRepositoryTests COMMAND episodes-repository-tests)
