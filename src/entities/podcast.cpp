@@ -31,3 +31,7 @@ boost::uuids::uuid Podcast::getId() {
 std::string Podcast::getName() {
     return this->name;
 }
+
+void Podcast::setName(std::string & name) {
+    this->name = name;
+}

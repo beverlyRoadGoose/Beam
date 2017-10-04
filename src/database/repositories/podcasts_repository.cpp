@@ -50,7 +50,24 @@ void PodcastsRepository::insert(Podcast podcast) {
 }
 
 void PodcastsRepository::update(Podcast podcast) {
+    sqlite3 * database;
+    char * errorMessage = 0;
+    int resultCode;
 
+    std::stringstream ss;
+    ss << "UPDATE podcasts SET name='" << podcast.getName() << "' WHERE id='" << podcast.getId() << "'";
+
+    databaseManager.openDatabase();
+    database = databaseManager.getDatabase();
+
+    resultCode = sqlite3_exec(database, ss.str().c_str(), nullptr, nullptr, &errorMessage);
+    if (resultCode != SQLITE_OK){
+        std::stringstream ss;
+        ss << "Error updating podcast id: " << errorMessage << " (error code " << resultCode << ")";
+        sqlite3_free(errorMessage);
+        throw ss.str();
+    }
+    databaseManager.closeDatabase();
 }
 
 Podcast PodcastsRepository::getById(boost::uuids::uuid id) {
@@ -64,8 +81,6 @@ Podcast PodcastsRepository::getById(boost::uuids::uuid id) {
     databaseManager.openDatabase();
     database = databaseManager.getDatabase();
 
-    allPodcasts = std::vector<Podcast>();
-
     resultCode = sqlite3_exec(database, ss.str().c_str(), getByIdCallback, nullptr, &errorMessage);
     if (resultCode != SQLITE_OK){
         std::stringstream ss;
@@ -74,6 +89,9 @@ Podcast PodcastsRepository::getById(boost::uuids::uuid id) {
         throw ss.str();
     }
     databaseManager.closeDatabase();
+
+    if (podcastRetrievedById == nullptr)
+        throw "No podcast with matching id found";
 
     boost::uuids::uuid retrievedId = podcastRetrievedById->getId();
     std::string retrievedName = podcastRetrievedById->getName();

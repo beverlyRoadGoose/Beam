@@ -27,13 +27,14 @@ class Podcast {
 private:
     boost::uuids::random_generator generator;
     const boost::uuids::uuid id = generator(); // generate a uuid for the podcast
-    const std::string name;
+    std::string name;
 public:
     explicit Podcast(const std::string & name);
     Podcast(boost::uuids::uuid & id, std::string & name);
     ~Podcast();
     boost::uuids::uuid getId();
     std::string getName();
+    void setName(std::string & name);
 };
 
 #endif
