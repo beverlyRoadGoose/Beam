@@ -17,6 +17,7 @@
 
 #include <wx/wx.h>
 #include <wx/notebook.h>
+#include <ui/panels/podcasts_panel.h>
 
 #ifndef BEAM_MAINFRAME_H
 #define BEAM_MAINFRAME_H
@@ -33,7 +34,7 @@ private:
     wxMenuItem * checkNewEpisodesMenuItem;
 
     wxNotebook * tabsManager;
-    wxPanel * podcastsTabPanel;
+    PodcastsPanel * podcastsTabPanel;
 
     DECLARE_EVENT_TABLE()
 public:
