@@ -17,7 +17,7 @@
 
 #include "mainframe.h"
 
-MainFrame::MainFrame(const wxString & title) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(850, 600)) {
+MainFrame::MainFrame(const wxString & title) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(1000, 800)) {
     menuBar = new wxMenuBar;
 
     podcastsMenu = new wxMenu;
