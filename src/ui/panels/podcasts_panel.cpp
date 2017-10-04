@@ -23,8 +23,8 @@ PodcastsPanel::PodcastsPanel(wxWindow * parent) : wxPanel(parent) {
     podcastsListBox = new wxListBox(this, ID_PODCASTS_LISTBOX, wxPoint(-1, -1), wxSize(-1, -1));
     panelSizer->Add(podcastsListBox, 1, wxALL | wxEXPAND, 2);
 
-    episodesListBox = new wxListBox(this, ID_EPISODES_LISTBOX, wxPoint(-1, -1), wxSize(-1, -1));
-    panelSizer->Add(episodesListBox, 5, wxALL | wxEXPAND, 2);
+    episodesListPanel = new wxPanel(this);
+    panelSizer->Add(episodesListPanel, 5, wxALL | wxEXPAND, 2);
 
     this->SetSizer(panelSizer);
 }
