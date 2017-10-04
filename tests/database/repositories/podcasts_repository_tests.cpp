@@ -19,7 +19,6 @@
 
 #include <catch/catch.hpp>
 #include <tests/testutils.h>
-#include <entities/podcast.h>
 #include <database/repositories/podcasts_repository.h>
 
 TEST_CASE("insert new podcast", "[podcastsRepositoryTests]") {
@@ -45,6 +44,19 @@ TEST_CASE("get podcast by id", "[podcastsRepositoryTests]") {
     REQUIRE(retrievedPodcast.getName() == podcastName);
 }
 
+TEST_CASE("get all podcasts", "[podcastsRepositoryTests]") {
+    TestUtils::emptyDatabase();
+
+    std::string podcastAName = "Test Podcast A";
+    std::string podcastBName = "Test Podcast B";
+
+    TestUtils::createPodcastForTest(podcastAName);
+    TestUtils::createPodcastForTest(podcastBName);
+
+    PodcastsRepository podcastsRepository = PodcastsRepository();
+    REQUIRE(podcastsRepository.getAll().size() == 2);
+}
+
 TEST_CASE("get non existing podcast by id", "[podcastsRepositoryTests]") {
     PodcastsRepository podcastsRepository = PodcastsRepository();
     boost::uuids::random_generator generator;
@@ -58,12 +70,11 @@ TEST_CASE("update podcast", "[podcastsRepositoryTests]") {
 
     std::string podcastName = "Test Podcast";
     std::string updatedName = "Updated test podcast";
-    PodcastsRepository podcastsRepository = PodcastsRepository();
 
-    Podcast originalPodcast = Podcast(podcastName);
-    podcastsRepository.insert(originalPodcast);
-
+    Podcast originalPodcast = TestUtils::createPodcastForTest(podcastName);
     originalPodcast.setName(updatedName);
+
+    PodcastsRepository podcastsRepository = PodcastsRepository();
     podcastsRepository.update(originalPodcast);
 
     Podcast retrievedPodcast = podcastsRepository.getById(originalPodcast.getId());
@@ -74,10 +85,9 @@ TEST_CASE("delete podcast by id", "[podcastsRepositoryTests]") {
     TestUtils::emptyDatabase();
 
     std::string podcastName = "Test Podcast";
-    Podcast podcast = Podcast(podcastName);
-    PodcastsRepository podcastsRepository = PodcastsRepository();
-    podcastsRepository.insert(podcast);
+    Podcast podcast = TestUtils::createPodcastForTest(podcastName);
 
+    PodcastsRepository podcastsRepository = PodcastsRepository();
     podcastsRepository.deleteById(podcast.getId());
     REQUIRE(podcastsRepository.getAll().empty());
 }
@@ -86,10 +96,9 @@ TEST_CASE("delete all podcasts", "[podcastsRepositoryTests]") {
     TestUtils::emptyDatabase();
 
     std::string podcastName = "Test Podcast";
-    Podcast podcast = Podcast(podcastName);
-    PodcastsRepository podcastsRepository = PodcastsRepository();
-    podcastsRepository.insert(podcast);
+    TestUtils::createPodcastForTest(podcastName);
 
+    PodcastsRepository podcastsRepository = PodcastsRepository();
     podcastsRepository.deleteAll();
     REQUIRE(podcastsRepository.getAll().empty());
 }

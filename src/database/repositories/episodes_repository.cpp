@@ -175,6 +175,27 @@ void EpisodesRepository::deleteById(boost::uuids::uuid id) {
     databaseManager.closeDatabase();
 }
 
+void EpisodesRepository::deleteByPodcastId(boost::uuids::uuid id) {
+    sqlite3 * database;
+    char * errorMessage = 0;
+    int resultCode;
+
+    std::stringstream ss;
+    ss << "DELETE FROM episodes WHERE podcastId='" << id << "'";
+
+    databaseManager.openDatabase();
+    database = databaseManager.getDatabase();
+
+    resultCode = sqlite3_exec(database, ss.str().c_str(), nullptr, nullptr, &errorMessage);
+    if (resultCode != SQLITE_OK){
+        std::stringstream ss;
+        ss << "Error deleting podcast episodes: " << errorMessage << " (error code " << resultCode << ")";
+        sqlite3_free(errorMessage);
+        throw ss.str();
+    }
+    databaseManager.closeDatabase();
+}
+
 void EpisodesRepository::deleteAll() {
     sqlite3 * database;
     char * errorMessage = 0;
@@ -229,3 +250,4 @@ bool EpisodesRepository::verifyPodcastExists(boost::uuids::uuid id) {
 
     return true;
 }
+

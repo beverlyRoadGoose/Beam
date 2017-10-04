@@ -40,6 +40,7 @@ public:
     std::vector<Episode> getByPodcastId(boost::uuids::uuid id);
     std::vector<Episode> getAll();
     void deleteById(boost::uuids::uuid id);
+    void deleteByPodcastId(boost::uuids::uuid id);
     void deleteAll();
 };
 

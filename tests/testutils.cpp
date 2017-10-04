@@ -43,10 +43,18 @@ void TestUtils::emptyDatabase() {
     episodesRepository.deleteAll();
 }
 
-Podcast TestUtils::createPodcastForTest(std::string podcastName) {
+Podcast TestUtils::createPodcastForTest(std::string & podcastName) {
     Podcast podcast = Podcast(podcastName);
     PodcastsRepository podcastsRepository = PodcastsRepository();
     podcastsRepository.insert(podcast);
 
     return podcast;
+}
+
+Episode TestUtils::createEpisodeForTest(const boost::uuids::uuid & podcastId, std::string & episodeTitle) {
+    Episode episode = Episode(podcastId, episodeTitle);
+    EpisodesRepository episodesRepository = EpisodesRepository();
+    episodesRepository.insert(episode);
+
+    return episode;
 }
