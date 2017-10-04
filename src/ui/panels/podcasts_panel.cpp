@@ -23,11 +23,11 @@ PodcastsPanel::PodcastsPanel(wxWindow * parent) : wxPanel(parent) {
 
     podcastsListPanel = new PodcastsListPanel(this);
     podcastsListPanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
-    panelSizer->Add(podcastsListPanel, 1, wxALL | wxEXPAND, 2);
+    panelSizer->Add(podcastsListPanel, 1, wxALL | wxEXPAND, 4);
 
     episodesListPanel = new wxPanel(this);
     episodesListPanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
-    panelSizer->Add(episodesListPanel, 5, wxALL | wxEXPAND, 2);
+    panelSizer->Add(episodesListPanel, 5, wxALL | wxEXPAND, 4);
 
     this->SetSizer(panelSizer);
 }
