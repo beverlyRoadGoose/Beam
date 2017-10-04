@@ -28,3 +28,14 @@ TEST_CASE("insert new podcast", "[podcastsRepositoryTests]") {
     podcastsRepository.insert(podcast);
     REQUIRE(podcastsRepository.getAll().size() == 1);
 }
+
+TEST_CASE("get podcast by id", "[podcastsRepositoryTests]") {
+    std::string podcastName = "Test Podcast";
+    PodcastsRepository podcastsRepository = PodcastsRepository();
+
+    Podcast originalPodcast = Podcast(podcastName);
+    podcastsRepository.insert(originalPodcast);
+
+    Podcast retrievedPodcast = podcastsRepository.getById(originalPodcast.getId());
+    REQUIRE(retrievedPodcast.getName() == podcastName);
+}

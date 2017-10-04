@@ -28,10 +28,12 @@ class PodcastsRepository {
 private:
     DatabaseManager databaseManager;
     static int getAllCallback(void * data, int argc, char **argv, char **columnName);
+    static int getByIdCallback(void * data, int argc, char **argv, char **columnName);
 public:
     PodcastsRepository();
     ~PodcastsRepository();
     void insert(Podcast podcast);
+    void update(Podcast podcast);
     Podcast getById(boost::uuids::uuid id);
     std::vector<Podcast> getAll();
     void deleteById(boost::uuids::uuid id);

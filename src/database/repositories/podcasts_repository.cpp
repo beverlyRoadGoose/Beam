@@ -21,6 +21,7 @@
 #include "podcasts_repository.h"
 
 std::vector<Podcast> allPodcasts;
+Podcast * podcastRetrievedById = nullptr;
 
 PodcastsRepository::PodcastsRepository() = default;
 
@@ -48,8 +49,40 @@ void PodcastsRepository::insert(Podcast podcast) {
     databaseManager.closeDatabase();
 }
 
+void PodcastsRepository::update(Podcast podcast) {
+
+}
+
 Podcast PodcastsRepository::getById(boost::uuids::uuid id) {
-    // TODO
+    sqlite3 * database;
+    char * errorMessage = 0;
+    int resultCode;
+
+    std::stringstream ss;
+    ss << "SELECT * FROM podcasts WHERE id='" << id << "'";
+
+    databaseManager.openDatabase();
+    database = databaseManager.getDatabase();
+
+    allPodcasts = std::vector<Podcast>();
+
+    resultCode = sqlite3_exec(database, ss.str().c_str(), getByIdCallback, nullptr, &errorMessage);
+    if (resultCode != SQLITE_OK){
+        std::stringstream ss;
+        ss << "Error retrieving podcast by id: " << errorMessage << " (error code " << resultCode << ")";
+        sqlite3_free(errorMessage);
+        throw ss.str();
+    }
+    databaseManager.closeDatabase();
+
+    boost::uuids::uuid retrievedId = podcastRetrievedById->getId();
+    std::string retrievedName = podcastRetrievedById->getName();
+    Podcast p = Podcast(retrievedId, retrievedName);
+
+    delete podcastRetrievedById;
+    podcastRetrievedById = nullptr;
+
+    return p;
 }
 
 std::vector<Podcast> PodcastsRepository::getAll() {
@@ -88,6 +121,14 @@ int PodcastsRepository::getAllCallback(void * data, int argc, char **argv, char 
     std::string podcastName = argv[1];
     Podcast podcast = Podcast(podcastId, podcastName);
     allPodcasts.push_back(podcast);
+
+    return 0;
+}
+
+int PodcastsRepository::getByIdCallback(void *data, int argc, char **argv, char **columnName) {
+    boost::uuids::uuid podcastId = boost::lexical_cast<boost::uuids::uuid>(argv[0]);
+    std::string podcastName = argv[1];
+    podcastRetrievedById = new Podcast(podcastId, podcastName);
 
     return 0;
 }
