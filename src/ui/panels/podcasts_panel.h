@@ -21,9 +21,13 @@
 #define BEAM_PODCASTS_PANEL_H
 
 class PodcastsPanel : public wxPanel {
+private:
+    wxBoxSizer * panelSizer;
+    wxListBox * podcastsListBox;
 public:
     explicit PodcastsPanel(wxWindow * parent);
 };
 
+const int ID_PODCASTS_LISTBOX = 1;
 
 #endif //BEAM_PODCASTS_PANEL_H
