@@ -15,19 +15,15 @@
  *
  */
 
-#include <iostream>
-#include "podcasts_panel.h"
+#ifndef BEAM_PODCASTS_LIST_ITEM_PANEL_H
+#define BEAM_PODCASTS_LIST_ITEM_PANEL_H
 
-PodcastsPanel::PodcastsPanel(wxWindow * parent) : wxPanel(parent) {
-    panelSizer = new wxBoxSizer(wxHORIZONTAL);
+#include <wx/wx.h>
 
-    podcastsListPanel = new PodcastsListPanel(this);
-    podcastsListPanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
-    panelSizer->Add(podcastsListPanel, 1, wxALL | wxEXPAND, 2);
+class PodcastsListItemPanel : public wxPanel {
+private:
+public:
+    PodcastsListItemPanel(wxWindow * parent);
+};
 
-    episodesListPanel = new wxPanel(this);
-    episodesListPanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
-    panelSizer->Add(episodesListPanel, 5, wxALL | wxEXPAND, 2);
-
-    this->SetSizer(panelSizer);
-}
+#endif //BEAM_PODCASTS_LIST_ITEM_PANEL_H

@@ -15,19 +15,8 @@
  *
  */
 
-#include <iostream>
-#include "podcasts_panel.h"
+#include "podcasts_list_item_panel.h"
 
-PodcastsPanel::PodcastsPanel(wxWindow * parent) : wxPanel(parent) {
-    panelSizer = new wxBoxSizer(wxHORIZONTAL);
+PodcastsListItemPanel::PodcastsListItemPanel(wxWindow * parent) : wxPanel(parent) {
 
-    podcastsListPanel = new PodcastsListPanel(this);
-    podcastsListPanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
-    panelSizer->Add(podcastsListPanel, 1, wxALL | wxEXPAND, 2);
-
-    episodesListPanel = new wxPanel(this);
-    episodesListPanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
-    panelSizer->Add(episodesListPanel, 5, wxALL | wxEXPAND, 2);
-
-    this->SetSizer(panelSizer);
 }

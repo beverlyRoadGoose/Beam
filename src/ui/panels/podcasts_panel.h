@@ -16,6 +16,7 @@
  */
 
 #include <wx/wx.h>
+#include <src/ui/widgets/podcasts_list_panel.h>
 
 #ifndef BEAM_PODCASTS_PANEL_H
 #define BEAM_PODCASTS_PANEL_H
@@ -24,7 +25,7 @@ class PodcastsPanel : public wxPanel {
 private:
     wxBoxSizer * panelSizer;
 
-    wxPanel * podcastsListPanel;
+    PodcastsListPanel * podcastsListPanel;
     wxPanel * episodesListPanel;
 public:
     explicit PodcastsPanel(wxWindow * parent);

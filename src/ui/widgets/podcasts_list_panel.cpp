@@ -15,19 +15,13 @@
  *
  */
 
-#include <iostream>
-#include "podcasts_panel.h"
+#include "podcasts_list_panel.h"
 
-PodcastsPanel::PodcastsPanel(wxWindow * parent) : wxPanel(parent) {
-    panelSizer = new wxBoxSizer(wxHORIZONTAL);
+PodcastsListPanel::PodcastsListPanel(wxWindow * parent) : wxScrolledWindow(parent, wxID_ANY) {
+    sizer = new wxBoxSizer(wxVERTICAL);
 
-    podcastsListPanel = new PodcastsListPanel(this);
-    podcastsListPanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
-    panelSizer->Add(podcastsListPanel, 1, wxALL | wxEXPAND, 2);
+    this->SetSizer(sizer);
 
-    episodesListPanel = new wxPanel(this);
-    episodesListPanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
-    panelSizer->Add(episodesListPanel, 5, wxALL | wxEXPAND, 2);
-
-    this->SetSizer(panelSizer);
+    // this part makes the scrollbars show up
+    this->SetScrollRate(5, 5);
 }
