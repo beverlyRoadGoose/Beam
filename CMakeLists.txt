@@ -60,6 +60,7 @@ add_library(beam-database
     src/database/repositories/podcasts_repository.cpp
     src/database/repositories/episodes_repository.h
     src/database/repositories/episodes_repository.cpp)
+target_link_libraries(beam-database sqlite3)
 
 add_library(beam-entities
     src/entities/podcast.h
@@ -70,9 +71,10 @@ add_library(beam-entities
 add_library(beam-ui
     src/ui/mainframe.h
     src/ui/mainframe.cpp)
+target_link_libraries(beam-ui ${wxWidgets_LIBRARIES})
 
 add_executable(Beam src/main.h src/main.cpp)
-target_link_libraries(Beam ${wxWidgets_LIBRARIES} sqlite3 beam-database beam-entities beam-ui)
+target_link_libraries(Beam beam-database beam-entities beam-ui)
 
 #####################
 # Testing
