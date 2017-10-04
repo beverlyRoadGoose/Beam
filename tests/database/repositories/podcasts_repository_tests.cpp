@@ -18,8 +18,8 @@
 #define CATCH_CONFIG_MAIN
 
 #include <catch/catch.hpp>
+#include <tests/testutils.h>
 #include <entities/podcast.h>
-#include "tests/testutils.h"
 #include <database/repositories/podcasts_repository.h>
 
 TEST_CASE("insert new podcast", "[podcastsRepositoryTests]") {
@@ -43,6 +43,14 @@ TEST_CASE("get podcast by id", "[podcastsRepositoryTests]") {
 
     Podcast retrievedPodcast = podcastsRepository.getById(originalPodcast.getId());
     REQUIRE(retrievedPodcast.getName() == podcastName);
+}
+
+TEST_CASE("get non existing podcast by id", "[podcastsRepositoryTests]") {
+    PodcastsRepository podcastsRepository = PodcastsRepository();
+    boost::uuids::random_generator generator;
+    boost::uuids::uuid randomId = generator();
+
+    REQUIRE_THROWS(podcastsRepository.getById(randomId));
 }
 
 TEST_CASE("update podcast", "[podcastsRepositoryTests]") {
@@ -71,5 +79,17 @@ TEST_CASE("delete podcast by id", "[podcastsRepositoryTests]") {
     podcastsRepository.insert(podcast);
 
     podcastsRepository.deleteById(podcast.getId());
+    REQUIRE(podcastsRepository.getAll().empty());
+}
+
+TEST_CASE("delete all podcasts", "[podcastsRepositoryTests]") {
+    TestUtils::emptyDatabase();
+
+    std::string podcastName = "Test Podcast";
+    Podcast podcast = Podcast(podcastName);
+    PodcastsRepository podcastsRepository = PodcastsRepository();
+    podcastsRepository.insert(podcast);
+
+    podcastsRepository.deleteAll();
     REQUIRE(podcastsRepository.getAll().empty());
 }
