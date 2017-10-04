@@ -1,7 +1,32 @@
 #!/usr/bin/env bash
 
+#
+#  Copyright 2017 Oluwatobi Adeyinka
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+
 echo ---------- starting dependencies setup ----------
 echo
+
+# cmake
+if [[ "$(uname)" == "Darwin" ]]; then # osx
+    brew install cmake
+elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # linux
+    sudo apt-get install cmake
+fi
+
+
 
 # create a libraries directory if it doesnt exist
 if [ ! -d "lib" ]; then
@@ -94,7 +119,13 @@ mkdir build-debug
 cd build-debug
 
 echo ---------- building wxWidgets: this could take 20 minutes or more ----------
-../configure --enable-debug --enable-monolithic --with-macosx-version-min=10.9
+
+if [[ "$(uname)" == "Darwin" ]]; then # osx
+    ../configure --enable-debug --enable-monolithic --with-macosx-version-min=10.9
+elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # linux
+    ../configure --enable-debug --enable-monolithic
+fi
+
 make
 
 echo ---------- finished building wxWidgets ----------

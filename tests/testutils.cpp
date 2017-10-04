@@ -15,11 +15,20 @@
  *
  */
 
-#include <regex>
+#include <sstream>
 #include "testutils.h"
 
 bool TestUtils::isValidUUID(const boost::uuids::uuid & id) {
     std::string uuidString = boost::uuids::to_string(id);
-    static const std::regex regex("[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}");
-    return regex_match(uuidString, regex);
+
+    try {
+        boost::uuids::string_generator generator;
+        boost::uuids::uuid temp = generator(uuidString);
+        return temp.version() != boost::uuids::uuid::version_unknown;
+    }
+    catch (const std::exception & ex) {
+        std::stringstream ss;
+        ss << "Invalid uuid: " << *ex.what();
+        throw ss.str();
+    }
 }
