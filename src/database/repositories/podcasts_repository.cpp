@@ -34,7 +34,7 @@ void PodcastsRepository::insert(Podcast podcast) {
     int resultCode;
 
     ss << "VALUES ('" << podcast.getId() << "', '" << podcast.getName() << "');";
-    std::string sql = "INSERT INTO podcasts (ID,NAME) " + ss.str();
+    std::string sql = "INSERT INTO podcasts (id, name) " + ss.str();
 
     databaseManager.openDatabase();
     database = databaseManager.getDatabase();

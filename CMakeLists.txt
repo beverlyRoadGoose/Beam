@@ -101,5 +101,5 @@ target_link_libraries(podcasts-repository-tests Catch TestUtils sqlite3 beam-dat
 add_test(NAME PodcastsRepositoryTests COMMAND podcasts-repository-tests)
 
 add_executable(episodes-repository-tests tests/database/repositories/episodes_repository_tests.cpp)
-target_link_libraries(episodes-repository-tests Catch sqlite3 beam-database beam-entities)
+target_link_libraries(episodes-repository-tests Catch TestUtils sqlite3 beam-database beam-entities)
 add_test(NAME EpisodesRepositoryTests COMMAND episodes-repository-tests)

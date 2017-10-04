@@ -65,8 +65,8 @@ void DatabaseManager::createEpisodesTable() {
     std::string sql =
             "CREATE TABLE IF NOT EXISTS episodes("
             "id TEXT PRIMARY KEY NOT NULL,"
-            "podcastId TEXT PRIMARY KEY NOT NULL,"
-            "name TEXT NOT NULL);";
+            "podcastId TEXT NOT NULL,"
+            "title TEXT NOT NULL);";
 
     openDatabase();
     resultCode = sqlite3_exec(database, sql.c_str(), nullptr, nullptr, &errorMessage);

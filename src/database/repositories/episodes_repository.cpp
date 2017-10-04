@@ -35,8 +35,8 @@ void EpisodesRepository::insert(Episode episode) {
 
     verifyPodcastExists(episode.getPodcastId());
 
-    ss << "VALUES ('" << episode.getId() << "', '" << episode.getTitle() << "');";
-    std::string sql = "INSERT INTO episodes (ID,TITLE) " + ss.str();
+    ss << "VALUES ('" << episode.getId() << "', '" << episode.getPodcastId() << "', '" << episode.getTitle() << "' );";
+    std::string sql = "INSERT INTO episodes (id, podcastId, title) " + ss.str();
 
     databaseManager.openDatabase();
     database = databaseManager.getDatabase();

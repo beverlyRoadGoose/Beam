@@ -18,3 +18,21 @@
 #define CATCH_CONFIG_MAIN
 
 #include <catch/catch.hpp>
+#include <tests/testutils.h>
+#include <entities/episode.h>
+#include <database/repositories/episodes_repository.h>
+
+TEST_CASE("insert new episode", "[podcastsRepositoryTests]") {
+    TestUtils::emptyDatabase();
+
+    std::string testPodcastName = "Test Podcast";
+    Podcast testPodcast = TestUtils::createPodcastForTest(testPodcastName);
+
+    std::string testEpisodeTitle = "Test Episode";
+    Episode episode = Episode(testPodcast.getId(), testEpisodeTitle);
+
+    EpisodesRepository episodesRepository = EpisodesRepository();
+    episodesRepository.insert(episode);
+
+    REQUIRE(episodesRepository.getAll().size() == 1);
+}
