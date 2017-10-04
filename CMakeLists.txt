@@ -53,26 +53,26 @@ link_directories(${PROJECT_SOURCE_DIR}/lib/sqlite/build-debug/.libs)
 # create persistence dir during build
 add_custom_target(build-time-make-directory ALL COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/build/persistence)
 
-set(HEADER_FILES
-    src/main.h
-    src/ui/mainframe.h
-    src/entities/podcast.h
-    src/entities/episode.h
+add_library(beam-database
     src/database/databasemanager.h
-    src/database/repositories/podcasts_repository.h
-    src/database/repositories/episodes_repository.h)
-
-set(SOURCE_FILES
-    src/main.cpp
-    src/ui/mainframe.cpp
-    src/entities/podcast.cpp
-    src/entities/episode.cpp
     src/database/databasemanager.cpp
+    src/database/repositories/podcasts_repository.h
     src/database/repositories/podcasts_repository.cpp
+    src/database/repositories/episodes_repository.h
     src/database/repositories/episodes_repository.cpp)
 
-add_executable(Beam ${HEADER_FILES} ${SOURCE_FILES})
-target_link_libraries(Beam ${wxWidgets_LIBRARIES} sqlite3)
+add_library(beam-entities
+    src/entities/podcast.h
+    src/entities/podcast.cpp
+    src/entities/episode.h
+    src/entities/episode.cpp)
+
+add_library(beam-ui
+    src/ui/mainframe.h
+    src/ui/mainframe.cpp)
+
+add_executable(Beam src/main.h src/main.cpp)
+target_link_libraries(Beam ${wxWidgets_LIBRARIES} sqlite3 beam-database beam-entities beam-ui)
 
 #####################
 # Testing
@@ -81,67 +81,25 @@ target_link_libraries(Beam ${wxWidgets_LIBRARIES} sqlite3)
 enable_testing()
 add_library(Catch lib/catch/catch.hpp lib/catch/catch.cpp)
 
-add_library(TestUtils
-    tests/testutils.h
-    tests/testutils.cpp
-    src/database/repositories/podcasts_repository.h
-    src/database/repositories/podcasts_repository.cpp
-    src/database/repositories/episodes_repository.h
-    src/database/repositories/episodes_repository.cpp)
+add_library(TestUtils tests/testutils.h tests/testutils.cpp)
+target_link_libraries(TestUtils beam-database)
 
-add_executable(podcast-tests
-    src/entities/podcast.h
-    src/entities/podcast.cpp
-    src/entities/episode.h
-    src/entities/episode.cpp
-    src/database/databasemanager.h
-    src/database/databasemanager.cpp
-    tests/entities/podcasttests.cpp)
-target_link_libraries(podcast-tests Catch TestUtils sqlite3)
+add_executable(podcast-tests tests/entities/podcasttests.cpp)
+target_link_libraries(podcast-tests Catch TestUtils sqlite3 beam-database beam-entities)
 add_test(NAME PodcastTests COMMAND podcast-tests)
 
-add_executable(episode-tests
-    src/entities/episode.h
-    src/entities/episode.cpp
-    src/entities/podcast.h
-    src/entities/podcast.cpp
-    src/database/databasemanager.h
-    src/database/databasemanager.cpp
-    tests/entities/episodetests.cpp)
-target_link_libraries(episode-tests Catch TestUtils sqlite3)
+add_executable(episode-tests tests/entities/episodetests.cpp)
+target_link_libraries(episode-tests Catch TestUtils sqlite3 beam-database beam-entities)
 add_test(NAME EpisodeTests COMMAND episode-tests)
 
-add_executable(database-manager-tests
-    src/database/databasemanager.h
-    src/database/databasemanager.cpp
-    tests/database/databasemanagertests.cpp)
-target_link_libraries(database-manager-tests Catch TestUtils sqlite3)
+add_executable(database-manager-tests tests/database/databasemanagertests.cpp)
+target_link_libraries(database-manager-tests Catch TestUtils sqlite3 beam-database beam-entities)
 add_test(NAME DatabaseManagerTests COMMAND database-manager-tests)
 
-add_executable(podcasts-repository-tests
-    src/entities/podcast.h
-    src/entities/podcast.cpp
-    src/entities/episode.h
-    src/entities/episode.cpp
-    src/database/databasemanager.h
-    src/database/databasemanager.cpp
-    src/database/repositories/podcasts_repository.h
-    src/database/repositories/podcasts_repository.cpp
-    tests/database/repositories/podcasts_repository_tests.cpp)
-target_link_libraries(podcasts-repository-tests Catch TestUtils sqlite3)
+add_executable(podcasts-repository-tests tests/database/repositories/podcasts_repository_tests.cpp)
+target_link_libraries(podcasts-repository-tests Catch TestUtils sqlite3 beam-database beam-entities)
 add_test(NAME PodcastsRepositoryTests COMMAND podcasts-repository-tests)
 
-add_executable(episodes-repository-tests
-    src/entities/episode.h
-    src/entities/episode.cpp
-    src/entities/podcast.h
-    src/entities/podcast.cpp
-    src/database/databasemanager.h
-    src/database/databasemanager.cpp
-    src/database/repositories/episodes_repository.h
-    src/database/repositories/episodes_repository.cpp
-    src/database/repositories/podcasts_repository.h
-    src/database/repositories/podcasts_repository.cpp
-    tests/database/repositories/episodes_repository_tests.cpp)
-target_link_libraries(episodes-repository-tests Catch sqlite3)
+add_executable(episodes-repository-tests tests/database/repositories/episodes_repository_tests.cpp)
+target_link_libraries(episodes-repository-tests Catch sqlite3 beam-database beam-entities)
 add_test(NAME EpisodesRepositoryTests COMMAND episodes-repository-tests)
