@@ -21,6 +21,7 @@ PodcastsListPanel::PodcastsListPanel(wxWindow * parent) : wxScrolledWindow(paren
     sizer = new wxBoxSizer(wxVERTICAL);
 
     this->SetSizer(sizer);
+    this->SetWindowStyleFlag(wxBORDER_SUNKEN);
 
     // this part makes the scrollbars show up
     this->SetScrollRate(5, 5);
