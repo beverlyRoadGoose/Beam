@@ -17,12 +17,16 @@
 
 #include "podcasts_list_panel.h"
 
-PodcastsListPanel::PodcastsListPanel(wxWindow * parent) : wxScrolledWindow(parent, wxID_ANY) {
+PodcastsListPanel::PodcastsListPanel(wxWindow * parent) : wxPanel(parent) {
     sizer = new wxBoxSizer(wxVERTICAL);
+
+    titleBar = new wxStaticText(this, wxID_ANY, wxT("Subscriptions"));
+    wxFont titleBarFont = titleBar->GetFont();
+    titleBarFont.SetPointSize(12);
+    titleBarFont.SetWeight(wxFONTWEIGHT_BOLD);
+    titleBar->SetFont(titleBarFont);
+    sizer->Add(titleBar, 0, wxALIGN_CENTER_HORIZONTAL | wxBOTTOM, 2);
 
     this->SetSizer(sizer);
     this->SetWindowStyleFlag(wxBORDER_SUNKEN);
-
-    // this part makes the scrollbars show up
-    this->SetScrollRate(5, 5);
 }

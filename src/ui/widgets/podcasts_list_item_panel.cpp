@@ -18,5 +18,4 @@
 #include "podcasts_list_item_panel.h"
 
 PodcastsListItemPanel::PodcastsListItemPanel(wxWindow * parent) : wxPanel(parent) {
-
 }

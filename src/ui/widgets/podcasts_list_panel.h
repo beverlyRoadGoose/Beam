@@ -22,9 +22,10 @@
 #ifndef BEAM_PODCASTS_LIST_PANEL_H
 #define BEAM_PODCASTS_LIST_PANEL_H
 
-class PodcastsListPanel : public wxScrolledWindow {
+class PodcastsListPanel : public wxPanel {
 private:
     wxBoxSizer * sizer;
+    wxStaticText * titleBar;
 public:
     PodcastsListPanel(wxWindow * parent);
 };
