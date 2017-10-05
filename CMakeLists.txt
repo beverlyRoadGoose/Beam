@@ -68,6 +68,10 @@ add_library(beam-entities
     src/entities/episode.h
     src/entities/episode.cpp)
 
+add_library(beam-networking
+    src/networking/network_utils.cpp
+    src/networking/network_utils.h)
+
 add_library(beam-ui
     src/ui/mainframe.h
     src/ui/mainframe.cpp
@@ -80,7 +84,7 @@ add_library(beam-ui
 target_link_libraries(beam-ui ${wxWidgets_LIBRARIES})
 
 add_executable(Beam src/main.h src/main.cpp)
-target_link_libraries(Beam beam-database beam-entities beam-ui)
+target_link_libraries(Beam beam-database beam-entities beam-ui beam-networking)
 
 #####################
 # Testing
@@ -111,3 +115,7 @@ add_test(NAME PodcastsRepositoryTests COMMAND podcasts-repository-tests)
 add_executable(episodes-repository-tests tests/database/repositories/episodes_repository_tests.cpp)
 target_link_libraries(episodes-repository-tests Catch TestUtils sqlite3 beam-database beam-entities)
 add_test(NAME EpisodesRepositoryTests COMMAND episodes-repository-tests)
+
+add_executable(network-utils-tests tests/networking/network_utils_tests.cpp)
+target_link_libraries(network-utils-tests Catch beam-networking)
+add_test(NAME NetworkUtilsTests COMMAND network-utils-tests)
