@@ -25,7 +25,7 @@ PodcastsListPanel::PodcastsListPanel(wxWindow * parent) : wxPanel(parent) {
     titleBarFont.SetPointSize(12);
     titleBarFont.SetWeight(wxFONTWEIGHT_BOLD);
     titleBar->SetFont(titleBarFont);
-    sizer->Add(titleBar, 0, wxALIGN_CENTER_HORIZONTAL | wxBOTTOM, 2);
+    sizer->Add(titleBar, 0, wxALIGN_CENTER_HORIZONTAL);
 
     this->SetSizer(sizer);
     this->SetWindowStyleFlag(wxBORDER_SUNKEN);
