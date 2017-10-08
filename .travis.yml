@@ -6,17 +6,17 @@ compiler:
 matrix:
   include:
     - os: osx
-      osx_image: xcode8
+      osx_image: xcode9
       env:
-        - MATRIX_EVAL="brew install gcc && CC=gcc-6 && CXX=g++-6"
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
     - os: linux
       sudo: required
 
 before_install:
-  - eval "${MATRIX_EVAL}"
 
 install:
   - ./.travis/install.sh
+  - eval "${MATRIX_EVAL}"
 
 branches:
   except:

@@ -18,6 +18,8 @@
 
 if [[ "$(uname)" == "Darwin" ]]; then # osx
 
+    brew update
+    brew install gcc
     brew install wxmac
     brew upgrade boost
     brew upgrade cmake
