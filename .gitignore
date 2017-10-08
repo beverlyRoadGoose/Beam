@@ -15,5 +15,6 @@
 *.cbp
 *.DS_Store
 
+/.env
 /CTestTestfile.cmake
 /cmake_install.cmake
