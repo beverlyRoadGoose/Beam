@@ -29,7 +29,7 @@ before_script:
 
 script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cmake . && make && make test; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; tcmake -DCMAKE_PREFIX_PATH=lib/wxWidgets/build-debug/ . && make && make test; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cmake -DCMAKE_PREFIX_PATH=lib/wxWidgets/build-debug/ . && make && make test; fi
 
 after_script:
   - cat Testing/Temporary/LastTest.log
