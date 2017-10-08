@@ -30,6 +30,7 @@ elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # linux
     sudo apt-get install libboost-dev
     sudo apt-get install libgtk-3-dev
     sudo apt-get install build-essential
+    sudo apt-get install libcurl4-gnutls-dev
     sudo apt-get install sqlite3 libsqlite3-dev
 
 fi

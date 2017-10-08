@@ -25,6 +25,7 @@ if [[ "$(uname)" == "Darwin" ]]; then # osx
 elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # linux
     sudo apt-get install cmake
     sudo apt-get install curl
+    sudo apt-get install libcurl4-gnutls-dev
 fi
 
 
@@ -108,7 +109,7 @@ if [ -d "curlpp" ]; then
     rm -rf curlpp
 fi
 
-echo downloading sqlite tar
+echo downloading curlpp tar
 curl -L https://github.com/jpbarrette/curlpp/archive/v0.8.1.tar.gz | tar zx
 mv curlpp-0.8.1/ curlpp/
 cd curlpp
