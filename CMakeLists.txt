@@ -76,7 +76,9 @@ add_library(beam-entities
 
 add_library(beam-networking
     src/networking/network_utils.cpp
-    src/networking/network_utils.h)
+    src/networking/network_utils.h
+    src/networking/apis/digital_podcasts.cpp
+    src/networking/apis/digital_podcasts.h)
 target_link_libraries(beam-networking curlpp ${CURL_LIBRARIES})
 
 add_library(beam-ui
@@ -126,3 +128,7 @@ add_test(NAME EpisodesRepositoryTests COMMAND episodes-repository-tests)
 add_executable(network-utils-tests tests/networking/network_utils_tests.cpp)
 target_link_libraries(network-utils-tests Catch beam-networking)
 add_test(NAME NetworkUtilsTests COMMAND network-utils-tests)
+
+add_executable(digital-podcasts-api-tests tests/networking/apis/digital_podcasts_api_tests.cpp)
+target_link_libraries(digital-podcasts-api-tests Catch beam-networking)
+add_test(NAME DigitalPodcastsApiTests COMMAND digital-podcasts-api-tests)
