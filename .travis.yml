@@ -1,35 +1,39 @@
 language: cpp
 
 compiler:
-  - gcc
+- gcc
 
 matrix:
   include:
-    - os: osx
-      osx_image: xcode9
-      env:
-        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
-    - os: linux
-      sudo: required
+  - os: osx
+    osx_image: xcode9
+    env:
+    - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+  - os: linux
+    sudo: required
 
 before_install:
 
 install:
-  - ./.travis/install.sh
-  - eval "${MATRIX_EVAL}"
+- ./.travis/install.sh
+- eval "${MATRIX_EVAL}"
 
 branches:
   except:
-   - dev
+  - dev
 
 before_script:
-  - export CXX=g++
-  - export CC=gcc
-  - ./.travis/before_script.sh
+- export CXX=g++
+- export CC=gcc
+- ./.travis/before_script.sh
 
 script:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cmake . && make && make test; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cmake -DCMAKE_PREFIX_PATH=lib/wxWidgets/build-debug/ . && make && make test; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cmake . && make && make test; fi
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cmake -DCMAKE_PREFIX_PATH=lib/wxWidgets/build-debug/ . && make && make test; fi
 
 after_script:
-  - cat Testing/Temporary/LastTest.log
+- cat Testing/Temporary/LastTest.log
+
+env:
+  matrix:
+    secure: LXFzrzfeblyN75yDnqtRg6v5LyTrNJl5lUouW7XasjYvyj6L36oh7tjPQ+i13ZsoIar9/O/8SgaTo+nlpyTB39ZHuIynnEX/TZZBXo1n1JdjvRZkEo5t5rzF/+/pul/PlhhdpTiG57dIUFRhJFXiJUoIZ6RCBUCBZTGa+3dN870+ZFSdt+64GT4AfyMgEASKhunx+fIn5CVmCfmH8FXyb2hE7Rv+TkAbMRuaCQznY3rKj3x05BaiAkh0dvrI7gdzj4a41lQiKIScmiDSHkv15e+y9IZqd0ThF9fLv+zhuD3Ob3QcVIjoloNOE30PjbZOpQEfazrY/haDKc/Axjm9eE0pP4SGBR1+1XADnCbLgwBMYqZKIUvL7NNOt4/A0GF9Qo6aZCA/fpSgEVaP7WrUL5lvZXawisj8nNBYNntb42WDq+ZIqmLeVfJCkRf8/J0X55BI4bE870iG7szHwhHkNUd+V8i+RFwyuQSD+H9PewLJjW4nbVcZp7yATyiIHOLjfnv76T7Om8mCttIQcrF+P/fp7l/aml/q0+BuDWhEnsdbNPSlR7al4ESXwF+qPE8yRjgnIJxBc7rQGW5ajzB+nbPCrDksz66VXiI2qlA69ryv7/yS8sYBuxLiqZqrXRA1ORq1xzzKNItRzvmqAMFkoyYU12AIdC8O0VBWulyY508=
