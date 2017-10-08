@@ -3,6 +3,9 @@ language: cpp
 compiler:
 - gcc
 
+env:
+- secure: LXFzrzfeblyN75yDnqtRg6v5LyTrNJl5lUouW7XasjYvyj6L36oh7tjPQ+i13ZsoIar9/O/8SgaTo+nlpyTB39ZHuIynnEX/TZZBXo1n1JdjvRZkEo5t5rzF/+/pul/PlhhdpTiG57dIUFRhJFXiJUoIZ6RCBUCBZTGa+3dN870+ZFSdt+64GT4AfyMgEASKhunx+fIn5CVmCfmH8FXyb2hE7Rv+TkAbMRuaCQznY3rKj3x05BaiAkh0dvrI7gdzj4a41lQiKIScmiDSHkv15e+y9IZqd0ThF9fLv+zhuD3Ob3QcVIjoloNOE30PjbZOpQEfazrY/haDKc/Axjm9eE0pP4SGBR1+1XADnCbLgwBMYqZKIUvL7NNOt4/A0GF9Qo6aZCA/fpSgEVaP7WrUL5lvZXawisj8nNBYNntb42WDq+ZIqmLeVfJCkRf8/J0X55BI4bE870iG7szHwhHkNUd+V8i+RFwyuQSD+H9PewLJjW4nbVcZp7yATyiIHOLjfnv76T7Om8mCttIQcrF+P/fp7l/aml/q0+BuDWhEnsdbNPSlR7al4ESXwF+qPE8yRjgnIJxBc7rQGW5ajzB+nbPCrDksz66VXiI2qlA69ryv7/yS8sYBuxLiqZqrXRA1ORq1xzzKNItRzvmqAMFkoyYU12AIdC8O0VBWulyY508=
+
 matrix:
   include:
   - os: osx
@@ -34,7 +37,3 @@ script:
 
 after_script:
 - cat Testing/Temporary/LastTest.log
-
-env:
-  matrix:
-    secure: LXFzrzfeblyN75yDnqtRg6v5LyTrNJl5lUouW7XasjYvyj6L36oh7tjPQ+i13ZsoIar9/O/8SgaTo+nlpyTB39ZHuIynnEX/TZZBXo1n1JdjvRZkEo5t5rzF/+/pul/PlhhdpTiG57dIUFRhJFXiJUoIZ6RCBUCBZTGa+3dN870+ZFSdt+64GT4AfyMgEASKhunx+fIn5CVmCfmH8FXyb2hE7Rv+TkAbMRuaCQznY3rKj3x05BaiAkh0dvrI7gdzj4a41lQiKIScmiDSHkv15e+y9IZqd0ThF9fLv+zhuD3Ob3QcVIjoloNOE30PjbZOpQEfazrY/haDKc/Axjm9eE0pP4SGBR1+1XADnCbLgwBMYqZKIUvL7NNOt4/A0GF9Qo6aZCA/fpSgEVaP7WrUL5lvZXawisj8nNBYNntb42WDq+ZIqmLeVfJCkRf8/J0X55BI4bE870iG7szHwhHkNUd+V8i+RFwyuQSD+H9PewLJjW4nbVcZp7yATyiIHOLjfnv76T7Om8mCttIQcrF+P/fp7l/aml/q0+BuDWhEnsdbNPSlR7al4ESXwF+qPE8yRjgnIJxBc7rQGW5ajzB+nbPCrDksz66VXiI2qlA69ryv7/yS8sYBuxLiqZqrXRA1ORq1xzzKNItRzvmqAMFkoyYU12AIdC8O0VBWulyY508=
