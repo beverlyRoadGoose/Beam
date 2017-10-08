@@ -6,9 +6,7 @@ compiler:
 matrix:
   include:
     - os: osx
-      osx_image: xcode8
-      env:
-        - MATRIX_EVAL="brew install gcc && CC=gcc-6 && CXX=g++-6"
+      osx_image: xcode9
     - os: linux
       sudo: required
 
@@ -23,8 +21,8 @@ branches:
    - dev
 
 before_script:
-  - export CXX=g++
-  - export CC=gcc
+  - export CXX=g++-6
+  - export CC=gcc-6
   - ./.travis/before_script.sh
 
 script:
