@@ -21,7 +21,7 @@
 #include <string>
 
 namespace NetworkUtils {
-    std::string query();
+    std::string query(std::string & url);
 }
 
 #endif //BEAM_NETWORK_UTILS_H

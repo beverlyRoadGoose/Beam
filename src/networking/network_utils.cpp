@@ -15,8 +15,18 @@
  *
  */
 
+#include <sstream>
+#include <curlpp/cURLpp.hpp>
+#include <curlpp/Options.hpp>
 #include "network_utils.h"
 
-std::string NetworkUtils::query() {
-
+/*
+ * Query the passed string url and return the response as a
+ * string
+ */
+std::string NetworkUtils::query(std::string & url) {
+    std::ostringstream os;
+    curlpp::Cleanup curlppCleanup;
+    os << curlpp::options::Url(url);
+    return  os.str();
 }

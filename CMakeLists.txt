@@ -36,6 +36,7 @@ endif ()
 include_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(${PROJECT_SOURCE_DIR}/lib)
+include_directories(${PROJECT_SOURCE_DIR}/lib/curlpp/include)
 include_directories(${PROJECT_SOURCE_DIR}/lib/wxWidgets/include)
 
 if (APPLE)
@@ -49,6 +50,11 @@ include(${wxWidgets_USE_FILE})
 
 #sqlite libraries
 link_directories(${PROJECT_SOURCE_DIR}/lib/sqlite/build-debug/.libs)
+
+find_package(CURL REQUIRED)
+
+#curlpp libraries
+link_directories(${PROJECT_SOURCE_DIR}/lib/curlpp)
 
 # create persistence dir during build
 add_custom_target(build-time-make-directory ALL COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/build/persistence)
@@ -71,6 +77,7 @@ add_library(beam-entities
 add_library(beam-networking
     src/networking/network_utils.cpp
     src/networking/network_utils.h)
+target_link_libraries(beam-networking curlpp ${CURL_LIBRARIES})
 
 add_library(beam-ui
     src/ui/mainframe.h

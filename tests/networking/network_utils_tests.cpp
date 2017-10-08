@@ -18,3 +18,12 @@
 #define CATCH_CONFIG_MAIN
 
 #include <catch/catch.hpp>
+#include <networking/network_utils.h>
+
+TEST_CASE("url query test", "[networkUtilsTests]") {
+    std::string testDomain = "https://www.tobiadeyinka.com";
+    std::string response = NetworkUtils::query(testDomain);
+
+    REQUIRE_FALSE(response.empty());
+    std::cout << "Query response:\n" << response;
+}

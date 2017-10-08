@@ -24,8 +24,8 @@ if [[ "$(uname)" == "Darwin" ]]; then # osx
     brew install cmake
 elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # linux
     sudo apt-get install cmake
+    sudo apt-get install curl
 fi
-
 
 
 # create a libraries directory if it doesnt exist
@@ -93,6 +93,32 @@ make
 cd ../..
 
 echo ---------- sqlite successfuly setup ----------
+echo
+
+
+###############################################
+# curlpp
+###############################################
+
+echo ---------- setting up curlpp ----------
+echo
+
+if [ -d "curlpp" ]; then
+    echo removing old curlpp.
+    rm -rf curlpp
+fi
+
+echo downloading sqlite tar
+curl -L https://github.com/jpbarrette/curlpp/archive/v0.8.1.tar.gz | tar zx
+mv curlpp-0.8.1/ curlpp/
+cd curlpp
+cmake .
+make
+
+# back to lib dir
+cd ..
+
+echo ---------- curlpp successfuly setup ----------
 echo
 
 
