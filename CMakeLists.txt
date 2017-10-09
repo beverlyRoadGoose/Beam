@@ -38,6 +38,7 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(${PROJECT_SOURCE_DIR}/lib)
 include_directories(${PROJECT_SOURCE_DIR}/lib/curlpp/include)
 include_directories(${PROJECT_SOURCE_DIR}/lib/wxWidgets/include)
+include_directories(${PROJECT_SOURCE_DIR}/lib/rapidjson/include)
 
 if (APPLE)
     include_directories(${PROJECT_SOURCE_DIR}/lib/wxWidgets/build-debug/lib/wx/include/osx_cocoa-unicode-3.0)
@@ -59,6 +60,8 @@ link_directories(${PROJECT_SOURCE_DIR}/lib/curlpp)
 # create persistence dir during build
 add_custom_target(build-time-make-directory ALL COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/build/persistence)
 
+add_library(beam-utils src/utils/json_utils.cpp src/utils/json_utils.h)
+
 add_library(beam-database
     src/database/databasemanager.h
     src/database/databasemanager.cpp
@@ -79,7 +82,7 @@ add_library(beam-networking
     src/networking/network_utils.h
     src/networking/apis/digital_podcasts.cpp
     src/networking/apis/digital_podcasts.h)
-target_link_libraries(beam-networking curlpp ${CURL_LIBRARIES})
+target_link_libraries(beam-networking curlpp ${CURL_LIBRARIES} beam-utils)
 
 add_library(beam-ui
     src/ui/mainframe.h
@@ -91,6 +94,7 @@ add_library(beam-ui
     src/ui/widgets/podcasts_list_panel.cpp
     src/ui/widgets/podcasts_list_panel.h)
 target_link_libraries(beam-ui ${wxWidgets_LIBRARIES})
+
 
 add_executable(Beam src/main.h src/main.cpp)
 target_link_libraries(Beam beam-database beam-entities beam-ui beam-networking)

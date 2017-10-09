@@ -21,6 +21,7 @@ rm -rf build/podcasts-repository-tests
 rm -rf build/libCatch.a
 rm -rf build/libbeam-ui.a
 rm -rf build/libTestUtils.a
+rm -rf build/libbeam-utils.a
 rm -rf build/libbeam-entities.a
 rm -rf build/libbeam-database.a
 rm -rf build/libbeam-networking.a

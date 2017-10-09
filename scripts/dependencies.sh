@@ -19,7 +19,7 @@
 echo ---------- starting dependencies setup ----------
 echo
 
-# cmake
+# cmake & curl -- osx has curl by default
 if [[ "$(uname)" == "Darwin" ]]; then # osx
     brew install cmake
 elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # linux
@@ -94,6 +94,26 @@ make
 cd ../..
 
 echo ---------- sqlite successfuly setup ----------
+echo
+
+
+###############################################
+# rapidjson
+###############################################
+
+echo ---------- setting up rapidjson ----------
+echo
+
+if [ -d "rapidjson" ]; then
+    echo removing old rapidjson.
+    rm -rf rapidjson
+fi
+
+echo downloading rapidjson tar
+curl -L https://github.com/Tencent/rapidjson/archive/v1.1.0.tar.gz | tar zx
+mv rapidjson-1.1.0/ rapidjson/
+
+echo ---------- rapidjson successfuly setup ----------
 echo
 
 
