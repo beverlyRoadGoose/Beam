@@ -36,12 +36,7 @@ endif ()
 # include directories
 include(${PROJECT_SOURCE_DIR}/cmake/includes.cmake)
 
-if (APPLE)
-    include_directories(${PROJECT_SOURCE_DIR}/lib/wxWidgets/build-debug/lib/wx/include/osx_cocoa-unicode-3.0)
-elseif (UNIX AND NOT APPLE)
-    include_directories(${PROJECT_SOURCE_DIR}/lib/wxWidgets/build-debug/lib/wx/include/gtk3-unicode-3.0)
-endif ()
-
+# link wxWidgets libraries
 find_package(wxWidgets COMPONENTS adv core base REQUIRED)
 include(${wxWidgets_USE_FILE})
 
