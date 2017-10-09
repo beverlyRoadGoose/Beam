@@ -20,6 +20,7 @@ app id between the apostrophes.
 - [CMake](https://cmake.org)
 - [Catch](http://catch-lib.net)
 - [SQLite](https://www.sqlite.org)
+- [RapidJSON](http://rapidjson.org)
 - [wxWidgets](https://www.wxwidgets.org)
 
 To build from source, you need the tools listed installed on your system after which you can run the build script
