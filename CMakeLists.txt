@@ -17,21 +17,8 @@
 cmake_minimum_required(VERSION 3.2)
 project(Beam)
 
-set(CMAKE_CXX_STANDARD 11)
-
-set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
-set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
-
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmake/modules)
-
-if (APPLE)
-    set(CMAKE_CXX_FLAGS "-I${PROJECT_SOURCE_DIR}/lib/wxWidgets/build-debug/lib/wx/include/osx_cocoa-unicode-3.0 -I/${PROJECT_SOURCE_DIR}/lib/wxWidgets/include -D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXMAC__ -D__WXOSX__ -D__WXOSX_COCOA__  -stdlib=libc++ -std=c++11")
-    set(CMAKE_SHARED_LINKER_FLAGS "-L${PROJECT_SOURCE_DIR}/lib/wxWidgets/build-debug/lib -framework IOKit -framework Carbon -framework Cocoa -framework AudioToolbox -framework System -framework OpenGL -lwx_osx_cocoau-3.0")
-elseif (UNIX AND NOT APPLE)
-    set(CMAKE_CXX_FLAGS "-I/${PROJECT_SOURCE_DIR}/lib/wxWidgets/build-debug/lib/wx/include/gtk3-unicode-3.0 -I/${PROJECT_SOURCE_DIR}/lib/wxWidgets/include -D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXGTK__ -pthread")
-    set(CMAKE_SHARED_LINKER_FLAGS "-L/${PROJECT_SOURCE_DIR}/lib/wxWidgets/build-debug/lib -pthread   -Wl,-rpath,/${PROJECT_SOURCE_DIR}/lib/wxWidgets/build-debug/lib -lwx_gtk3u-3.0")
-endif ()
+# cmake & compile configs
+include(${PROJECT_SOURCE_DIR}/cmake/configs.cmake)
 
 # include directories
 include(${PROJECT_SOURCE_DIR}/cmake/includes.cmake)
