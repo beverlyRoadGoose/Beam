@@ -23,9 +23,9 @@
 
 namespace DigitalPodcasts {
     const static std::string BASE_URL = "http://api.digitalpodcast.com/v2r/";
-    const static std::string APP_ID = std::getenv("DIGITAL_PODCAST_APP_ID");
     const static std::string FORMAT = "json";
 
+    std::string getAppId();
     std::string search(std::string & searchString);
 }
 

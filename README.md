@@ -28,7 +28,7 @@ To build from source, you need the tools listed installed on your system after w
 If your are working on OS X or linux, you can run ```./scripts/dependencies.sh```. This would automatically download and install all
 the dependencies for you (if they weren't already installed).
 
-To run tests: ```make && make test```
+To run tests: ```./scripts/test.sh```
 
 **All scripts should be run from the project root directory**.
 

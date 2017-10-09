@@ -27,6 +27,14 @@
 std::string NetworkUtils::query(std::string & url) {
     std::ostringstream os;
     curlpp::Cleanup curlppCleanup;
-    os << curlpp::options::Url(url);
+
+    try {
+        os << curlpp::options::Url(url);
+    } catch (const std::exception & e) {
+        std::stringstream ss;
+        ss << "Error querying url: " << e.what();
+        throw ss.str();
+    }
+
     return  os.str();
 }

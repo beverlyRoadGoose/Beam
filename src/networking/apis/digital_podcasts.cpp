@@ -19,6 +19,12 @@
 #include <networking/network_utils.h>
 #include "digital_podcasts.h"
 
+std::string DigitalPodcasts::getAppId() {
+    if (std::getenv("DIGITAL_PODCAST_APP_ID") == nullptr)
+        throw "Environment variable DIGITAL_PODCAST_APP_ID is not set.";
+    return std::getenv("DIGITAL_PODCAST_APP_ID");
+}
+
 /*
  * query the api with the passed search string and return a vector
  * of the matching podcasts
@@ -26,8 +32,10 @@
  * TODO change return type to vector
  */
 std::string DigitalPodcasts::search(std::string & searchString) {
+    std::string appId = DigitalPodcasts::getAppId();
     std::stringstream ss;
-    ss << BASE_URL << "search/?" << "appid=" << DigitalPodcasts::APP_ID << "&keywords=" << searchString << "&format="
+
+    ss << BASE_URL << "search/?" << "appid=" << appId << "&keywords=" << searchString << "&format="
             << DigitalPodcasts::FORMAT << "&searchsource=title";
 
     std::string url = ss.str();

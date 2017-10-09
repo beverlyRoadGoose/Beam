@@ -20,7 +20,7 @@
 #include <catch/catch.hpp>
 #include <networking/apis/digital_podcasts.h>
 
-TEST_CASE("search query test", "[digitalPodcastsApiTests]") {
+TEST_CASE("search query test", "[digitalPodcastsTests]") {
     std::string searchKey = "radiolab";
     std::string response = DigitalPodcasts::search(searchKey);
 
