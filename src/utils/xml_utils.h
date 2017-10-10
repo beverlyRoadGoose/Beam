@@ -20,10 +20,8 @@
 
 #include <vector>
 #include <entities/episode.h>
-#include <pugixml/src/pugixml.hpp>
 
 namespace XMLUtils {
-    pugi::xml_document parseXMLString(std::string & xmlString);
 }
 
 #endif //BEAM_XML_UTILS_H

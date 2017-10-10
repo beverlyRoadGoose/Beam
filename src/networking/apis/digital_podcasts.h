@@ -20,6 +20,7 @@
 
 #include <vector>
 #include <entities/podcast.h>
+#include <entities/episode.h>
 
 namespace DigitalPodcasts {
     const static std::string BASE_URL = "http://api.digitalpodcast.com/v2r/";
@@ -27,6 +28,7 @@ namespace DigitalPodcasts {
 
     std::string getAppId();
     std::vector<Podcast> search(std::string & searchString);
+    std::vector<Episode> parseEpisodesFromFeed(std::string & feedUrl);
 }
 
 #endif //BEAM_DIGITAL_PODCASTS_H

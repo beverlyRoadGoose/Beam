@@ -15,18 +15,4 @@
  *
  */
 
-#include <sstream>
-#include <iostream>
-
 #include "xml_utils.h"
-
-pugi::xml_document XMLUtils::parseXMLString(std::string & xmlString) {
-    pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_string(xmlString.c_str());
-
-    if (!result) {
-        std::cout << "XML [" << "" << "] parsed with errors, attr value: [" << doc.child("node").attribute("attr").value() << "]\n";
-        std::cout << "Error description: " << result.description() << "\n";
-        std::cout << "Error offset: " << result.offset << " (error at [..." << (xmlString.c_str() + result.offset) << "]\n\n";
-    }
-}
