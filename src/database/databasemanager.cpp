@@ -74,7 +74,8 @@ void DatabaseManager::createEpisodesTable() {
             "title TEXT NOT NULL,"
             "summary TEXT NOT NULL,"
             "publishDate TEXT NOT NULL,"
-            "enclosureUrl TEXT NOT NULL);";
+            "enclosureUrl TEXT NOT NULL,"
+            "duration TEXT NOT NULL);";
 
     openDatabase();
     resultCode = sqlite3_exec(database, sql.c_str(), nullptr, nullptr, &errorMessage);

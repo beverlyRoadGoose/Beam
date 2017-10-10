@@ -19,10 +19,24 @@
 
 #include <catch/catch.hpp>
 #include <networking/apis/digital_podcasts.h>
+#include <src/database/repositories/podcasts_repository.h>
 
 TEST_CASE("search query test", "[digitalPodcastsTests]") {
     std::string searchKey = "radiolab";
     std::vector<Podcast> podcasts = DigitalPodcasts::search(searchKey);
 
     REQUIRE_FALSE(podcasts.empty());
+}
+
+TEST_CASE("episodes feed parse test", "[digitalPodcastsTests]") {
+    std::string searchKey = "radiolab";
+    std::vector<Podcast> podcasts = DigitalPodcasts::search(searchKey);
+
+    Podcast podcast = podcasts.front();
+    PodcastsRepository podcastsRepository = PodcastsRepository();
+    podcastsRepository.insert(podcast);
+
+    std::vector<Episode> episodes = DigitalPodcasts::parsePodcastEpisodes(podcast);
+
+    REQUIRE_FALSE(episodes.empty());
 }

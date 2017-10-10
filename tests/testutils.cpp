@@ -63,8 +63,9 @@ Episode TestUtils::createEpisodeForTest(long & podcastId, boost::uuids::uuid & e
     std::string summary = "summary";
     std::string publishDate = "publishDate";
     std::string enclosureUrl = "enclosureUrl";
+    int duration = 100;
 
-    Episode episode = Episode(episodeId, podcastId, title, summary, publishDate, enclosureUrl);
+    Episode episode = Episode(episodeId, podcastId, title, summary, publishDate, enclosureUrl, duration);
     EpisodesRepository episodesRepository = EpisodesRepository();
     episodesRepository.insert(episode);
 

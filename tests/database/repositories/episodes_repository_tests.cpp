@@ -33,8 +33,9 @@ TEST_CASE("insert new episode", "[episodesRepositoryTests]") {
     std::string summary = "summary";
     std::string publishDate = "publishDate";
     std::string enclosureUrl = "enclosureUrl";
+    int duration = 100;
 
-    Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle, summary, publishDate, enclosureUrl);
+    Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle, summary, publishDate, enclosureUrl, duration);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
     episodesRepository.insert(episode);
@@ -53,8 +54,9 @@ TEST_CASE("insert new episode for non existing podcast", "[episodesRepositoryTes
     std::string summary = "summary";
     std::string publishDate = "publishDate";
     std::string enclosureUrl = "enclosureUrl";
+    int duration = 100;
 
-    Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle, summary, publishDate, enclosureUrl);
+    Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle, summary, publishDate, enclosureUrl, duration);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
     REQUIRE_THROWS(episodesRepository.insert(episode));
@@ -72,8 +74,9 @@ TEST_CASE("get episode by id", "[episodesRepositoryTests]") {
     std::string summary = "summary";
     std::string publishDate = "publishDate";
     std::string enclosureUrl = "enclosureUrl";
+    int duration = 100;
 
-    Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle, summary, publishDate, enclosureUrl);
+    Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle, summary, publishDate, enclosureUrl, duration);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
     episodesRepository.insert(episode);

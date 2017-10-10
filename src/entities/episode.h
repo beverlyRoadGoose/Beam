@@ -32,9 +32,10 @@ private:
     const std::string summary;
     const std::string publishDate;
     const std::string enclosureUrl;
+    const int duration; // minutes
 public:
-    Episode(long & podcastId, std::string & title, std::string & summary, std::string & publishDate, std::string & enclosureUrl);
-    Episode(boost::uuids::uuid & id, long & podcastId, std::string & title, std::string & summary, std::string & publishDate, std::string & enclosureUrl);
+    Episode(long & podcastId, std::string & title, std::string & summary, std::string & publishDate, std::string & enclosureUrl, int & duration);
+    Episode(boost::uuids::uuid & id, long & podcastId, std::string & title, std::string & summary, std::string & publishDate, std::string & enclosureUrl, int & duration);
     ~Episode();
     boost::uuids::uuid getId();
     long getPodcastId();
@@ -42,6 +43,7 @@ public:
     std::string getSummary();
     std::string getPublishDate();
     std::string getEnclosureUrl();
+    int getDuration();
 };
 
 #endif //BEAM_EPISODE_H

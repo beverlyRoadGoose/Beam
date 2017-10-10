@@ -41,8 +41,9 @@ void EpisodesRepository::insert(Episode episode) {
             "'" << episode.getTitle() << "', "
             "'" << episode.getSummary() << "', "
             "'" << episode.getPublishDate() << "', "
-            "'" << episode.getEnclosureUrl() << "' );";
-    std::string sql = "INSERT INTO episodes (id, podcastId, title, summary, publishDate, enclosureUrl) " + ss.str();
+            "'" << episode.getEnclosureUrl() << "', "
+            "'" << episode.getDuration() << "' );";
+    std::string sql = "INSERT INTO episodes (id, podcastId, title, summary, publishDate, enclosureUrl, duration) " + ss.str();
 
     databaseManager.openDatabase();
     database = databaseManager.getDatabase();
@@ -86,8 +87,9 @@ Episode EpisodesRepository::getById(boost::uuids::uuid & id) {
     std::string retrievedSummary = episodeRetrievedById->getSummary();
     std::string retrievedPublishDate = episodeRetrievedById->getPublishDate();
     std::string retrievedEnclosureUrl = episodeRetrievedById->getEnclosureUrl();
+    int retrievedDuration = episodeRetrievedById->getDuration();
 
-    Episode e = Episode(retrievedId, retrievedPodcastId, retrievedTitle, retrievedSummary, retrievedPublishDate, retrievedEnclosureUrl);
+    Episode e = Episode(retrievedId, retrievedPodcastId, retrievedTitle, retrievedSummary, retrievedPublishDate, retrievedEnclosureUrl, retrievedDuration);
 
     delete episodeRetrievedById;
     episodeRetrievedById = nullptr;
@@ -211,8 +213,9 @@ int EpisodesRepository::getListCallback(void *data, int argc, char **argv, char 
     std::string episodeSummary = argv[3];
     std::string episodePublishDate = argv[4];
     std::string episodeEnclosureUrl = argv[5];
+    int episodeDuration = atoi(argv[5]);
 
-    Episode episode = Episode(episodeId, podcastId, episodeTitle, episodeSummary, episodePublishDate, episodeEnclosureUrl);
+    Episode episode = Episode(episodeId, podcastId, episodeTitle, episodeSummary, episodePublishDate, episodeEnclosureUrl, episodeDuration);
     retrievedEpisodesList.push_back(episode);
 
     return 0;
@@ -225,8 +228,9 @@ int EpisodesRepository::getSingleCallback(void *data, int argc, char **argv, cha
     std::string episodeSummary = argv[3];
     std::string episodePublishDate = argv[4];
     std::string episodeEnclosureUrl = argv[5];
+    int episodeDuration = atoi(argv[5]);
 
-    episodeRetrievedById = new Episode(episodeId, podcastId, episodeTitle, episodeSummary, episodePublishDate, episodeEnclosureUrl);
+    episodeRetrievedById = new Episode(episodeId, podcastId, episodeTitle, episodeSummary, episodePublishDate, episodeEnclosureUrl, episodeDuration);
 
     return 0;
 }

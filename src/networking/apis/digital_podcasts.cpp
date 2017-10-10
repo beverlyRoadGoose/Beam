@@ -71,7 +71,9 @@ std::vector<Podcast> DigitalPodcasts::search(std::string & searchString) {
     return podcasts;
 }
 
-std::vector<Episode> parseEpisodesFromFeed(std::string & feedUrl) {
+std::vector<Episode> DigitalPodcasts::parsePodcastEpisodes(Podcast & podcast) {
+    std::vector<Episode> episodes;
+    std::string feedUrl = podcast.getFeedUrl();
     std::string feed = NetworkUtils::query(feedUrl);
 
     pugi::xml_document doc;
@@ -82,4 +84,19 @@ std::vector<Episode> parseEpisodesFromFeed(std::string & feedUrl) {
         std::cout << "Error description: " << result.description() << "\n";
         std::cout << "Error offset: " << result.offset << " (error at [..." << (feed.c_str() + result.offset) << "]\n\n";
     }
+
+    for (pugi::xml_node item = doc.child("channel").child("item"); item; item = item.next_sibling("item")) {
+        std::cout << "within";
+        long podcastId = podcast.getId();
+        std::string title = item.child_value("title");
+        std::string summary = item.child_value("itunes:summary");
+        std::string publishDate = item.child_value("pubDate");
+        std::string enclosureUrl = item.attribute("url").value();
+        int duration = atoi(item.child_value("duration"));
+
+        Episode episode = Episode(podcastId, title, summary, publishDate, enclosureUrl, duration);
+        episodes.push_back(episode);
+    }
+
+    return episodes;
 }

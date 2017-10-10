@@ -28,7 +28,7 @@ namespace DigitalPodcasts {
 
     std::string getAppId();
     std::vector<Podcast> search(std::string & searchString);
-    std::vector<Episode> parseEpisodesFromFeed(std::string & feedUrl);
+    std::vector<Episode> parsePodcastEpisodes(Podcast & podcast);
 }
 
 #endif //BEAM_DIGITAL_PODCASTS_H
