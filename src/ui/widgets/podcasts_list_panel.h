@@ -25,7 +25,6 @@
 class PodcastsListPanel : public wxPanel {
 private:
     wxBoxSizer * sizer;
-    wxStaticText * titleBar;
 public:
     PodcastsListPanel(wxWindow * parent);
 };

@@ -15,10 +15,16 @@
  *
  */
 
-#include "podcasts_list_panel.h"
+#ifndef BEAM_DISCOVERY_PANEL_H
+#define BEAM_DISCOVERY_PANEL_H
 
-PodcastsListPanel::PodcastsListPanel(wxWindow * parent) : wxPanel(parent) {
-    sizer = new wxBoxSizer(wxVERTICAL);
-    this->SetSizer(sizer);
-    this->SetWindowStyleFlag(wxBORDER_SUNKEN);
-}
+
+class DiscoveryPanel : public wxPanel {
+private:
+    wxBoxSizer * panelSizer;
+public:
+    explicit DiscoveryPanel(wxWindow * parent);
+};
+
+
+#endif //BEAM_DISCOVERY_PANEL_H

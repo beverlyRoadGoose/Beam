@@ -46,5 +46,7 @@ add_library(beam-ui
         src/ui/widgets/podcasts_list_item_panel.cpp
         src/ui/widgets/podcasts_list_item_panel.h
         src/ui/widgets/podcasts_list_panel.cpp
-        src/ui/widgets/podcasts_list_panel.h)
+        src/ui/widgets/podcasts_list_panel.h
+        src/ui/panels/discovery_panel.cpp
+        src/ui/panels/discovery_panel.h)
 target_link_libraries(beam-ui ${wxWidgets_LIBRARIES})

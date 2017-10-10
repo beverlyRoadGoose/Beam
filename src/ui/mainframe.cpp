@@ -33,9 +33,13 @@ MainFrame::MainFrame(const wxString & title) : wxFrame(NULL, wxID_ANY, title, wx
     menuBar->Append(subscriptionsMenu, wxT("Subscriptions"));
 
     tabsManager = new wxNotebook(this, -1, wxPoint(-1, -1), wxSize(-1, -1), wxNB_TOP);
-    podcastsTabPanel = new PodcastsPanel(tabsManager);
-    tabsManager->AddPage(podcastsTabPanel, wxT("Podcasts"));
 
+    discoveryTabPanel = new DiscoveryPanel(tabsManager);
+    tabsManager->AddPage(discoveryTabPanel, wxT("Discover Podcasts"));
+
+    podcastsTabPanel = new PodcastsPanel(tabsManager);
+    tabsManager->AddPage(podcastsTabPanel, wxT("Subscriptions"));
+    
     this->SetMenuBar(menuBar);
     this->SetMinSize(wxSize(500, 500));
     this->Centre();

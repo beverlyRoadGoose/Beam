@@ -16,7 +16,7 @@
  */
 
 #include <wx/wx.h>
-#include <src/ui/widgets/podcasts_list_panel.h>
+#include <ui/widgets/podcasts_list_panel.h>
 
 #ifndef BEAM_PODCASTS_PANEL_H
 #define BEAM_PODCASTS_PANEL_H

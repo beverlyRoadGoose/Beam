@@ -18,6 +18,7 @@
 #include <wx/wx.h>
 #include <wx/notebook.h>
 #include <ui/panels/podcasts_panel.h>
+#include <src/ui/panels/discovery_panel.h>
 
 #ifndef BEAM_MAINFRAME_H
 #define BEAM_MAINFRAME_H
@@ -35,6 +36,7 @@ private:
 
     wxNotebook * tabsManager;
     PodcastsPanel * podcastsTabPanel;
+    DiscoveryPanel * discoveryTabPanel;
 
     DECLARE_EVENT_TABLE()
 public:

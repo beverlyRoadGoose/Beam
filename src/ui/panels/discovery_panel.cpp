@@ -15,10 +15,11 @@
  *
  */
 
-#include "podcasts_list_panel.h"
+#include <wx/wx.h>
 
-PodcastsListPanel::PodcastsListPanel(wxWindow * parent) : wxPanel(parent) {
-    sizer = new wxBoxSizer(wxVERTICAL);
-    this->SetSizer(sizer);
-    this->SetWindowStyleFlag(wxBORDER_SUNKEN);
+#include "discovery_panel.h"
+
+DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxPanel(parent) {
+    panelSizer = new wxBoxSizer(wxHORIZONTAL);
+    this->SetSizer(panelSizer);
 }
