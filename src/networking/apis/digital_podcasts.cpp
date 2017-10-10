@@ -36,7 +36,7 @@ std::string DigitalPodcasts::search(std::string & searchString) {
     std::stringstream ss;
 
     ss << BASE_URL << "search/?" << "appid=" << appId << "&keywords=" << searchString << "&format="
-            << DigitalPodcasts::FORMAT << "&searchsource=title";
+            << DigitalPodcasts::FORMAT << "&searchsource=all";
 
     std::string url = ss.str();
     std::string response = NetworkUtils::query(url);

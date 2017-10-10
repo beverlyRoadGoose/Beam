@@ -24,8 +24,8 @@ MainFrame::MainFrame(const wxString & title) : wxFrame(NULL, wxID_ANY, title, wx
     subscriptionsMenu = new wxMenu;
 
     quitMenuItem = new wxMenuItem(podcastsMenu, wxID_EXIT, wxT("Quit"));
-    discoverPodcastsMenuItem = new wxMenuItem(podcastsMenu, ID_DISCOVER_PODCASTS, wxT("Discover podcasts"));
-    podcastsMenu->Append(discoverPodcastsMenuItem);
+    searchPodcastsMenuItem = new wxMenuItem(podcastsMenu, ID_DISCOVER_PODCASTS, wxT("Find a podcast"));
+    podcastsMenu->Append(searchPodcastsMenuItem);
     menuBar->Append(podcastsMenu, wxT("Podcasts"));
 
     checkNewEpisodesMenuItem = new wxMenuItem(subscriptionsMenu, ID_CHECK_NEW_EPISODES, wxT("Check for new episodes"));
@@ -73,8 +73,8 @@ wxMenuItem * MainFrame::getQuitMenuItem() {
     return quitMenuItem;
 }
 
-wxMenuItem * MainFrame::getDiscoverPodcastsMenuItem() {
-    return discoverPodcastsMenuItem;
+wxMenuItem * MainFrame::getSearchPodcastsMenuItem() {
+    return searchPodcastsMenuItem;
 }
 
 wxMenuItem * MainFrame::getCheckNewEpisodesMenuItem() {

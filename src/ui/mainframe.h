@@ -31,7 +31,7 @@ private:
     wxMenu * subscriptionsMenu;
 
     wxMenuItem * quitMenuItem;
-    wxMenuItem * discoverPodcastsMenuItem;
+    wxMenuItem * searchPodcastsMenuItem;
     wxMenuItem * checkNewEpisodesMenuItem;
 
     wxNotebook * tabsManager;
@@ -48,7 +48,7 @@ public:
     wxMenu * getPodcastsMenu();
     wxMenu * getSubscriptionsMenu();
     wxMenuItem * getQuitMenuItem();
-    wxMenuItem * getDiscoverPodcastsMenuItem();
+    wxMenuItem * getSearchPodcastsMenuItem();
     wxMenuItem * getCheckNewEpisodesMenuItem();
 };
 

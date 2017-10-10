@@ -18,7 +18,6 @@
 #ifndef BEAM_DISCOVERY_PANEL_H
 #define BEAM_DISCOVERY_PANEL_H
 
-
 class DiscoveryPanel : public wxPanel {
 private:
     wxBoxSizer * panelSizer;

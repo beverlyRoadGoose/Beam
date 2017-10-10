@@ -16,7 +16,6 @@
  */
 
 #include <wx/wx.h>
-
 #include "discovery_panel.h"
 
 DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxPanel(parent) {
