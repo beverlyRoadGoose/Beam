@@ -18,20 +18,40 @@
 #include <iostream>
 #include "podcast.h"
 
-Podcast::Podcast(const std::string & name) : name(name) {}
+Podcast::Podcast(long & id, std::string & title, std::string & link, std::string & feedUrl, std::string & description,
+                 std::string & imageUrl, std::string & url)
+        : id(id), title(title), link(link), feedUrl(feedUrl), description(description), imageUrl(imageUrl), url(url) {}
 
-Podcast::Podcast(const boost::uuids::uuid & id, std::string & name) : id(id), name(name) { }
+Podcast Podcast::fromJSONObject(rapidjson::Document document) {
+
+}
 
 Podcast::~Podcast() = default;
 
-boost::uuids::uuid Podcast::getId() {
-    return this->id;
+long Podcast::getId() {
+    return id;
 }
 
-std::string Podcast::getName() {
-    return this->name;
+std::string Podcast::getTitle() {
+    return title;
 }
 
-void Podcast::setName(std::string & name) {
-    this->name = name;
+std::string Podcast::getLink() {
+    return link;
+}
+
+std::string Podcast::getFeedUrl() {
+    return feedUrl;
+}
+
+std::string Podcast::getDescription() {
+    return description;
+}
+
+std::string Podcast::getImageUrl() {
+    return imageUrl;
+}
+
+std::string Podcast::getUrl() {
+    return url;
 }

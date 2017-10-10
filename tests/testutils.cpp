@@ -43,16 +43,24 @@ void TestUtils::emptyDatabase() {
     episodesRepository.deleteAll();
 }
 
-Podcast TestUtils::createPodcastForTest(std::string & podcastName) {
-    Podcast podcast = Podcast(podcastName);
+Podcast TestUtils::createPodcastForTest(long & id) {
+    std::string title = "title";
+    std::string link = "link";
+    std::string feedUrl = "feedUrl";
+    std::string description = "description";
+    std::string imageUrl = "imageUrl";
+    std::string url = "url";
+
+    Podcast podcast = Podcast(id, title, link, feedUrl, description, imageUrl, url);
     PodcastsRepository podcastsRepository = PodcastsRepository();
     podcastsRepository.insert(podcast);
 
     return podcast;
 }
 
-Episode TestUtils::createEpisodeForTest(const boost::uuids::uuid & podcastId, std::string & episodeTitle) {
-    Episode episode = Episode(podcastId, episodeTitle);
+Episode TestUtils::createEpisodeForTest(long & podcastId, long & episodeId) {
+    std::string title = "title";
+    Episode episode = Episode(episodeId, podcastId, title);
     EpisodesRepository episodesRepository = EpisodesRepository();
     episodesRepository.insert(episode);
 

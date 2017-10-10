@@ -20,13 +20,12 @@
 
 #include <vector>
 #include <entities/podcast.h>
-#include <boost/uuid/uuid.hpp>
-#include <boost/uuid/uuid_io.hpp>
 #include <database/databasemanager.h>
 
 class PodcastsRepository {
 private:
     DatabaseManager databaseManager;
+
     static int getListCallback(void *data, int argc, char **argv, char **columnName);
     static int getSingleCallback(void *data, int argc, char **argv, char **columnName);
 public:
@@ -34,9 +33,9 @@ public:
     ~PodcastsRepository();
     void insert(Podcast podcast);
     void update(Podcast podcast);
-    Podcast getById(boost::uuids::uuid id);
+    Podcast getById(long & id);
     std::vector<Podcast> getAll();
-    void deleteById(boost::uuids::uuid id);
+    void deleteById(long & id);
     void deleteAll();
 };
 

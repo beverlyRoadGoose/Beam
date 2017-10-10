@@ -21,10 +21,6 @@
 #include "tests/testutils.h"
 #include "entities/podcast.h"
 
-TEST_CASE("new Podcast test", "[podcastTests]") {
-    std::string podcastName = "RadioLab";
-    Podcast podcast = Podcast(podcastName);
+TEST_CASE("create podcast from json object", "[podcastTests]") {
 
-    REQUIRE(TestUtils::isValidUUID(podcast.getId()));
-    REQUIRE(podcast.getName() == podcastName);
 }

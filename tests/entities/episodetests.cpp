@@ -18,16 +18,3 @@
 #define CATCH_CONFIG_MAIN
 
 #include <catch/catch.hpp>
-#include "tests/testutils.h"
-#include "entities/episode.h"
-
-TEST_CASE("new Episode test", "[episodeTests]") {
-    std::string testPodcastName = "Radiolab";
-    Podcast testPodcast = Podcast(testPodcastName);
-
-    std::string episodeTitle = "Escape";
-    Episode episode = Episode(testPodcast.getId(), episodeTitle);
-
-    REQUIRE(TestUtils::isValidUUID(episode.getId()));
-    REQUIRE(episode.getTitle() == episodeTitle);
-}

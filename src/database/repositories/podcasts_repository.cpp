@@ -33,8 +33,14 @@ void PodcastsRepository::insert(Podcast podcast) {
     std::stringstream ss;
     int resultCode;
 
-    ss << "VALUES ('" << podcast.getId() << "', '" << podcast.getName() << "');";
-    std::string sql = "INSERT INTO podcasts (id, name) " + ss.str();
+    ss << "VALUES ('" << podcast.getId() << "', "
+            "'" << podcast.getTitle() << "', "
+            "'" << podcast.getLink() << "', "
+            "'" << podcast.getFeedUrl() << "', "
+            "'" << podcast.getDescription() << "', "
+            "'" << podcast.getImageUrl() << "', "
+            "'" << podcast.getUrl() <<"');";
+    std::string sql = "INSERT INTO podcasts (id, title, link, feedUrl, description, imageUrl, url) " + ss.str();
 
     databaseManager.openDatabase();
     database = databaseManager.getDatabase();
@@ -55,7 +61,7 @@ void PodcastsRepository::update(Podcast podcast) {
     int resultCode;
 
     std::stringstream ss;
-    ss << "UPDATE podcasts SET name='" << podcast.getName() << "' WHERE id='" << podcast.getId() << "'";
+    ss << "UPDATE podcasts SET name='" << podcast.getTitle() << "' WHERE id='" << podcast.getId() << "'";
 
     databaseManager.openDatabase();
     database = databaseManager.getDatabase();
@@ -70,7 +76,7 @@ void PodcastsRepository::update(Podcast podcast) {
     databaseManager.closeDatabase();
 }
 
-Podcast PodcastsRepository::getById(boost::uuids::uuid id) {
+Podcast PodcastsRepository::getById(long & id) {
     sqlite3 * database;
     char * errorMessage = 0;
     int resultCode;
@@ -93,9 +99,15 @@ Podcast PodcastsRepository::getById(boost::uuids::uuid id) {
     if (podcastRetrievedById == nullptr)
         throw "No podcast with matching id found";
 
-    boost::uuids::uuid retrievedId = podcastRetrievedById->getId();
-    std::string retrievedName = podcastRetrievedById->getName();
-    Podcast p = Podcast(retrievedId, retrievedName);
+    long retrievedId = podcastRetrievedById->getId();
+    std::string retrievedTitle = podcastRetrievedById->getTitle();
+    std::string retrievedLink = podcastRetrievedById->getLink();
+    std::string retrievedFeedUrl = podcastRetrievedById->getFeedUrl();
+    std::string retrievedDescription = podcastRetrievedById->getDescription();
+    std::string retrievedImageUrl = podcastRetrievedById->getImageUrl();
+    std::string retrievedUrl = podcastRetrievedById->getUrl();
+
+    Podcast p = Podcast(retrievedId, retrievedTitle, retrievedLink, retrievedFeedUrl, retrievedDescription, retrievedImageUrl, retrievedUrl);
 
     delete podcastRetrievedById;
     podcastRetrievedById = nullptr;
@@ -126,7 +138,7 @@ std::vector<Podcast> PodcastsRepository::getAll() {
     return retrievedPodcastsList;
 }
 
-void PodcastsRepository::deleteById(boost::uuids::uuid id) {
+void PodcastsRepository::deleteById(long & id) {
     sqlite3 * database;
     char * errorMessage = 0;
     int resultCode;
@@ -167,20 +179,30 @@ void PodcastsRepository::deleteAll() {
 }
 
 int PodcastsRepository::getListCallback(void *data, int argc, char **argv, char **columnName) {
-    boost::uuids::uuid podcastId = boost::lexical_cast<boost::uuids::uuid>(argv[0]);
-    std::string podcastName = argv[1];
+    long id = atol(argv[0]);
+    std::string title = argv[1];
+    std::string link = argv[2];
+    std::string feedUrl = argv[3];
+    std::string description = argv[4];
+    std::string imageUrl = argv[5];
+    std::string url = argv[6];
 
-    Podcast podcast = Podcast(podcastId, podcastName);
+    Podcast podcast = Podcast(id, title, link, feedUrl, description, imageUrl, url);
     retrievedPodcastsList.push_back(podcast);
 
     return 0;
 }
 
 int PodcastsRepository::getSingleCallback(void *data, int argc, char **argv, char **columnName) {
-    boost::uuids::uuid podcastId = boost::lexical_cast<boost::uuids::uuid>(argv[0]);
-    std::string podcastName = argv[1];
+    long id = atol(argv[0]);
+    std::string title = argv[1];
+    std::string link = argv[2];
+    std::string feedUrl = argv[3];
+    std::string description = argv[4];
+    std::string imageUrl = argv[5];
+    std::string url = argv[6];
 
-    podcastRetrievedById = new Podcast(podcastId, podcastName);
+    podcastRetrievedById = new Podcast(id, title, link, feedUrl, description, imageUrl, url);
 
     return 0;
 }

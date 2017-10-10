@@ -24,11 +24,12 @@
 TEST_CASE("insert new episode", "[episodesRepositoryTests]") {
     TestUtils::emptyDatabase();
 
-    std::string testPodcastName = "Test Podcast";
-    Podcast testPodcast = TestUtils::createPodcastForTest(testPodcastName);
+    long testPodcastId = 1;
+    Podcast testPodcast = TestUtils::createPodcastForTest(testPodcastId);
 
+    long episodeId = 1;
     std::string testEpisodeTitle = "Test Episode";
-    Episode episode = Episode(testPodcast.getId(), testEpisodeTitle);
+    Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
     episodesRepository.insert(episode);
@@ -39,11 +40,11 @@ TEST_CASE("insert new episode", "[episodesRepositoryTests]") {
 TEST_CASE("insert new episode for non existing podcast", "[episodesRepositoryTests]") {
     TestUtils::emptyDatabase();
 
-    boost::uuids::random_generator generator;
-    boost::uuids::uuid randomPodcastId = generator();
+    long testPodcastId = 1; // note that the podcast isn't actually created
+    long episodeId = 1;
 
     std::string testEpisodeTitle = "Test Episode";
-    Episode episode = Episode(randomPodcastId, testEpisodeTitle);
+    Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
     REQUIRE_THROWS(episodesRepository.insert(episode));
@@ -52,38 +53,39 @@ TEST_CASE("insert new episode for non existing podcast", "[episodesRepositoryTes
 TEST_CASE("get episode by id", "[episodesRepositoryTests]") {
     TestUtils::emptyDatabase();
 
-    std::string testPodcastName = "Test Podcast";
-    Podcast testPodcast = TestUtils::createPodcastForTest(testPodcastName);
+    long testPodcastId = 1;
+    Podcast testPodcast = TestUtils::createPodcastForTest(testPodcastId);
 
+    long episodeId = 1;
     std::string testEpisodeTitle = "Test Episode";
-    Episode episode = Episode(testPodcast.getId(), testEpisodeTitle);
+    Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
     episodesRepository.insert(episode);
 
-    Episode retrievedEpisode = episodesRepository.getById(episode.getId());
+    Episode retrievedEpisode = episodesRepository.getById(episodeId);
     REQUIRE(retrievedEpisode.getTitle() == episode.getTitle());
 }
 
 TEST_CASE("get non existing episode by id", "[episodesRepositoryTests]") {
-    EpisodesRepository episodesRepository = EpisodesRepository();
-    boost::uuids::random_generator generator;
-    boost::uuids::uuid randomId = generator();
+    TestUtils::emptyDatabase();
+    long episodeId = 1;
 
-    REQUIRE_THROWS(episodesRepository.getById(randomId));
+    EpisodesRepository episodesRepository = EpisodesRepository();
+    REQUIRE_THROWS(episodesRepository.getById(episodeId));
 }
 
 TEST_CASE("get all episodes", "[episodesRepositoryTests]") {
     TestUtils::emptyDatabase();
 
-    std::string testPodcastName = "Test Podcast";
-    Podcast testPodcast = TestUtils::createPodcastForTest(testPodcastName);
+    long testPodcastId = 1;
+    Podcast testPodcast = TestUtils::createPodcastForTest(testPodcastId);
 
-    std::string episodeAName = "Test Episode A";
-    std::string episodeBName = "Test Episode B";
+    long episodeAId = 1;
+    long episodeBId = 2;
 
-    TestUtils::createEpisodeForTest(testPodcast.getId(), episodeAName);
-    TestUtils::createEpisodeForTest(testPodcast.getId(), episodeBName);
+    TestUtils::createEpisodeForTest(testPodcastId, episodeAId);
+    TestUtils::createEpisodeForTest(testPodcastId, episodeBId);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
     REQUIRE(episodesRepository.getAll().size() == 2);
@@ -92,65 +94,46 @@ TEST_CASE("get all episodes", "[episodesRepositoryTests]") {
 TEST_CASE("get all episodes in podcast", "[episodesRepositoryTests]") {
     TestUtils::emptyDatabase();
 
-    std::string podcastAName = "Test Podcast A";
-    std::string podcastBName = "Test Podcast B";
+    long podcastAId = 1;
+    long podcastBId = 2;
 
-    Podcast testPodcastA = TestUtils::createPodcastForTest(podcastAName);
-    Podcast testPodcastB = TestUtils::createPodcastForTest(podcastBName);
+    Podcast testPodcastA = TestUtils::createPodcastForTest(podcastAId);
+    Podcast testPodcastB = TestUtils::createPodcastForTest(podcastBId);
 
-    std::string episodeAName = "Test Episode A";
-    std::string episodeBName = "Test Episode B";
-    std::string episodeCName = "Test Episode C";
+    long episodeAId = 1;
+    long episodeBId = 2;
+    long episodeCId = 3;
 
-    TestUtils::createEpisodeForTest(testPodcastA.getId(), episodeAName);
-    TestUtils::createEpisodeForTest(testPodcastB.getId(), episodeBName);
-    TestUtils::createEpisodeForTest(testPodcastB.getId(), episodeCName);
-
-    EpisodesRepository episodesRepository = EpisodesRepository();
-    REQUIRE(episodesRepository.getByPodcastId(testPodcastB.getId()).size() == 2);
-}
-
-TEST_CASE("update episode", "[episodesRepositoryTests]") {
-    TestUtils::emptyDatabase();
-
-    std::string podcastName = "Test Podcast";
-    Podcast podcast = TestUtils::createPodcastForTest(podcastName);
-
-    std::string originalEpisodeTitle = "Test Episode";
-    Episode episode = TestUtils::createEpisodeForTest(podcast.getId(), originalEpisodeTitle);
-
-    std::string updatedEpisodeTitle = "Test Episode 2";
-    episode.setTitle(updatedEpisodeTitle);
+    TestUtils::createEpisodeForTest(podcastAId, episodeAId);
+    TestUtils::createEpisodeForTest(podcastBId, episodeBId);
+    TestUtils::createEpisodeForTest(podcastBId, episodeCId);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
-    episodesRepository.update(episode);
-
-    Episode retrievedEpisode = episodesRepository.getById(episode.getId());
-    REQUIRE(retrievedEpisode.getTitle() == updatedEpisodeTitle);
+    REQUIRE(episodesRepository.getByPodcastId(podcastBId).size() == 2);
 }
 
 TEST_CASE("delete episode by id", "[episodesRepositoryTests]") {
     TestUtils::emptyDatabase();
 
-    std::string podcastName = "Test Podcast";
-    Podcast podcast = TestUtils::createPodcastForTest(podcastName);
+    long testPodcastId = 1;
+    Podcast testPodcast = TestUtils::createPodcastForTest(testPodcastId);
 
-    std::string episodeTitle = "Test Episode";
-    Episode episode = TestUtils::createEpisodeForTest(podcast.getId(), episodeTitle);
+    long episodeId = 1;
+    Episode episode = TestUtils::createEpisodeForTest(testPodcastId, episodeId);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
-    episodesRepository.deleteById(episode.getId());
+    episodesRepository.deleteById(episodeId);
     REQUIRE(episodesRepository.getAll().empty());
 }
 
 TEST_CASE("delete all episodes", "[episodesRepositoryTests]") {
     TestUtils::emptyDatabase();
 
-    std::string podcastName = "Test Podcast";
-    Podcast podcast = TestUtils::createPodcastForTest(podcastName);
+    long testPodcastId = 1;
+    Podcast testPodcast = TestUtils::createPodcastForTest(testPodcastId);
 
-    std::string episodeTitle = "Test Episode";
-    TestUtils::createEpisodeForTest(podcast.getId(), episodeTitle);
+    long episodeId = 1;
+    Episode episode = TestUtils::createEpisodeForTest(testPodcastId, episodeId);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
     episodesRepository.deleteAll();
@@ -160,22 +143,22 @@ TEST_CASE("delete all episodes", "[episodesRepositoryTests]") {
 TEST_CASE("delete all episodes in podcast", "[episodesRepositoryTests]") {
     TestUtils::emptyDatabase();
 
-    std::string podcastAName = "Test Podcast A";
-    std::string podcastBName = "Test Podcast B";
+    long podcastAId = 1;
+    long podcastBId = 2;
 
-    Podcast testPodcastA = TestUtils::createPodcastForTest(podcastAName);
-    Podcast testPodcastB = TestUtils::createPodcastForTest(podcastBName);
+    Podcast testPodcastA = TestUtils::createPodcastForTest(podcastAId);
+    Podcast testPodcastB = TestUtils::createPodcastForTest(podcastBId);
 
-    std::string episodeAName = "Test Episode A";
-    std::string episodeBName = "Test Episode B";
-    std::string episodeCName = "Test Episode C";
+    long episodeAId = 1;
+    long episodeBId = 2;
+    long episodeCId = 3;
 
-    TestUtils::createEpisodeForTest(testPodcastA.getId(), episodeAName);
-    TestUtils::createEpisodeForTest(testPodcastB.getId(), episodeBName);
-    TestUtils::createEpisodeForTest(testPodcastB.getId(), episodeCName);
+    TestUtils::createEpisodeForTest(podcastAId, episodeAId);
+    TestUtils::createEpisodeForTest(podcastBId, episodeBId);
+    TestUtils::createEpisodeForTest(podcastBId, episodeCId);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
-    episodesRepository.deleteByPodcastId(testPodcastB.getId());
+    episodesRepository.deleteByPodcastId(podcastBId);
 
     REQUIRE(episodesRepository.getAll().size() == 1);
 }

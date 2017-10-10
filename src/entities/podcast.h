@@ -19,22 +19,29 @@
 #define BEAM_PODCAST_H
 
 #include <string>
-#include <boost/uuid/uuid.hpp>
-#include <boost/uuid/uuid_io.hpp>
-#include <boost/uuid/uuid_generators.hpp>
+#include <rapidjson/include/rapidjson/document.h>
 
 class Podcast {
 private:
-    boost::uuids::random_generator generator;
-    const boost::uuids::uuid id = generator(); // generate a uuid for the podcast
-    std::string name;
+    const long id;
+    const std::string title;
+    const std::string link;
+    const std::string feedUrl;
+    const std::string description;
+    const std::string imageUrl;
+    const std::string url;
 public:
-    explicit Podcast(const std::string & name);
-    Podcast(const boost::uuids::uuid & id, std::string & name);
+    Podcast(long & id, std::string & title, std::string & link, std::string & feedUrl, std::string & description,
+            std::string & imageUrl, std::string & url);
+    static Podcast fromJSONObject(rapidjson::Document document);
     ~Podcast();
-    boost::uuids::uuid getId();
-    std::string getName();
-    void setName(std::string & name);
+    long getId();
+    std::string getTitle();
+    std::string getLink();
+    std::string getFeedUrl();
+    std::string getDescription();
+    std::string getImageUrl();
+    std::string getUrl();
 };
 
 #endif

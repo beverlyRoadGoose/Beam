@@ -45,7 +45,12 @@ void DatabaseManager::createPodcastsTable() {
     std::string sql =
             "CREATE TABLE IF NOT EXISTS podcasts("
             "id TEXT PRIMARY KEY NOT NULL,"
-            "name TEXT NOT NULL);";
+            "title TEXT NOT NULL,"
+            "link TEXT NOT NULL,"
+            "feedUrl TEXT NOT NULL,"
+            "description TEXT NOT NULL,"
+            "imageUrl TEXT NOT NULL,"
+            "url TEXT NOT NULL);";
 
     openDatabase();
     resultCode = sqlite3_exec(database, sql.c_str(), nullptr, nullptr, &errorMessage);
