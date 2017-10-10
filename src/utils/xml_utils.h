@@ -18,4 +18,8 @@
 #ifndef BEAM_XML_UTILS_H
 #define BEAM_XML_UTILS_H
 
+namespace XMLUtils {
+    
+}
+
 #endif //BEAM_XML_UTILS_H
