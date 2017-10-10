@@ -30,7 +30,11 @@ TEST_CASE("insert new episode", "[episodesRepositoryTests]") {
     boost::uuids::random_generator generator;
     boost::uuids::uuid episodeId = generator();
     std::string testEpisodeTitle = "Test Episode";
-    Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle);
+    std::string summary = "summary";
+    std::string publishDate = "publishDate";
+    std::string enclosureUrl = "enclosureUrl";
+
+    Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle, summary, publishDate, enclosureUrl);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
     episodesRepository.insert(episode);
@@ -46,7 +50,11 @@ TEST_CASE("insert new episode for non existing podcast", "[episodesRepositoryTes
     boost::uuids::uuid episodeId = generator();
 
     std::string testEpisodeTitle = "Test Episode";
-    Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle);
+    std::string summary = "summary";
+    std::string publishDate = "publishDate";
+    std::string enclosureUrl = "enclosureUrl";
+
+    Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle, summary, publishDate, enclosureUrl);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
     REQUIRE_THROWS(episodesRepository.insert(episode));
@@ -61,7 +69,11 @@ TEST_CASE("get episode by id", "[episodesRepositoryTests]") {
     boost::uuids::random_generator generator;
     boost::uuids::uuid episodeId = generator();
     std::string testEpisodeTitle = "Test Episode";
-    Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle);
+    std::string summary = "summary";
+    std::string publishDate = "publishDate";
+    std::string enclosureUrl = "enclosureUrl";
+
+    Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle, summary, publishDate, enclosureUrl);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
     episodesRepository.insert(episode);

@@ -12,6 +12,8 @@ rm -rf CTestTestfile.cmake
 rm -rf build/Beam
 rm -rf build/podcast-tests
 rm -rf build/episode-tests
+rm -rf build/xml-utils-tests
+rm -rf build/json-utils-tests
 rm -rf build/network-utils-tests
 rm -rf build/digital-podcasts-tests
 rm -rf build/database-manager-tests

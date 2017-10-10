@@ -17,9 +17,21 @@
 
 #include "episode.h"
 
-Episode::Episode(long & podcastId, std::string & title) : podcastId(podcastId), title(title) {}
+Episode::Episode(long & podcastId, std::string & title, std::string & summary, std::string & publishDate, std::string & enclosureUrl)
+        : id(generator()),
+          podcastId(podcastId),
+          title(title),
+          summary(summary),
+          publishDate(publishDate),
+          enclosureUrl(enclosureUrl) {}
 
-Episode::Episode(boost::uuids::uuid & id, long & podcastId, std::string & title) : id(id), podcastId(podcastId), title(title) {}
+Episode::Episode(boost::uuids::uuid & id, long & podcastId, std::string & title, std::string & summary, std::string & publishDate, std::string & enclosureUrl)
+        : id(id),
+          podcastId(podcastId),
+          title(title),
+          summary(summary),
+          publishDate(publishDate),
+          enclosureUrl(enclosureUrl) {}
 
 Episode::~Episode() = default;
 
@@ -33,4 +45,16 @@ long Episode::getPodcastId() {
 
 std::string Episode::getTitle() {
     return title;
+}
+
+std::string Episode::getSummary() {
+    return summary;
+}
+
+std::string Episode::getPublishDate() {
+    return publishDate;
+}
+
+std::string Episode::getEnclosureUrl() {
+    return enclosureUrl;
 }

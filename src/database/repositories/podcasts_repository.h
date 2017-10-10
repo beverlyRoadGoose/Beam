@@ -32,7 +32,6 @@ public:
     PodcastsRepository();
     ~PodcastsRepository();
     void insert(Podcast podcast);
-    void update(Podcast podcast);
     Podcast getById(long & id);
     std::vector<Podcast> getAll();
     void deleteById(long & id);

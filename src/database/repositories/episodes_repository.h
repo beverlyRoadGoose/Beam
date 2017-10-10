@@ -33,7 +33,6 @@ public:
     EpisodesRepository();
     ~EpisodesRepository();
     void insert(Episode episode);
-    void update(Episode episode);
     Episode getById(boost::uuids::uuid & id);
     std::vector<Episode> getByPodcastId(long & id);
     std::vector<Episode> getAll();
