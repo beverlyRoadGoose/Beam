@@ -18,3 +18,8 @@
 #define CATCH_CONFIG_MAIN
 
 #include <catch/catch.hpp>
+#include <utils/xml_utils.h>
+
+TEST_CASE("podcast feed parse test", "[xmlUtilsTests]") {
+    
+}

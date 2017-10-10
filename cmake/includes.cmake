@@ -17,6 +17,7 @@
 include_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(${PROJECT_SOURCE_DIR}/lib)
+include_directories(${PROJECT_SOURCE_DIR}/lib/pugixml/src)
 include_directories(${PROJECT_SOURCE_DIR}/lib/curlpp/include)
 include_directories(${PROJECT_SOURCE_DIR}/lib/wxWidgets/include)
 include_directories(${PROJECT_SOURCE_DIR}/lib/rapidjson/include)

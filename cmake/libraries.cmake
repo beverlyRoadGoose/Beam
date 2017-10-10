@@ -19,6 +19,7 @@ add_library(beam-utils
         src/utils/json_utils.h
         src/utils/xml_utils.cpp
         src/utils/xml_utils.h)
+target_link_libraries(beam-utils pugixml)
 
 add_library(beam-database
         src/database/databasemanager.h

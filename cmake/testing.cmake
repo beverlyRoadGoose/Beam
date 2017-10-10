@@ -54,5 +54,5 @@ target_link_libraries(json-utils-tests Catch beam-utils beam-networking)
 add_test(NAME JSONUtilsTests COMMAND json-utils-tests)
 
 add_executable(xml-utils-tests tests/utils/xml_utils_tests.cpp)
-target_link_libraries(xml-utils-tests Catch beam-utils beam-networking)
+target_link_libraries(xml-utils-tests Catch beam-utils beam-networking beam-entities)
 add_test(NAME XMLUtilsTests COMMAND xml-utils-tests)
