@@ -19,11 +19,10 @@
 
 #include <catch/catch.hpp>
 #include <utils/json_utils.h>
-#include <src/networking/apis/digital_podcasts.h>
 
 TEST_CASE("JSON string parse test", "[JSONUtilsTests]") {
     std::string searchKey = "radiolab";
-    std::string JSONString = DigitalPodcasts::search(searchKey);
+    std::string JSONString = "{\"hello\": \"world\"}";
 
     REQUIRE((JSONUtils::parseJSONString(JSONString)).IsObject());
 }

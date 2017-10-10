@@ -26,7 +26,7 @@ namespace DigitalPodcasts {
     const static std::string FORMAT = "json";
 
     std::string getAppId();
-    std::string search(std::string & searchString);
+    std::vector<Podcast> search(std::string & searchString);
 }
 
 #endif //BEAM_DIGITAL_PODCASTS_H

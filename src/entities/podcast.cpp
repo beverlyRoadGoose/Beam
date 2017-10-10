@@ -22,10 +22,6 @@ Podcast::Podcast(long & id, std::string & title, std::string & link, std::string
                  std::string & imageUrl, std::string & url)
         : id(id), title(title), link(link), feedUrl(feedUrl), description(description), imageUrl(imageUrl), url(url) {}
 
-Podcast Podcast::fromJSONObject(rapidjson::Document document) {
-
-}
-
 Podcast::~Podcast() = default;
 
 long Podcast::getId() {

@@ -46,7 +46,7 @@ target_link_libraries(network-utils-tests Catch beam-networking)
 add_test(NAME NetworkUtilsTests COMMAND network-utils-tests)
 
 add_executable(digital-podcasts-tests tests/networking/apis/digital_podcasts_tests.cpp)
-target_link_libraries(digital-podcasts-tests Catch beam-networking)
+target_link_libraries(digital-podcasts-tests Catch beam-entities beam-networking)
 add_test(NAME DigitalPodcastsTests COMMAND digital-podcasts-tests)
 
 add_executable(json-utils-tests tests/utils/json_utils_tests.cpp)

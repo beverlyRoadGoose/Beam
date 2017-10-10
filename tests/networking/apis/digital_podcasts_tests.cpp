@@ -22,8 +22,7 @@
 
 TEST_CASE("search query test", "[digitalPodcastsTests]") {
     std::string searchKey = "radiolab";
-    std::string response = DigitalPodcasts::search(searchKey);
+    std::vector<Podcast> podcasts = DigitalPodcasts::search(searchKey);
 
-    REQUIRE_FALSE(response.empty());
-    std::cout << "Query response:\n" << response;
+    REQUIRE_FALSE(podcasts.empty());
 }

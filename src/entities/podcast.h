@@ -33,7 +33,6 @@ private:
 public:
     Podcast(long & id, std::string & title, std::string & link, std::string & feedUrl, std::string & description,
             std::string & imageUrl, std::string & url);
-    static Podcast fromJSONObject(rapidjson::Document document);
     ~Podcast();
     long getId();
     std::string getTitle();

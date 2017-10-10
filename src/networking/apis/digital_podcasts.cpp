@@ -16,7 +16,9 @@
  */
 
 #include <sstream>
+#include <utils/json_utils.h>
 #include <networking/network_utils.h>
+
 #include "digital_podcasts.h"
 
 std::string DigitalPodcasts::getAppId() {
@@ -31,7 +33,9 @@ std::string DigitalPodcasts::getAppId() {
  *
  * TODO change return type to vector
  */
-std::string DigitalPodcasts::search(std::string & searchString) {
+std::vector<Podcast> DigitalPodcasts::search(std::string & searchString) {
+    std::vector<Podcast> podcasts;
+
     std::string appId = DigitalPodcasts::getAppId();
     std::stringstream ss;
 
@@ -40,6 +44,26 @@ std::string DigitalPodcasts::search(std::string & searchString) {
 
     std::string url = ss.str();
     std::string response = NetworkUtils::query(url);
+    rapidjson::Document responseJson = JSONUtils::parseJSONString(response);
 
-    return response;
+    const rapidjson::Value & podcastsJSONArray = responseJson["feeds"];
+    assert(podcastsJSONArray.IsArray());
+
+    for (rapidjson::SizeType i = 0; i < podcastsJSONArray.Size(); i++) {
+        const rapidjson::Value & JSONWrapperObject = podcastsJSONArray[i];
+        const rapidjson::Value & JSONObject = JSONWrapperObject["feed"];
+
+        long id = (long)(JSONObject["id"].GetInt());
+        std::string title = JSONObject["title"].GetString();
+        std::string link = JSONObject["link"].GetString();
+        std::string feedUrl = JSONObject["feed_url"].GetString();
+        std::string description = JSONObject["description"].GetString();
+        std::string imageUrl = JSONObject["small_feed_image_url"].GetString();
+        std::string url = JSONObject["url"].GetString();
+
+        Podcast podcast = Podcast(id, title, link, feedUrl, description, imageUrl, url);
+        podcasts.push_back(podcast);
+    }
+
+    return podcasts;
 }
