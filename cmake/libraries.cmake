@@ -14,7 +14,11 @@
 #  limitations under the License.
 #
 
-add_library(beam-utils src/utils/json_utils.cpp src/utils/json_utils.h)
+add_library(beam-utils
+        src/utils/json_utils.cpp
+        src/utils/json_utils.h
+        src/utils/xml_utils.cpp
+        src/utils/xml_utils.h)
 
 add_library(beam-database
         src/database/databasemanager.h
