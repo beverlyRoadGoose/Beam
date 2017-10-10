@@ -36,6 +36,13 @@ make && cd ..
 curl -L https://github.com/Tencent/rapidjson/archive/v1.1.0.tar.gz | tar zx
 mv rapidjson-1.1.0/ rapidjson/
 
+#pugixml
+curl -L https://github.com/zeux/pugixml/releases/download/v1.8/pugixml-1.8.tar.gz | tar zx
+mv pugixml-1.8/ pugixml/
+cd pugixml
+cmake .
+make && cd ..
+
 #download wxWidgets on linux only
 if [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # linux
     curl -L https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.3.1/wxWidgets-3.0.3.1.zip -o wxWidgets.zip

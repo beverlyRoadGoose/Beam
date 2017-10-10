@@ -34,6 +34,9 @@ link_directories(${PROJECT_SOURCE_DIR}/lib/sqlite/build-debug/.libs)
 find_package(CURL REQUIRED)
 link_directories(${PROJECT_SOURCE_DIR}/lib/curlpp)
 
+# link pugixml libraries
+link_directories(${PROJECT_SOURCE_DIR}/lib/pugixml)
+
 # create persistence dir during build
 add_custom_target(build-time-make-directory ALL COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/build/persistence)
 

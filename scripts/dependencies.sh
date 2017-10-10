@@ -118,6 +118,29 @@ echo
 
 
 ###############################################
+# pugixml
+###############################################
+
+echo ---------- setting up pugixml ----------
+echo
+
+if [ -d "pugixml" ]; then
+    echo removing old pugixml.
+    rm -rf pugixml
+fi
+
+echo downloading pugixml tar
+curl -L https://github.com/zeux/pugixml/releases/download/v1.8/pugixml-1.8.tar.gz | tar zx
+mv pugixml-1.8/ pugixml/
+cd pugixml
+cmake .
+make && cd ..
+
+echo ---------- pugixml successfuly setup ----------
+echo
+
+
+###############################################
 # curlpp
 ###############################################
 

@@ -20,6 +20,7 @@ app id between the apostrophes.
 - [CMake](https://cmake.org)
 - [Catch](http://catch-lib.net)
 - [SQLite](https://www.sqlite.org)
+- [pugixml](https://pugixml.org)
 - [RapidJSON](http://rapidjson.org)
 - [wxWidgets](https://www.wxwidgets.org)
 
