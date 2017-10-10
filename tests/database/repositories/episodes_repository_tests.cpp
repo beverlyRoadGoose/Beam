@@ -27,7 +27,8 @@ TEST_CASE("insert new episode", "[episodesRepositoryTests]") {
     long testPodcastId = 1;
     Podcast testPodcast = TestUtils::createPodcastForTest(testPodcastId);
 
-    long episodeId = 1;
+    boost::uuids::random_generator generator;
+    boost::uuids::uuid episodeId = generator();
     std::string testEpisodeTitle = "Test Episode";
     Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle);
 
@@ -41,7 +42,8 @@ TEST_CASE("insert new episode for non existing podcast", "[episodesRepositoryTes
     TestUtils::emptyDatabase();
 
     long testPodcastId = 1; // note that the podcast isn't actually created
-    long episodeId = 1;
+    boost::uuids::random_generator generator;
+    boost::uuids::uuid episodeId = generator();
 
     std::string testEpisodeTitle = "Test Episode";
     Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle);
@@ -56,7 +58,8 @@ TEST_CASE("get episode by id", "[episodesRepositoryTests]") {
     long testPodcastId = 1;
     Podcast testPodcast = TestUtils::createPodcastForTest(testPodcastId);
 
-    long episodeId = 1;
+    boost::uuids::random_generator generator;
+    boost::uuids::uuid episodeId = generator();
     std::string testEpisodeTitle = "Test Episode";
     Episode episode = Episode(episodeId, testPodcastId, testEpisodeTitle);
 
@@ -69,7 +72,8 @@ TEST_CASE("get episode by id", "[episodesRepositoryTests]") {
 
 TEST_CASE("get non existing episode by id", "[episodesRepositoryTests]") {
     TestUtils::emptyDatabase();
-    long episodeId = 1;
+    boost::uuids::random_generator generator;
+    boost::uuids::uuid episodeId = generator();
 
     EpisodesRepository episodesRepository = EpisodesRepository();
     REQUIRE_THROWS(episodesRepository.getById(episodeId));
@@ -81,8 +85,9 @@ TEST_CASE("get all episodes", "[episodesRepositoryTests]") {
     long testPodcastId = 1;
     Podcast testPodcast = TestUtils::createPodcastForTest(testPodcastId);
 
-    long episodeAId = 1;
-    long episodeBId = 2;
+    boost::uuids::random_generator generator;
+    boost::uuids::uuid episodeAId = generator();
+    boost::uuids::uuid episodeBId = generator();
 
     TestUtils::createEpisodeForTest(testPodcastId, episodeAId);
     TestUtils::createEpisodeForTest(testPodcastId, episodeBId);
@@ -100,9 +105,10 @@ TEST_CASE("get all episodes in podcast", "[episodesRepositoryTests]") {
     Podcast testPodcastA = TestUtils::createPodcastForTest(podcastAId);
     Podcast testPodcastB = TestUtils::createPodcastForTest(podcastBId);
 
-    long episodeAId = 1;
-    long episodeBId = 2;
-    long episodeCId = 3;
+    boost::uuids::random_generator generator;
+    boost::uuids::uuid episodeAId = generator();
+    boost::uuids::uuid episodeBId = generator();
+    boost::uuids::uuid episodeCId = generator();
 
     TestUtils::createEpisodeForTest(podcastAId, episodeAId);
     TestUtils::createEpisodeForTest(podcastBId, episodeBId);
@@ -118,7 +124,8 @@ TEST_CASE("delete episode by id", "[episodesRepositoryTests]") {
     long testPodcastId = 1;
     Podcast testPodcast = TestUtils::createPodcastForTest(testPodcastId);
 
-    long episodeId = 1;
+    boost::uuids::random_generator generator;
+    boost::uuids::uuid episodeId = generator();
     Episode episode = TestUtils::createEpisodeForTest(testPodcastId, episodeId);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
@@ -132,7 +139,8 @@ TEST_CASE("delete all episodes", "[episodesRepositoryTests]") {
     long testPodcastId = 1;
     Podcast testPodcast = TestUtils::createPodcastForTest(testPodcastId);
 
-    long episodeId = 1;
+    boost::uuids::random_generator generator;
+    boost::uuids::uuid episodeId = generator();
     Episode episode = TestUtils::createEpisodeForTest(testPodcastId, episodeId);
 
     EpisodesRepository episodesRepository = EpisodesRepository();
@@ -149,9 +157,10 @@ TEST_CASE("delete all episodes in podcast", "[episodesRepositoryTests]") {
     Podcast testPodcastA = TestUtils::createPodcastForTest(podcastAId);
     Podcast testPodcastB = TestUtils::createPodcastForTest(podcastBId);
 
-    long episodeAId = 1;
-    long episodeBId = 2;
-    long episodeCId = 3;
+    boost::uuids::random_generator generator;
+    boost::uuids::uuid episodeAId = generator();
+    boost::uuids::uuid episodeBId = generator();
+    boost::uuids::uuid episodeCId = generator();
 
     TestUtils::createEpisodeForTest(podcastAId, episodeAId);
     TestUtils::createEpisodeForTest(podcastBId, episodeBId);

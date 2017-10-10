@@ -28,7 +28,7 @@ namespace TestUtils {
     bool isValidUUID(const boost::uuids::uuid & id);
     void emptyDatabase();
     Podcast createPodcastForTest(long & id);
-    Episode createEpisodeForTest(long & podcastId, long & episodeId);
+    Episode createEpisodeForTest(long & podcastId, boost::uuids::uuid & episodeId);
 }
 
 #endif //BEAM_TESTUTILS_H

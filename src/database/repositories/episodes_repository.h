@@ -34,10 +34,10 @@ public:
     ~EpisodesRepository();
     void insert(Episode episode);
     void update(Episode episode);
-    Episode getById(long & id);
+    Episode getById(boost::uuids::uuid & id);
     std::vector<Episode> getByPodcastId(long & id);
     std::vector<Episode> getAll();
-    void deleteById(long & id);
+    void deleteById(boost::uuids::uuid & id);
     void deleteByPodcastId(long & id);
     void deleteAll();
 };

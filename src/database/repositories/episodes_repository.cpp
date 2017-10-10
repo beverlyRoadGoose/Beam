@@ -73,7 +73,7 @@ void EpisodesRepository::update(Episode episode) {
     databaseManager.closeDatabase();
 }
 
-Episode EpisodesRepository::getById(long & id) {
+Episode EpisodesRepository::getById(boost::uuids::uuid & id) {
     sqlite3 * database;
     char * errorMessage = 0;
     int resultCode;
@@ -96,7 +96,7 @@ Episode EpisodesRepository::getById(long & id) {
     if (episodeRetrievedById == nullptr)
         throw "No episode with matching id found";
 
-    long retrievedId = episodeRetrievedById->getId();
+    boost::uuids::uuid retrievedId = episodeRetrievedById->getId();
     long retrievedPodcastId = episodeRetrievedById->getPodcastId();
     std::string retrievedTitle = episodeRetrievedById->getTitle();
     Episode e = Episode(retrievedId, retrievedPodcastId, retrievedTitle);
@@ -155,7 +155,7 @@ std::vector<Episode> EpisodesRepository::getAll() {
     return retrievedEpisodesList;
 }
 
-void EpisodesRepository::deleteById(long & id) {
+void EpisodesRepository::deleteById(boost::uuids::uuid & id) {
     sqlite3 * database;
     char * errorMessage = 0;
     int resultCode;
@@ -217,7 +217,7 @@ void EpisodesRepository::deleteAll() {
 }
 
 int EpisodesRepository::getListCallback(void *data, int argc, char **argv, char **columnName) {
-    long episodeId = atol(argv[0]);
+    boost::uuids::uuid episodeId = boost::lexical_cast<boost::uuids::uuid>(argv[0]);
     long podcastId = atol(argv[1]);
     std::string episodeTitle = argv[2];
 
@@ -228,7 +228,7 @@ int EpisodesRepository::getListCallback(void *data, int argc, char **argv, char 
 }
 
 int EpisodesRepository::getSingleCallback(void *data, int argc, char **argv, char **columnName) {
-    long episodeId = atol(argv[0]);
+    boost::uuids::uuid episodeId = boost::lexical_cast<boost::uuids::uuid>(argv[0]);
     long podcastId = atol(argv[1]);
     std::string episodeTitle = argv[2];
 

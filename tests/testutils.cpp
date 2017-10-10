@@ -58,7 +58,7 @@ Podcast TestUtils::createPodcastForTest(long & id) {
     return podcast;
 }
 
-Episode TestUtils::createEpisodeForTest(long & podcastId, long & episodeId) {
+Episode TestUtils::createEpisodeForTest(long & podcastId, boost::uuids::uuid & episodeId) {
     std::string title = "title";
     Episode episode = Episode(episodeId, podcastId, title);
     EpisodesRepository episodesRepository = EpisodesRepository();

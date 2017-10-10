@@ -17,11 +17,13 @@
 
 #include "episode.h"
 
-Episode::Episode(long & id, long & podcastId, std::string & title) : id(id), podcastId(podcastId), title(title) {}
+Episode::Episode(long & podcastId, std::string & title) : podcastId(podcastId), title(title) {}
+
+Episode::Episode(boost::uuids::uuid & id, long & podcastId, std::string & title) : id(id), podcastId(podcastId), title(title) {}
 
 Episode::~Episode() = default;
 
-long Episode::getId() {
+boost::uuids::uuid Episode::getId() {
     return id;
 }
 
