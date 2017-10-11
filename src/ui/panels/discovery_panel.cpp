@@ -18,31 +18,20 @@
 #include <vector>
 #include <wx/wx.h>
 #include <networking/network_utils.h>
+#include <src/ui/widgets/discover_item_panel.h>
 #include "discovery_panel.h"
 
 DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxPanel(parent) {
     panelManager = DiscoveryPanelManager();
-    panelSizer = new wxBoxSizer(wxHORIZONTAL);
-    wxImage::AddHandler(new wxJPEGHandler);
+    panelSizer = new wxBoxSizer(wxVERTICAL);
 
     std::vector<Podcast> dashPodcasts = panelManager.getDashPodcasts();
-    gridSizer = new wxGridSizer(7, 5, 5);
 
     for(std::vector<int>::size_type i = 0; i != dashPodcasts.size(); i++) {
         Podcast p = dashPodcasts[i];
-        wxString title = p.getTitle();
-        wxString imageDir = p.getLocalImageDir();
-        wxBitmap bitmap(imageDir, wxBITMAP_TYPE_JPEG);
-
-        wxPanel * imagePanel = new wxPanel(this);
-        imagePanel->SetSize(500, 500);
-
-        wxStaticBitmap * sb = new wxStaticBitmap(imagePanel, -1, bitmap);
-        sb->SetSize(500, 500);
-
-        gridSizer->Add(imagePanel, 0, wxEXPAND);
+        DiscoverItemPanel * itemPanel = new DiscoverItemPanel(this, p);
+        panelSizer->Add(itemPanel, 1, wxALL | wxEXPAND, 4);
     }
 
-    panelSizer->Add(gridSizer, 1);
     this->SetSizer(panelSizer);
 }

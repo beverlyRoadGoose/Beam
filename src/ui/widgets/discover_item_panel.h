@@ -15,19 +15,20 @@
  *
  */
 
-#ifndef BEAM_DISCOVERY_PANEL_H
-#define BEAM_DISCOVERY_PANEL_H
+#include <entities/podcast.h>
+#include "podcasts_list_item_panel.h"
 
-#include <modules/discovery_panel_manager.h>
+#ifndef BEAM_DISCOVER_ITEM_PANEL_H
+#define BEAM_DISCOVER_ITEM_PANEL_H
 
-class DiscoveryPanel : public wxPanel {
+
+class DiscoverItemPanel : public wxPanel {
 private:
-    DiscoveryPanelManager panelManager;
-
+    Podcast podcast;
     wxBoxSizer * panelSizer;
 public:
-    explicit DiscoveryPanel(wxWindow * parent);
+    DiscoverItemPanel(wxWindow * parent, Podcast & podcast);
 };
 
 
-#endif //BEAM_DISCOVERY_PANEL_H
+#endif //BEAM_DISCOVER_ITEM_PANEL_H
