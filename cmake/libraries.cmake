@@ -41,7 +41,7 @@ add_library(beam-networking
         src/networking/network_utils.h
         src/networking/apis/digital_podcasts.cpp
         src/networking/apis/digital_podcasts.h)
-target_link_libraries(beam-networking curlpp ${CURL_LIBRARIES} beam-utils)
+target_link_libraries(beam-networking curlpp ${CURL_LIBRARIES} beam-utils beam-entities)
 
 add_library(beam-ui
         src/ui/mainframe.h
