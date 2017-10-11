@@ -57,7 +57,7 @@ std::vector<Podcast> DigitalPodcasts::search(std::string & searchString) {
         std::string publisher = JSONObject["artistName"].GetString();
         std::string feedUrl = JSONObject["feedUrl"].GetString();
         std::string description = JSONObject["collectionName"].GetString();
-        std::string imageUrl = JSONObject["artworkUrl60"].GetString();
+        std::string imageUrl = JSONObject["artworkUrl600"].GetString();
         std::string url = JSONObject["collectionViewUrl"].GetString();
 
         Podcast podcast = Podcast(id, title, publisher, feedUrl, description, imageUrl, url);

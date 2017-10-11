@@ -10,6 +10,7 @@ rm -rf CTestTestfile.cmake
 
 # executables
 rm -rf build/Beam
+rm -rf build/cache
 rm -rf build/podcast-tests
 rm -rf build/episode-tests
 rm -rf build/xml-utils-tests

@@ -21,7 +21,10 @@
 #include <string>
 
 namespace NetworkUtils {
+    static int IMAGE_DOWNLOAD_COUNTER = 0;
+
     std::string query(std::string & url);
+    std::string downloadPodcastImage(std::string & url);
 }
 
 #endif //BEAM_NETWORK_UTILS_H

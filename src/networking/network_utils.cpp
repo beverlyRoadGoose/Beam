@@ -38,3 +38,30 @@ std::string NetworkUtils::query(std::string & url) {
 
     return  os.str();
 }
+
+size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
+    size_t written;
+    written = fwrite(ptr, size, nmemb, stream);
+    return written;
+}
+
+std::string NetworkUtils::downloadPodcastImage(std::string & url) {
+    std::stringstream saveLocaleStream;
+    saveLocaleStream << "build/cache/podcast_image" << ++NetworkUtils::IMAGE_DOWNLOAD_COUNTER << ".jpg";
+    std::string saveLocale = saveLocaleStream.str();
+
+    CURL * curl;
+    FILE * fp;
+    curl = curl_easy_init();
+    if (curl) {
+        fp = fopen(saveLocale.c_str(), "wb");
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
+        curl_easy_setopt (curl, CURLOPT_VERBOSE, 1L);
+        curl_easy_cleanup(curl);
+        fclose(fp);
+    }
+
+    return saveLocale;
+}
