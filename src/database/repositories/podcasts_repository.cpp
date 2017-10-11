@@ -39,8 +39,9 @@ void PodcastsRepository::insert(Podcast podcast) {
             "'" << podcast.getFeedUrl() << "', "
             "'" << podcast.getDescription() << "', "
             "'" << podcast.getImageUrl() << "', "
+            "'" << podcast.getLocalImageDir() << "', "
             "'" << podcast.getUrl() <<"');";
-    std::string sql = "INSERT INTO podcasts (id, title, publisher, feedUrl, description, imageUrl, url) " + ss.str();
+    std::string sql = "INSERT INTO podcasts (id, title, publisher, feedUrl, description, imageUrl, localImageDir, url) " + ss.str();
 
     databaseManager.openDatabase();
     database = databaseManager.getDatabase();
@@ -84,9 +85,11 @@ Podcast PodcastsRepository::getById(long & id) {
     std::string retrievedFeedUrl = podcastRetrievedById->getFeedUrl();
     std::string retrievedDescription = podcastRetrievedById->getDescription();
     std::string retrievedImageUrl = podcastRetrievedById->getImageUrl();
+    std::string retrievedImageDir = podcastRetrievedById->getLocalImageDir();
     std::string retrievedUrl = podcastRetrievedById->getUrl();
 
     Podcast p = Podcast(retrievedId, retrievedTitle, retrievedPublisher, retrievedFeedUrl, retrievedDescription, retrievedImageUrl, retrievedUrl);
+    p.setLocalImageDir(retrievedImageDir);
 
     delete podcastRetrievedById;
     podcastRetrievedById = nullptr;
@@ -164,7 +167,8 @@ int PodcastsRepository::getListCallback(void *data, int argc, char **argv, char 
     std::string feedUrl = argv[3];
     std::string description = argv[4];
     std::string imageUrl = argv[5];
-    std::string url = argv[6];
+    std::string localImageDir = argv[6];
+    std::string url = argv[7];
 
     Podcast podcast = Podcast(id, title, publisher, feedUrl, description, imageUrl, url);
     retrievedPodcastsList.push_back(podcast);
@@ -179,9 +183,11 @@ int PodcastsRepository::getSingleCallback(void *data, int argc, char **argv, cha
     std::string feedUrl = argv[3];
     std::string description = argv[4];
     std::string imageUrl = argv[5];
-    std::string url = argv[6];
+    std::string localImageDir = argv[6];
+    std::string url = argv[7];
 
     podcastRetrievedById = new Podcast(id, title, publisher, feedUrl, description, imageUrl, url);
+    podcastRetrievedById->setLocalImageDir(localImageDir);
 
     return 0;
 }

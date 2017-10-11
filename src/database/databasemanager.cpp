@@ -50,6 +50,7 @@ void DatabaseManager::createPodcastsTable() {
             "feedUrl TEXT NOT NULL,"
             "description TEXT NOT NULL,"
             "imageUrl TEXT NOT NULL,"
+            "localImageDir TEXT,"
             "url TEXT NOT NULL);";
 
     openDatabase();

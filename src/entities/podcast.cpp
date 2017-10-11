@@ -59,3 +59,11 @@ void Podcast::setUrl(std::string & url) {
 void Podcast::setDescription(std::string &description) {
     this->description = description;
 }
+
+std::string Podcast::getLocalImageDir() {
+    return localImageDir;
+}
+
+void Podcast::setLocalImageDir(std::string & dir) {
+    localImageDir = dir;
+}

@@ -29,6 +29,7 @@ private:
     const std::string feedUrl;
     std::string description;
     const std::string imageUrl;
+    std::string localImageDir = "";
     std::string url;
 public:
     Podcast(long & id, std::string & title, std::string & publisher, std::string & feedUrl, std::string & description,
@@ -41,6 +42,8 @@ public:
     std::string getDescription();
     void setDescription(std::string & description);
     std::string getImageUrl();
+    std::string getLocalImageDir();
+    void setLocalImageDir(std::string & dir);
     std::string getUrl();
     void setUrl(std::string & url);
 };
