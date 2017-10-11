@@ -75,8 +75,27 @@ std::vector<Episode> DigitalPodcasts::parsePodcastEpisodes(Podcast & podcast) {
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_string(feed.c_str());
 
-    if (result) {
+    pugi::xml_node rss = doc.child("rss");
+    pugi::xml_node channel = rss.child("channel");
 
+    std::string description = channel.child_value("description");
+    podcast.setDescription(description);
+
+    std::string link = channel.child_value("link");
+    podcast.setUrl(link);
+
+    if (result) {
+        for (pugi::xml_node node = channel.child("item"); node; node = node.next_sibling("item")) {
+            long podcastId = podcast.getId();
+            std::string title = node.child_value("title");
+            std::string summary = node.child_value("description");
+            std::string publishDate = node.child_value("pubDate");
+            std::string enclosureUrl = node.child("enclosure").attribute("url").value();
+            int duration = atoi(node.child_value("itunes:duration"));
+
+            Episode episode = Episode(podcastId, title, summary, publishDate, enclosureUrl, duration);
+            episodes.push_back(episode);
+        }
     }
     else {
         std::cout << "XML parsed with errors, attr value: [" << doc.child("node").attribute("attr").value() << "]\n";

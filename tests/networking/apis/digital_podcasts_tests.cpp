@@ -28,9 +28,9 @@ TEST_CASE("search query test", "[digitalPodcastsTests]") {
     REQUIRE_FALSE(podcasts.empty());
 }
 
-/*
+
 TEST_CASE("episodes feed parse test", "[digitalPodcastsTests]") {
-    std::string searchKey = "revisionist history";
+    std::string searchKey = "radiolab";
     std::vector<Podcast> podcasts = DigitalPodcasts::search(searchKey);
 
     Podcast podcast = podcasts.front();
@@ -40,4 +40,4 @@ TEST_CASE("episodes feed parse test", "[digitalPodcastsTests]") {
     std::vector<Episode> episodes = DigitalPodcasts::parsePodcastEpisodes(podcast);
 
     REQUIRE_FALSE(episodes.empty());
-}*/
+}
