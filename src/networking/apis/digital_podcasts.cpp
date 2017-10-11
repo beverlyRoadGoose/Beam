@@ -41,31 +41,21 @@ std::vector<Podcast> DigitalPodcasts::search(std::string & searchString) {
 
     std::string appId = DigitalPodcasts::getAppId();
     std::stringstream ss;
-
-    ss << BASE_URL << "search/?" << "appid=" << appId << "&keywords=" << searchString << "&format="
-            << DigitalPodcasts::FORMAT << "&searchsource=all";
+    ss << BASE_URL << "search/?" << "appid=" << appId << "&keywords=" << searchString << "&format=rss" << "&searchsource=all";
 
     std::string url = ss.str();
     std::string response = NetworkUtils::query(url);
-    rapidjson::Document responseJson = JSONUtils::parseJSONString(response);
 
-    const rapidjson::Value & podcastsJSONArray = responseJson["feeds"];
-    assert(podcastsJSONArray.IsArray());
+    pugi::xml_document doc;
+    pugi::xml_parse_result result = doc.load_string(response.c_str());
 
-    for (rapidjson::SizeType i = 0; i < podcastsJSONArray.Size(); i++) {
-        const rapidjson::Value & JSONWrapperObject = podcastsJSONArray[i];
-        const rapidjson::Value & JSONObject = JSONWrapperObject["feed"];
-
-        long id = (long)(JSONObject["id"].GetInt());
-        std::string title = JSONObject["title"].GetString();
-        std::string link = JSONObject["link"].GetString();
-        std::string feedUrl = JSONObject["feed_url"].GetString();
-        std::string description = JSONObject["description"].GetString();
-        std::string imageUrl = JSONObject["small_feed_image_url"].GetString();
-        std::string url = JSONObject["url"].GetString();
-
-        Podcast podcast = Podcast(id, title, link, feedUrl, description, imageUrl, url);
-        podcasts.push_back(podcast);
+    if (result) {
+        
+    }
+    else {
+        std::cout << "XML parsed with errors, attr value: [" << doc.child("node").attribute("attr").value() << "]\n";
+        std::cout << "Error description: " << result.description() << "\n";
+        std::cout << "Error offset: " << result.offset << " (error at [..." << (response.c_str() + result.offset) << "]\n\n";
     }
 
     return podcasts;
@@ -79,23 +69,13 @@ std::vector<Episode> DigitalPodcasts::parsePodcastEpisodes(Podcast & podcast) {
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_string(feed.c_str());
 
-    if (!result) {
+    if (result) {
+
+    }
+    else {
         std::cout << "XML parsed with errors, attr value: [" << doc.child("node").attribute("attr").value() << "]\n";
         std::cout << "Error description: " << result.description() << "\n";
         std::cout << "Error offset: " << result.offset << " (error at [..." << (feed.c_str() + result.offset) << "]\n\n";
-    }
-
-    for (pugi::xml_node item = doc.child("channel").child("item"); item; item = item.next_sibling("item")) {
-        std::cout << "within";
-        long podcastId = podcast.getId();
-        std::string title = item.child_value("title");
-        std::string summary = item.child_value("itunes:summary");
-        std::string publishDate = item.child_value("pubDate");
-        std::string enclosureUrl = item.attribute("url").value();
-        int duration = atoi(item.child_value("duration"));
-
-        Episode episode = Episode(podcastId, title, summary, publishDate, enclosureUrl, duration);
-        episodes.push_back(episode);
     }
 
     return episodes;
