@@ -32,10 +32,7 @@ TEST_CASE("search query test", "[digitalPodcastsTests]") {
 TEST_CASE("episodes feed parse test", "[digitalPodcastsTests]") {
     std::string searchKey = "radiolab";
     std::vector<Podcast> podcasts = DigitalPodcasts::search(searchKey);
-
     Podcast podcast = podcasts.front();
-    PodcastsRepository podcastsRepository = PodcastsRepository();
-    podcastsRepository.insert(podcast);
 
     std::vector<Episode> episodes = DigitalPodcasts::parsePodcastEpisodes(podcast);
 

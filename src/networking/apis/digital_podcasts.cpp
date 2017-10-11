@@ -40,7 +40,7 @@ std::vector<Podcast> DigitalPodcasts::search(std::string & searchString) {
     std::vector<Podcast> podcasts;
 
     std::stringstream ss;
-    ss << BASE_URL << "search/?" << "media=podcast" << "&term=" << searchString;
+    ss << BASE_URL << "search/?" << "media=podcast&attribute=titleTerm&term=" << searchString;
 
     std::string url = ss.str();
     std::string response = NetworkUtils::query(url);
