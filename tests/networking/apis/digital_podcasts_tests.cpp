@@ -22,7 +22,7 @@
 #include <src/database/repositories/podcasts_repository.h>
 
 TEST_CASE("search query test", "[digitalPodcastsTests]") {
-    std::string searchKey = "revisionist history";
+    std::string searchKey = "radiolab";
     std::vector<Podcast> podcasts = DigitalPodcasts::search(searchKey);
 
     REQUIRE_FALSE(podcasts.empty());

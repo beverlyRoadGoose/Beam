@@ -41,21 +41,29 @@ std::vector<Podcast> DigitalPodcasts::search(std::string & searchString) {
 
     std::string appId = DigitalPodcasts::getAppId();
     std::stringstream ss;
-    ss << BASE_URL << "search/?" << "appid=" << appId << "&keywords=" << searchString << "&format=rss" << "&searchsource=all";
+    ss << BASE_URL << "search/?" << "appid=" << appId << "&keywords=" << searchString << "&format=json" << "&searchsource=all";
 
     std::string url = ss.str();
     std::string response = NetworkUtils::query(url);
+    rapidjson::Document responseJson = JSONUtils::parseJSONString(response);
 
-    pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_string(response.c_str());
+    const rapidjson::Value & podcastsJSONArray = responseJson["feeds"];
+    assert(podcastsJSONArray.IsArray());
 
-    if (result) {
-        
-    }
-    else {
-        std::cout << "XML parsed with errors, attr value: [" << doc.child("node").attribute("attr").value() << "]\n";
-        std::cout << "Error description: " << result.description() << "\n";
-        std::cout << "Error offset: " << result.offset << " (error at [..." << (response.c_str() + result.offset) << "]\n\n";
+    for (rapidjson::SizeType i = 0; i < podcastsJSONArray.Size(); i++) {
+        const rapidjson::Value & JSONWrapperObject = podcastsJSONArray[i];
+        const rapidjson::Value & JSONObject = JSONWrapperObject["feed"];
+
+        long id = (long)(JSONObject["id"].GetInt());
+        std::string title = JSONObject["title"].GetString();
+        std::string link = JSONObject["link"].GetString();
+        std::string feedUrl = JSONObject["feed_url"].GetString();
+        std::string description = JSONObject["description"].GetString();
+        std::string imageUrl = JSONObject["small_feed_image_url"].GetString();
+        std::string url = JSONObject["url"].GetString();
+
+        Podcast podcast = Podcast(id, title, link, feedUrl, description, imageUrl, url);
+        podcasts.push_back(podcast);
     }
 
     return podcasts;
