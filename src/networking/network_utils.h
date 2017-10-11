@@ -19,12 +19,13 @@
 #define BEAM_NETWORK_UTILS_H
 
 #include <string>
+#include <entities/podcast.h>
 
 namespace NetworkUtils {
     static int IMAGE_DOWNLOAD_COUNTER = 0;
 
     std::string query(std::string & url);
-    std::string downloadPodcastImage(std::string & url);
+    void downloadPodcastImage(Podcast & podcast);
 }
 
 #endif //BEAM_NETWORK_UTILS_H

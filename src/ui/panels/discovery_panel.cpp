@@ -23,16 +23,24 @@
 DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxPanel(parent) {
     panelManager = DiscoveryPanelManager();
     panelSizer = new wxBoxSizer(wxHORIZONTAL);
+    wxImage::AddHandler(new wxJPEGHandler);
 
     std::vector<Podcast> dashPodcasts = panelManager.getDashPodcasts();
-    gridSizer = new wxGridSizer(10, 0, 0);
+    gridSizer = new wxGridSizer(7, 5, 5);
 
     for(std::vector<int>::size_type i = 0; i != dashPodcasts.size(); i++) {
         Podcast p = dashPodcasts[i];
         wxString title = p.getTitle();
-        std::string imageUrl = p.getImageUrl();
-        NetworkUtils::downloadPodcastImage(imageUrl);
-        gridSizer->Add(new wxButton(this, -1, title), 0, wxEXPAND);
+        wxString imageDir = p.getLocalImageDir();
+        wxBitmap bitmap(imageDir, wxBITMAP_TYPE_JPEG);
+
+        wxPanel * imagePanel = new wxPanel(this);
+        imagePanel->SetSize(500, 500);
+
+        wxStaticBitmap * sb = new wxStaticBitmap(imagePanel, -1, bitmap);
+        sb->SetSize(500, 500);
+
+        gridSizer->Add(imagePanel, 0, wxEXPAND);
     }
 
     panelSizer->Add(gridSizer, 1);
