@@ -56,3 +56,7 @@ add_test(NAME JSONUtilsTests COMMAND json-utils-tests)
 add_executable(xml-utils-tests tests/utils/xml_utils_tests.cpp)
 target_link_libraries(xml-utils-tests Catch beam-utils beam-networking beam-entities)
 add_test(NAME XMLUtilsTests COMMAND xml-utils-tests)
+
+add_executable(discovery-panel-manager-tests tests/modules/discovery_panel_manager_tests.cpp)
+target_link_libraries(discovery-panel-manager-tests Catch beam-modules)
+add_test(NAME DiscoveryPanelManagerTests COMMAND discovery-panel-manager-tests)

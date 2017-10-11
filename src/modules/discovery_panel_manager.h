@@ -15,16 +15,13 @@
  *
  */
 
-#ifndef BEAM_DISCOVERY_PANEL_H
-#define BEAM_DISCOVERY_PANEL_H
+#ifndef BEAM_DISCOVERY_PANEL_MANAGER_H
+#define BEAM_DISCOVERY_PANEL_MANAGER_H
 
-class DiscoveryPanel : public wxPanel {
-private:
-    wxBoxSizer * panelSizer;
-    wxGridSizer * gridSizer;
-public:
-    explicit DiscoveryPanel(wxWindow * parent);
+
+class DiscoveryPanelManager {
+
 };
 
 
-#endif //BEAM_DISCOVERY_PANEL_H
+#endif //BEAM_DISCOVERY_PANEL_MANAGER_H

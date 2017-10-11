@@ -20,5 +20,8 @@
 
 DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxPanel(parent) {
     panelSizer = new wxBoxSizer(wxHORIZONTAL);
+    gridSizer = new wxGridSizer(10, 0, 0);
+
+    panelSizer->Add(gridSizer, 1, wxEXPAND);
     this->SetSizer(panelSizer);
 }

@@ -15,16 +15,7 @@
  *
  */
 
-#ifndef BEAM_DISCOVERY_PANEL_H
-#define BEAM_DISCOVERY_PANEL_H
+#define CATCH_CONFIG_MAIN
 
-class DiscoveryPanel : public wxPanel {
-private:
-    wxBoxSizer * panelSizer;
-    wxGridSizer * gridSizer;
-public:
-    explicit DiscoveryPanel(wxWindow * parent);
-};
+#include <catch/catch.hpp>
 
-
-#endif //BEAM_DISCOVERY_PANEL_H

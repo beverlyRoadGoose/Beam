@@ -36,6 +36,11 @@ add_library(beam-entities
         src/entities/episode.h
         src/entities/episode.cpp)
 
+add_library(beam-modules
+        src/modules/discovery_panel_manager.cpp
+        src/modules/discovery_panel_manager.h)
+target_link_libraries(beam-modules beam-entities beam-networking beam-database beam-utils)
+
 add_library(beam-networking
         src/networking/network_utils.cpp
         src/networking/network_utils.h
@@ -54,4 +59,4 @@ add_library(beam-ui
         src/ui/widgets/podcasts_list_panel.h
         src/ui/panels/discovery_panel.cpp
         src/ui/panels/discovery_panel.h)
-target_link_libraries(beam-ui ${wxWidgets_LIBRARIES})
+target_link_libraries(beam-ui ${wxWidgets_LIBRARIES} beam-modules)
