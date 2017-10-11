@@ -18,10 +18,14 @@
 #ifndef BEAM_DISCOVERY_PANEL_MANAGER_H
 #define BEAM_DISCOVERY_PANEL_MANAGER_H
 
+#include <entities/podcast.h>
 
 class DiscoveryPanelManager {
-
+private:
+public:
+    DiscoveryPanelManager();
+    ~DiscoveryPanelManager();
+    std::vector<Podcast> getDashPodcasts();
 };
-
 
 #endif //BEAM_DISCOVERY_PANEL_MANAGER_H

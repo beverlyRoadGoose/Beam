@@ -15,4 +15,14 @@
  *
  */
 
+#include <networking/apis/digital_podcasts.h>
 #include "discovery_panel_manager.h"
+
+DiscoveryPanelManager::DiscoveryPanelManager() = default;
+
+DiscoveryPanelManager::~DiscoveryPanelManager() = default;
+
+std::vector<Podcast> DiscoveryPanelManager::getDashPodcasts() {
+    std::string searchString = "radio";
+    return DigitalPodcasts::search(searchString);
+}

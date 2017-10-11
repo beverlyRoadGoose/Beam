@@ -15,12 +15,22 @@
  *
  */
 
+#include <vector>
 #include <wx/wx.h>
 #include "discovery_panel.h"
 
 DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxPanel(parent) {
+    panelManager = DiscoveryPanelManager();
     panelSizer = new wxBoxSizer(wxHORIZONTAL);
+
+    std::vector<Podcast> dashPodcasts = panelManager.getDashPodcasts();
     gridSizer = new wxGridSizer(10, 0, 0);
+
+    for(std::vector<int>::size_type i = 0; i != dashPodcasts.size(); i++) {
+        Podcast p = dashPodcasts[i];
+        wxString title = p.getTitle();
+        gridSizer->Add(new wxButton(this, -1, title), 0, wxEXPAND);
+    }
 
     panelSizer->Add(gridSizer, 1, wxEXPAND);
     this->SetSizer(panelSizer);

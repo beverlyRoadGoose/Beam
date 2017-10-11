@@ -18,8 +18,12 @@
 #ifndef BEAM_DISCOVERY_PANEL_H
 #define BEAM_DISCOVERY_PANEL_H
 
+#include <modules/discovery_panel_manager.h>
+
 class DiscoveryPanel : public wxPanel {
 private:
+    DiscoveryPanelManager panelManager;
+
     wxBoxSizer * panelSizer;
     wxGridSizer * gridSizer;
 public:
