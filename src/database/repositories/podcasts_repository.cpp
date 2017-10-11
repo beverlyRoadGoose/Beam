@@ -171,6 +171,7 @@ int PodcastsRepository::getListCallback(void *data, int argc, char **argv, char 
     std::string url = argv[7];
 
     Podcast podcast = Podcast(id, title, publisher, feedUrl, description, imageUrl, url);
+    podcast.setLocalImageDir(localImageDir);
     retrievedPodcastsList.push_back(podcast);
 
     return 0;
