@@ -23,7 +23,7 @@
 
 class DatabaseManager {
 private:
-    const std::string DATABASE_FILE = "build/persistence/Beam.sqlite";
+    const std::string DATABASE_FILE = "build/.persistence/Beam.sqlite";
     sqlite3 * database = nullptr;
     void createPodcastsTable();
     void createEpisodesTable();

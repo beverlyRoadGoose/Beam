@@ -47,11 +47,12 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 
 std::string NetworkUtils::downloadPodcastImage(std::string & url) {
     std::stringstream saveLocaleStream;
-    saveLocaleStream << "build/cache/podcast_image" << ++NetworkUtils::IMAGE_DOWNLOAD_COUNTER << ".jpg";
+    saveLocaleStream << "build/.cache/podcast_image" << ++NetworkUtils::IMAGE_DOWNLOAD_COUNTER << ".jpg";
     std::string saveLocale = saveLocaleStream.str();
 
     CURL * curl;
     FILE * fp;
+    CURLcode res;
     curl = curl_easy_init();
     if (curl) {
         fp = fopen(saveLocale.c_str(), "wb");
@@ -59,6 +60,7 @@ std::string NetworkUtils::downloadPodcastImage(std::string & url) {
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
         curl_easy_setopt (curl, CURLOPT_VERBOSE, 1L);
+        res = curl_easy_perform(curl);
         curl_easy_cleanup(curl);
         fclose(fp);
     }
