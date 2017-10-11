@@ -20,7 +20,7 @@
 
 #include <modules/discovery_panel_manager.h>
 
-class DiscoveryPanel : public wxPanel {
+class DiscoveryPanel : public wxScrolledWindow {
 private:
     DiscoveryPanelManager panelManager;
 

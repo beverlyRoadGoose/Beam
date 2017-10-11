@@ -18,10 +18,10 @@
 #include <vector>
 #include <wx/wx.h>
 #include <networking/network_utils.h>
-#include <src/ui/widgets/discover_item_panel.h>
+#include <ui/widgets/discover_item_panel.h>
 #include "discovery_panel.h"
 
-DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxPanel(parent) {
+DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxScrolledWindow(parent) {
     panelManager = DiscoveryPanelManager();
     panelSizer = new wxBoxSizer(wxVERTICAL);
 
@@ -32,6 +32,9 @@ DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxPanel(parent) {
         DiscoverItemPanel * itemPanel = new DiscoverItemPanel(this, p);
         panelSizer->Add(itemPanel, 1, wxALL | wxEXPAND, 4);
     }
+
+    this->FitInside(); // ask the sizer about the needed size
+    this->SetScrollRate(5, 5);
 
     this->SetSizer(panelSizer);
 }
