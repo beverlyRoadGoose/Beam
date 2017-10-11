@@ -9,10 +9,6 @@ I'm building it for my personal use and to learn the [wxWidgets](https://www.wxw
 
 ## Building / Running
 
-Before building, you need to create an account and get an app id from the [Digital Podcast Search Service](http://api.digitalpodcast.com).
-After getting an app id, create a file named ```.env``` in the project root, copy the contents of ```.env.example``` into the .env file and put your 
-app id between the apostrophes.
-
 ##### Dependencies & Build tools
 
 - [curl](https://curl.haxx.se)

@@ -45,13 +45,13 @@ void TestUtils::emptyDatabase() {
 
 Podcast TestUtils::createPodcastForTest(long & id) {
     std::string title = "title";
-    std::string link = "link";
+    std::string publisher = "publisher";
     std::string feedUrl = "feedUrl";
     std::string description = "description";
     std::string imageUrl = "imageUrl";
     std::string url = "url";
 
-    Podcast podcast = Podcast(id, title, link, feedUrl, description, imageUrl, url);
+    Podcast podcast = Podcast(id, title, publisher, feedUrl, description, imageUrl, url);
     PodcastsRepository podcastsRepository = PodcastsRepository();
     podcastsRepository.insert(podcast);
 

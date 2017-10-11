@@ -39,30 +39,28 @@ std::string DigitalPodcasts::getAppId() {
 std::vector<Podcast> DigitalPodcasts::search(std::string & searchString) {
     std::vector<Podcast> podcasts;
 
-    std::string appId = DigitalPodcasts::getAppId();
     std::stringstream ss;
-    ss << BASE_URL << "search/?" << "appid=" << appId << "&keywords=" << searchString << "&format=json" << "&searchsource=all";
+    ss << BASE_URL << "search/?" << "media=podcast" << "&term=" << searchString;
 
     std::string url = ss.str();
     std::string response = NetworkUtils::query(url);
     rapidjson::Document responseJson = JSONUtils::parseJSONString(response);
 
-    const rapidjson::Value & podcastsJSONArray = responseJson["feeds"];
+    const rapidjson::Value & podcastsJSONArray = responseJson["results"];
     assert(podcastsJSONArray.IsArray());
 
     for (rapidjson::SizeType i = 0; i < podcastsJSONArray.Size(); i++) {
-        const rapidjson::Value & JSONWrapperObject = podcastsJSONArray[i];
-        const rapidjson::Value & JSONObject = JSONWrapperObject["feed"];
+        const rapidjson::Value & JSONObject = podcastsJSONArray[i];
 
-        long id = (long)(JSONObject["id"].GetInt());
-        std::string title = JSONObject["title"].GetString();
-        std::string link = JSONObject["link"].GetString();
-        std::string feedUrl = JSONObject["feed_url"].GetString();
-        std::string description = JSONObject["description"].GetString();
-        std::string imageUrl = JSONObject["small_feed_image_url"].GetString();
-        std::string url = JSONObject["url"].GetString();
+        long id = (long)(JSONObject["collectionId"].GetInt());
+        std::string title = JSONObject["collectionName"].GetString();
+        std::string publisher = JSONObject["artistName"].GetString();
+        std::string feedUrl = JSONObject["feedUrl"].GetString();
+        std::string description = JSONObject["collectionName"].GetString();
+        std::string imageUrl = JSONObject["artworkUrl60"].GetString();
+        std::string url = JSONObject["collectionViewUrl"].GetString();
 
-        Podcast podcast = Podcast(id, title, link, feedUrl, description, imageUrl, url);
+        Podcast podcast = Podcast(id, title, publisher, feedUrl, description, imageUrl, url);
         podcasts.push_back(podcast);
     }
 

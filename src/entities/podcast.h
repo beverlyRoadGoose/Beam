@@ -25,22 +25,24 @@ class Podcast {
 private:
     const long id;
     const std::string title;
-    const std::string link;
+    const std::string publisher;
     const std::string feedUrl;
-    const std::string description;
+    std::string description;
     const std::string imageUrl;
-    const std::string url;
+    std::string url;
 public:
-    Podcast(long & id, std::string & title, std::string & link, std::string & feedUrl, std::string & description,
+    Podcast(long & id, std::string & title, std::string & publisher, std::string & feedUrl, std::string & description,
             std::string & imageUrl, std::string & url);
     ~Podcast();
     long getId();
     std::string getTitle();
-    std::string getLink();
+    std::string getPublisher();
     std::string getFeedUrl();
     std::string getDescription();
+    void setDescription(std::string & description);
     std::string getImageUrl();
     std::string getUrl();
+    void setUrl(std::string & url);
 };
 
 #endif

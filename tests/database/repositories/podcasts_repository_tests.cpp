@@ -26,13 +26,13 @@ TEST_CASE("insert new podcast", "[podcastsRepositoryTests]") {
 
     long id = 1;
     std::string title = "title";
-    std::string link = "link";
+    std::string publisher = "publisher";
     std::string feedUrl = "feedUrl";
     std::string description = "description";
     std::string imageUrl = "imageUrl";
     std::string url = "url";
 
-    Podcast podcast = Podcast(id, title, link, feedUrl, description, imageUrl, url);
+    Podcast podcast = Podcast(id, title, publisher, feedUrl, description, imageUrl, url);
     PodcastsRepository podcastsRepository = PodcastsRepository();
     podcastsRepository.insert(podcast);
     REQUIRE(podcastsRepository.getAll().size() == 1);
@@ -43,7 +43,7 @@ TEST_CASE("get podcast by id", "[podcastsRepositoryTests]") {
 
     long id = 1;
     std::string title = "title";
-    std::string link = "link";
+    std::string publisher = "publisher";
     std::string feedUrl = "feedUrl";
     std::string description = "description";
     std::string imageUrl = "imageUrl";
@@ -51,7 +51,7 @@ TEST_CASE("get podcast by id", "[podcastsRepositoryTests]") {
 
     PodcastsRepository podcastsRepository = PodcastsRepository();
 
-    Podcast originalPodcast = Podcast(id, title, link, feedUrl, description, imageUrl, url);
+    Podcast originalPodcast = Podcast(id, title, publisher, feedUrl, description, imageUrl, url);
     podcastsRepository.insert(originalPodcast);
 
     Podcast retrievedPodcast = podcastsRepository.getById(id);

@@ -35,12 +35,12 @@ void PodcastsRepository::insert(Podcast podcast) {
 
     ss << "VALUES ('" << podcast.getId() << "', "
             "'" << podcast.getTitle() << "', "
-            "'" << podcast.getLink() << "', "
+            "'" << podcast.getPublisher() << "', "
             "'" << podcast.getFeedUrl() << "', "
             "'" << podcast.getDescription() << "', "
             "'" << podcast.getImageUrl() << "', "
             "'" << podcast.getUrl() <<"');";
-    std::string sql = "INSERT INTO podcasts (id, title, link, feedUrl, description, imageUrl, url) " + ss.str();
+    std::string sql = "INSERT INTO podcasts (id, title, publisher, feedUrl, description, imageUrl, url) " + ss.str();
 
     databaseManager.openDatabase();
     database = databaseManager.getDatabase();
@@ -80,13 +80,13 @@ Podcast PodcastsRepository::getById(long & id) {
 
     long retrievedId = podcastRetrievedById->getId();
     std::string retrievedTitle = podcastRetrievedById->getTitle();
-    std::string retrievedLink = podcastRetrievedById->getLink();
+    std::string retrievedPublisher = podcastRetrievedById->getPublisher();
     std::string retrievedFeedUrl = podcastRetrievedById->getFeedUrl();
     std::string retrievedDescription = podcastRetrievedById->getDescription();
     std::string retrievedImageUrl = podcastRetrievedById->getImageUrl();
     std::string retrievedUrl = podcastRetrievedById->getUrl();
 
-    Podcast p = Podcast(retrievedId, retrievedTitle, retrievedLink, retrievedFeedUrl, retrievedDescription, retrievedImageUrl, retrievedUrl);
+    Podcast p = Podcast(retrievedId, retrievedTitle, retrievedPublisher, retrievedFeedUrl, retrievedDescription, retrievedImageUrl, retrievedUrl);
 
     delete podcastRetrievedById;
     podcastRetrievedById = nullptr;
@@ -160,13 +160,13 @@ void PodcastsRepository::deleteAll() {
 int PodcastsRepository::getListCallback(void *data, int argc, char **argv, char **columnName) {
     long id = atol(argv[0]);
     std::string title = argv[1];
-    std::string link = argv[2];
+    std::string publisher = argv[2];
     std::string feedUrl = argv[3];
     std::string description = argv[4];
     std::string imageUrl = argv[5];
     std::string url = argv[6];
 
-    Podcast podcast = Podcast(id, title, link, feedUrl, description, imageUrl, url);
+    Podcast podcast = Podcast(id, title, publisher, feedUrl, description, imageUrl, url);
     retrievedPodcastsList.push_back(podcast);
 
     return 0;
@@ -175,13 +175,13 @@ int PodcastsRepository::getListCallback(void *data, int argc, char **argv, char 
 int PodcastsRepository::getSingleCallback(void *data, int argc, char **argv, char **columnName) {
     long id = atol(argv[0]);
     std::string title = argv[1];
-    std::string link = argv[2];
+    std::string publisher = argv[2];
     std::string feedUrl = argv[3];
     std::string description = argv[4];
     std::string imageUrl = argv[5];
     std::string url = argv[6];
 
-    podcastRetrievedById = new Podcast(id, title, link, feedUrl, description, imageUrl, url);
+    podcastRetrievedById = new Podcast(id, title, publisher, feedUrl, description, imageUrl, url);
 
     return 0;
 }

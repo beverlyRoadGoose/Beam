@@ -18,9 +18,9 @@
 #include <iostream>
 #include "podcast.h"
 
-Podcast::Podcast(long & id, std::string & title, std::string & link, std::string & feedUrl, std::string & description,
+Podcast::Podcast(long & id, std::string & title, std::string & publisher, std::string & feedUrl, std::string & description,
                  std::string & imageUrl, std::string & url)
-        : id(id), title(title), link(link), feedUrl(feedUrl), description(description), imageUrl(imageUrl), url(url) {}
+        : id(id), title(title), publisher(publisher), feedUrl(feedUrl), description(description), imageUrl(imageUrl), url(url) {}
 
 Podcast::~Podcast() = default;
 
@@ -32,8 +32,8 @@ std::string Podcast::getTitle() {
     return title;
 }
 
-std::string Podcast::getLink() {
-    return link;
+std::string Podcast::getPublisher() {
+    return publisher;
 }
 
 std::string Podcast::getFeedUrl() {
@@ -50,4 +50,12 @@ std::string Podcast::getImageUrl() {
 
 std::string Podcast::getUrl() {
     return url;
+}
+
+void Podcast::setUrl(std::string & url) {
+    this->url = url;
+}
+
+void Podcast::setDescription(std::string &description) {
+    this->description = description;
 }

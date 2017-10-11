@@ -46,7 +46,7 @@ void DatabaseManager::createPodcastsTable() {
             "CREATE TABLE IF NOT EXISTS podcasts("
             "id TEXT PRIMARY KEY NOT NULL,"
             "title TEXT NOT NULL,"
-            "link TEXT NOT NULL,"
+            "publisher TEXT NOT NULL,"
             "feedUrl TEXT NOT NULL,"
             "description TEXT NOT NULL,"
             "imageUrl TEXT NOT NULL,"
