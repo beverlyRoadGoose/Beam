@@ -25,13 +25,6 @@ cd .. && curl -L https://sqlite.org/2017/sqlite-autoconf-3200100.tar.gz | tar zx
 mv sqlite-autoconf-3200100/ sqlite/
 cd sqlite && mkdir build-debug && cd build-debug && ../configure && make && cd ../..
 
-#curlpp
-curl -L https://github.com/jpbarrette/curlpp/archive/v0.8.1.tar.gz | tar zx
-mv curlpp-0.8.1/ curlpp/
-cd curlpp
-cmake .
-make && cd ..
-
 #rapidjson
 curl -L https://github.com/Tencent/rapidjson/archive/v1.1.0.tar.gz | tar zx
 mv rapidjson-1.1.0/ rapidjson/
@@ -40,6 +33,13 @@ mv rapidjson-1.1.0/ rapidjson/
 curl -L https://github.com/zeux/pugixml/releases/download/v1.8/pugixml-1.8.tar.gz | tar zx
 mv pugixml-1.8/ pugixml/
 cd pugixml
+cmake .
+make && cd ..
+
+#curlpp
+curl -L https://github.com/jpbarrette/curlpp/archive/v0.8.1.tar.gz | tar zx
+mv curlpp-0.8.1/ curlpp/
+cd curlpp
 cmake .
 make && cd ..
 
