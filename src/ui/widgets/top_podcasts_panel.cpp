@@ -16,3 +16,32 @@
  */
 
 #include "top_podcasts_panel.h"
+
+TopPodcastsPanel::TopPodcastsPanel(wxWindow * parent) : wxScrolledWindow(parent) {
+    mainSizer = new wxBoxSizer(wxVERTICAL);
+
+    setupSectionHeader();
+
+    this->SetBackgroundColour(wxColour(wxT("#ffffff")));
+    this->SetSizer(mainSizer);
+
+    // this part makes the scrollbars show up
+    this->FitInside(); // ask the sizer about the needed size
+    this->SetScrollRate(5, 5);
+}
+
+void TopPodcastsPanel::setupSectionHeader() {
+    auto * titlePanel = new wxPanel(this);
+    auto * titlePanelSizer = new wxBoxSizer(wxHORIZONTAL);
+    auto * sectionTitle = new wxStaticText(titlePanel, wxID_ANY, wxT("Top Podcasts"));
+
+    wxFont sectionTitleFont = sectionTitle->GetFont();
+    sectionTitleFont.SetPointSize(17);
+    sectionTitle->SetFont(sectionTitleFont);
+
+    titlePanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
+    titlePanelSizer->Add(sectionTitle, 1, wxALL | wxEXPAND, 5);
+    titlePanel->SetSizer(titlePanelSizer);
+
+    mainSizer->Add(titlePanel, 1, wxBOTTOM | wxEXPAND, 4);
+}

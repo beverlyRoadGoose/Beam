@@ -19,6 +19,7 @@
 #define BEAM_DISCOVERY_PANEL_H
 
 #include <modules/discovery_panel_manager.h>
+#include <src/ui/widgets/top_podcasts_panel.h>
 
 class DiscoveryPanel : public wxScrolledWindow {
 private:
@@ -26,6 +27,10 @@ private:
 
     wxBoxSizer * panelSizer;
     wxPanel * wrapperPanel;
+    wxBoxSizer * wrapperPanelSizer;
+    TopPodcastsPanel * topPodcastsPanel;
+
+    void setupTopPodcastsSection();
 public:
     explicit DiscoveryPanel(wxWindow * parent);
 };

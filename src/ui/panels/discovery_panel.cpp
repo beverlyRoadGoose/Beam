@@ -17,8 +17,6 @@
 
 #include <vector>
 #include <wx/wx.h>
-#include <networking/network_utils.h>
-#include <ui/widgets/discover_item_panel.h>
 #include "discovery_panel.h"
 
 DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxScrolledWindow(parent) {
@@ -26,9 +24,23 @@ DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxScrolledWindow(parent) {
     panelSizer = new wxBoxSizer(wxVERTICAL);
 
     wrapperPanel = new wxPanel(this);
-    wrapperPanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
-    wrapperPanel->SetWindowStyleFlag(wxBORDER_SUNKEN);
-    panelSizer->Add(wrapperPanel, 1, wxALL | wxEXPAND, 4);
+    wrapperPanelSizer = new wxBoxSizer(wxVERTICAL);
 
+    wrapperPanel->SetWindowStyleFlag(wxBORDER_SUNKEN);
+    wrapperPanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
+
+    setupTopPodcastsSection();
+
+    wrapperPanel->SetSizer(wrapperPanelSizer);
+
+    panelSizer->Add(wrapperPanel, 1, wxALL | wxEXPAND, 4);
     this->SetSizer(panelSizer);
+
+    this->FitInside();
+    this->SetScrollRate(5, 5);
+}
+
+void DiscoveryPanel::setupTopPodcastsSection() {
+    topPodcastsPanel = new TopPodcastsPanel(wrapperPanel);
+    wrapperPanelSizer->Add(topPodcastsPanel, 1, wxBOTTOM | wxEXPAND, 4);
 }

@@ -41,7 +41,7 @@ MainFrame::MainFrame(const wxString & title) : wxFrame(NULL, wxID_ANY, title, wx
     tabsManager->AddPage(podcastsTabPanel, wxT("Subscriptions"));
     
     this->SetMenuBar(menuBar);
-    this->SetMinSize(wxSize(500, 500));
+    this->SetMinSize(wxSize(700, 700));
     this->Centre();
 }
 

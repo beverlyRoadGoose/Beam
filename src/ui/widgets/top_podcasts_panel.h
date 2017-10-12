@@ -21,7 +21,12 @@
 #include <wx/wx.h>
 
 class TopPodcastsPanel : public wxScrolledWindow {
+private:
+    wxBoxSizer * mainSizer;
 
+    void setupSectionHeader();
+public:
+    explicit TopPodcastsPanel(wxWindow * parent);
 };
 
 #endif //BEAM_TOP_PODCASTS_PANEL_H
