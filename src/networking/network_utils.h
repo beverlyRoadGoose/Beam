@@ -22,10 +22,8 @@
 #include <entities/podcast.h>
 
 namespace NetworkUtils {
-    static int IMAGE_DOWNLOAD_COUNTER = 0;
-
     std::string query(std::string & url);
-    void downloadPodcastImage(Podcast & podcast);
+    void downloadPodcastImage(Podcast & podcast, std::string & extension);
 }
 
 #endif //BEAM_NETWORK_UTILS_H

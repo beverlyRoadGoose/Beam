@@ -61,7 +61,9 @@ std::vector<Podcast> DigitalPodcasts::search(std::string & searchString) {
         std::string url = JSONObject["collectionViewUrl"].GetString();
 
         Podcast podcast = Podcast(id, title, publisher, feedUrl, description, imageUrl, url);
-        NetworkUtils::downloadPodcastImage(podcast);
+        std::string imageExtension = "jpg";
+        NetworkUtils::downloadPodcastImage(podcast, imageExtension);
+
         podcasts.push_back(podcast);
     }
 

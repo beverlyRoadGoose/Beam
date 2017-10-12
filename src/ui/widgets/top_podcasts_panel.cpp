@@ -16,11 +16,15 @@
  */
 
 #include "top_podcasts_panel.h"
+#include "discover_item_panel.h"
 
-TopPodcastsPanel::TopPodcastsPanel(wxWindow * parent) : wxScrolledWindow(parent) {
+TopPodcastsPanel::TopPodcastsPanel(wxWindow * parent, DiscoveryPanelManager & panelManager) : wxScrolledWindow(parent) {
     mainSizer = new wxBoxSizer(wxVERTICAL);
 
+    topPodcasts = panelManager.getTopPodcasts();
+
     setupSectionHeader();
+    setupFirstRow();
 
     this->SetBackgroundColour(wxColour(wxT("#ffffff")));
     this->SetSizer(mainSizer);
@@ -40,8 +44,22 @@ void TopPodcastsPanel::setupSectionHeader() {
     sectionTitle->SetFont(sectionTitleFont);
 
     titlePanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
-    titlePanelSizer->Add(sectionTitle, 1, wxALL | wxEXPAND, 5);
+    titlePanelSizer->Add(sectionTitle, 1, wxALL, 5);
     titlePanel->SetSizer(titlePanelSizer);
 
-    mainSizer->Add(titlePanel, 1, wxBOTTOM | wxEXPAND, 4);
+    mainSizer->Add(titlePanel, 1, wxBOTTOM, 5);
+}
+
+void TopPodcastsPanel::setupFirstRow() {
+    auto * rowPanel = new wxPanel(this);
+    auto * rowPanelSizer = new wxBoxSizer(wxHORIZONTAL);
+
+    for (std::vector<int>::size_type i = 0; i != topPodcasts.size()/2; i++) {
+        Podcast podcast = topPodcasts[i];
+        auto * itemPanel = new DiscoverItemPanel(this, podcast);
+        rowPanelSizer->Add(itemPanel, wxID_ANY, wxRIGHT | wxEXPAND, 10);
+    }
+
+    rowPanel->SetSizer(rowPanelSizer);
+    mainSizer->Add(rowPanel, 4, wxBOTTOM | wxEXPAND, 5);
 }

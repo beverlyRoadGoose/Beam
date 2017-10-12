@@ -18,15 +18,20 @@
 #ifndef BEAM_TOP_PODCASTS_PANEL_H
 #define BEAM_TOP_PODCASTS_PANEL_H
 
+#include <vector>
 #include <wx/wx.h>
+#include <entities/podcast.h>
+#include <src/modules/discovery_panel_manager.h>
 
 class TopPodcastsPanel : public wxScrolledWindow {
 private:
     wxBoxSizer * mainSizer;
+    std::vector<Podcast> topPodcasts;
 
     void setupSectionHeader();
+    void setupFirstRow();
 public:
-    explicit TopPodcastsPanel(wxWindow * parent);
+    explicit TopPodcastsPanel(wxWindow * parent, DiscoveryPanelManager & panelManager);
 };
 
 #endif //BEAM_TOP_PODCASTS_PANEL_H

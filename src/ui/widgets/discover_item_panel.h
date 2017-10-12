@@ -26,6 +26,9 @@ class DiscoverItemPanel : public wxPanel {
 private:
     Podcast podcast;
     wxBoxSizer * panelSizer;
+
+    void setupItemImage();
+    void setupItemText();
 public:
     DiscoverItemPanel(wxWindow * parent, Podcast & podcast);
 };

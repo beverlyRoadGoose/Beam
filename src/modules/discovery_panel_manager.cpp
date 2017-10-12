@@ -28,7 +28,7 @@ DiscoveryPanelManager::~DiscoveryPanelManager() = default;
 
 std::vector<Podcast> DiscoveryPanelManager::getTopPodcasts() {
     std::vector<Podcast> podcasts;
-    std::string url = "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/50/explicit.json";
+    std::string url = "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/100/explicit.json";
 
     std::string response = NetworkUtils::query(url);
     rapidjson::Document responseJson = JSONUtils::parseJSONString(response);
@@ -49,7 +49,9 @@ std::vector<Podcast> DiscoveryPanelManager::getTopPodcasts() {
         std::string url = JSONObject["url"].GetString();
 
         Podcast podcast = Podcast(id, title, publisher, feedUrl, description, imageUrl, url);
-        NetworkUtils::downloadPodcastImage(podcast);
+        std::string imageExtension = "png";
+        NetworkUtils::downloadPodcastImage(podcast, imageExtension);
+
         podcasts.push_back(podcast);
     }
 

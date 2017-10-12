@@ -18,6 +18,10 @@
 #include <sstream>
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Options.hpp>
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+
 #include "network_utils.h"
 
 /*
@@ -45,9 +49,11 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
     return written;
 }
 
-void NetworkUtils::downloadPodcastImage(Podcast & podcast) {
+void NetworkUtils::downloadPodcastImage(Podcast & podcast, std::string & extension) {
+    boost::uuids::random_generator generator;
+
     std::stringstream saveLocaleStream;
-    saveLocaleStream << "build/.cache/podcast_image" << ++NetworkUtils::IMAGE_DOWNLOAD_COUNTER << ".jpg";
+    saveLocaleStream << "build/.cache/" << generator() << "." << extension;
     std::string saveLocale = saveLocaleStream.str();
 
     CURL * curl;

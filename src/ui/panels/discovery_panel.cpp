@@ -41,6 +41,6 @@ DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxScrolledWindow(parent) {
 }
 
 void DiscoveryPanel::setupTopPodcastsSection() {
-    topPodcastsPanel = new TopPodcastsPanel(wrapperPanel);
+    topPodcastsPanel = new TopPodcastsPanel(wrapperPanel, panelManager);
     wrapperPanelSizer->Add(topPodcastsPanel, 1, wxBOTTOM | wxEXPAND, 4);
 }

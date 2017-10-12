@@ -15,13 +15,32 @@
  *
  */
 
-#include "podcasts_list_item_panel.h"
-
 #include "discover_item_panel.h"
 
 DiscoverItemPanel::DiscoverItemPanel(wxWindow * parent, Podcast & podcast) : wxPanel(parent), podcast(podcast) {
-    panelSizer = new wxBoxSizer(wxHORIZONTAL);
-    wxImage::AddHandler(new wxJPEGHandler);
+    panelSizer = new wxBoxSizer(wxVERTICAL);
+
+    setupItemImage();
+    setupItemText();
 
     this->SetSizer(panelSizer);
+}
+
+void DiscoverItemPanel::setupItemImage() {
+    auto * imagePanel = new wxPanel(this);
+    imagePanel->SetSize(100, 100);
+
+    wxImage::AddHandler(new wxPNGHandler);
+    wxBitmap bitmap(podcast.getLocalImageDir(), wxBITMAP_TYPE_PNG);
+    bitmap.SetWidth(100);
+    bitmap.SetHeight(100);
+
+    auto * staticBitmap = new wxStaticBitmap(imagePanel, wxID_ANY, bitmap);
+    staticBitmap->SetSize(100, 100);
+
+    panelSizer->Add(imagePanel, 3, wxBOTTOM | wxEXPAND, 3);
+}
+
+void DiscoverItemPanel::setupItemText() {
+
 }
