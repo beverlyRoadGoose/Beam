@@ -23,6 +23,6 @@ DiscoveryPanelManager::DiscoveryPanelManager() = default;
 DiscoveryPanelManager::~DiscoveryPanelManager() = default;
 
 std::vector<Podcast> DiscoveryPanelManager::getDashPodcasts() {
-    std::string searchString = "radio";
+    std::string searchString = "random";
     return DigitalPodcasts::search(searchString);
 }

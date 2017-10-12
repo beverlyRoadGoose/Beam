@@ -25,16 +25,10 @@ DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxScrolledWindow(parent) {
     panelManager = DiscoveryPanelManager();
     panelSizer = new wxBoxSizer(wxVERTICAL);
 
-    std::vector<Podcast> dashPodcasts = panelManager.getDashPodcasts();
-
-    for(std::vector<int>::size_type i = 0; i != dashPodcasts.size(); i++) {
-        Podcast p = dashPodcasts[i];
-        DiscoverItemPanel * itemPanel = new DiscoverItemPanel(this, p);
-        panelSizer->Add(itemPanel, 1, wxALL | wxEXPAND, 4);
-    }
-
-    this->FitInside(); // ask the sizer about the needed size
-    this->SetScrollRate(5, 5);
+    wrapperPanel = new wxPanel(this);
+    wrapperPanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
+    wrapperPanel->SetWindowStyleFlag(wxBORDER_SUNKEN);
+    panelSizer->Add(wrapperPanel, 1, wxALL | wxEXPAND, 4);
 
     this->SetSizer(panelSizer);
 }

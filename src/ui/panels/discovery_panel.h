@@ -25,6 +25,7 @@ private:
     DiscoveryPanelManager panelManager;
 
     wxBoxSizer * panelSizer;
+    wxPanel * wrapperPanel;
 public:
     explicit DiscoveryPanel(wxWindow * parent);
 };

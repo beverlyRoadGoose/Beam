@@ -23,22 +23,5 @@ DiscoverItemPanel::DiscoverItemPanel(wxWindow * parent, Podcast & podcast) : wxP
     panelSizer = new wxBoxSizer(wxHORIZONTAL);
     wxImage::AddHandler(new wxJPEGHandler);
 
-    wxString title = podcast.getTitle();
-    wxString imageDir = podcast.getLocalImageDir();
-
-    wxBitmap bitmap(imageDir, wxBITMAP_TYPE_JPEG);
-    bitmap.SetWidth(250);
-    bitmap.SetHeight(250);
-
-    wxPanel * imagePanel = new wxPanel(this);
-    imagePanel->SetSize(250, 250);
-
-    wxStaticBitmap * sb = new wxStaticBitmap(imagePanel, -1, bitmap);
-    sb->SetSize(250, 250);
-
-    panelSizer->Add(imagePanel);
-
-    this->SetBackgroundColour(wxColour(wxT("#ffffff")));
-    this->SetWindowStyleFlag(wxBORDER_SUNKEN);
     this->SetSizer(panelSizer);
 }
