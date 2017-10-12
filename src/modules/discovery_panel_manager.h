@@ -25,7 +25,7 @@ private:
 public:
     DiscoveryPanelManager();
     ~DiscoveryPanelManager();
-    std::vector<Podcast> getDashPodcasts();
+    std::vector<Podcast> getTopPodcasts();
 };
 
 #endif //BEAM_DISCOVERY_PANEL_MANAGER_H

@@ -15,14 +15,43 @@
  *
  */
 
+#include <iostream>
+#include <utils/json_utils.h>
+#include <networking/network_utils.h>
 #include <networking/apis/digital_podcasts.h>
+
 #include "discovery_panel_manager.h"
 
 DiscoveryPanelManager::DiscoveryPanelManager() = default;
 
 DiscoveryPanelManager::~DiscoveryPanelManager() = default;
 
-std::vector<Podcast> DiscoveryPanelManager::getDashPodcasts() {
-    std::string searchString = "random";
-    return DigitalPodcasts::search(searchString);
+std::vector<Podcast> DiscoveryPanelManager::getTopPodcasts() {
+    std::vector<Podcast> podcasts;
+    std::string url = "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/50/explicit.json";
+
+    std::string response = NetworkUtils::query(url);
+    rapidjson::Document responseJson = JSONUtils::parseJSONString(response);
+
+    const rapidjson::Value & responseObject = responseJson["feed"];
+    const rapidjson::Value & podcastsJSONArray = responseObject["results"];
+    assert(podcastsJSONArray.IsArray());
+
+    for (rapidjson::SizeType i = 0; i < podcastsJSONArray.Size(); i++) {
+        const rapidjson::Value & JSONObject = podcastsJSONArray[i];
+
+        long id = atol(JSONObject["id"].GetString());
+        std::string title = JSONObject["name"].GetString();
+        std::string publisher = JSONObject["artistName"].GetString();
+        std::string feedUrl = "";
+        std::string description = JSONObject["name"].GetString();
+        std::string imageUrl = JSONObject["artworkUrl100"].GetString();
+        std::string url = JSONObject["url"].GetString();
+
+        Podcast podcast = Podcast(id, title, publisher, feedUrl, description, imageUrl, url);
+        NetworkUtils::downloadPodcastImage(podcast);
+        podcasts.push_back(podcast);
+    }
+
+    return podcasts;
 }

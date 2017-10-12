@@ -17,5 +17,13 @@
 
 #define CATCH_CONFIG_MAIN
 
+#include <vector>
 #include <catch/catch.hpp>
+#include <modules/discovery_panel_manager.h>
+
+TEST_CASE("get top podcasts test", "[discoveryPanelManagerTests]") {
+    DiscoveryPanelManager discoveryPanelManager;
+    std::vector<Podcast> podcasts = discoveryPanelManager.getTopPodcasts();
+    REQUIRE_FALSE(podcasts.empty());
+}
 

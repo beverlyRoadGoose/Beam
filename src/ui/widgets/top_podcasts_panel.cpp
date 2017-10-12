@@ -36,7 +36,7 @@ void TopPodcastsPanel::setupSectionHeader() {
     auto * sectionTitle = new wxStaticText(titlePanel, wxID_ANY, wxT("Top Podcasts"));
 
     wxFont sectionTitleFont = sectionTitle->GetFont();
-    sectionTitleFont.SetPointSize(17);
+    sectionTitleFont.SetPointSize(16);
     sectionTitle->SetFont(sectionTitleFont);
 
     titlePanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
