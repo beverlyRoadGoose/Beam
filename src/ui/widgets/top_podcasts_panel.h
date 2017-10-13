@@ -30,6 +30,7 @@ private:
 
     void setupSectionHeader();
     void setupFirstRow();
+    void setupSecondRow();
 public:
     explicit TopPodcastsPanel(wxWindow * parent, DiscoveryPanelManager & panelManager);
 };

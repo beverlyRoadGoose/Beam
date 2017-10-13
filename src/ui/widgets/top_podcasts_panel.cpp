@@ -20,11 +20,11 @@
 
 TopPodcastsPanel::TopPodcastsPanel(wxWindow * parent, DiscoveryPanelManager & panelManager) : wxScrolledWindow(parent) {
     mainSizer = new wxBoxSizer(wxVERTICAL);
-
     topPodcasts = panelManager.getTopPodcasts();
 
     setupSectionHeader();
     setupFirstRow();
+    setupSecondRow();
 
     this->SetBackgroundColour(wxColour(wxT("#ffffff")));
     this->SetSizer(mainSizer);
@@ -32,6 +32,7 @@ TopPodcastsPanel::TopPodcastsPanel(wxWindow * parent, DiscoveryPanelManager & pa
     // this part makes the scrollbars show up
     this->FitInside(); // ask the sizer about the needed size
     this->SetScrollRate(5, 5);
+
 }
 
 void TopPodcastsPanel::setupSectionHeader() {
@@ -47,7 +48,7 @@ void TopPodcastsPanel::setupSectionHeader() {
     titlePanelSizer->Add(sectionTitle, 1, wxALL, 5);
     titlePanel->SetSizer(titlePanelSizer);
 
-    mainSizer->Add(titlePanel, 1, wxBOTTOM, 5);
+    mainSizer->Add(titlePanel, 1, wxEXPAND, 5);
 }
 
 void TopPodcastsPanel::setupFirstRow() {
@@ -56,10 +57,24 @@ void TopPodcastsPanel::setupFirstRow() {
 
     for (std::vector<int>::size_type i = 0; i != topPodcasts.size()/2; i++) {
         Podcast podcast = topPodcasts[i];
-        auto * itemPanel = new DiscoverItemPanel(this, podcast);
+        auto * itemPanel = new DiscoverItemPanel(rowPanel, podcast);
         rowPanelSizer->Add(itemPanel, wxID_ANY, wxRIGHT | wxEXPAND, 10);
     }
 
     rowPanel->SetSizer(rowPanelSizer);
-    mainSizer->Add(rowPanel, 4, wxBOTTOM | wxEXPAND, 5);
+    mainSizer->Add(rowPanel, 1, wxALL | wxEXPAND, 5);
+}
+
+void TopPodcastsPanel::setupSecondRow() {
+    auto * rowPanel = new wxPanel(this);
+    auto * rowPanelSizer = new wxBoxSizer(wxHORIZONTAL);
+
+    for (std::vector<int>::size_type i = 24; i != topPodcasts.size(); i++) {
+        Podcast podcast = topPodcasts[i];
+        auto * itemPanel = new DiscoverItemPanel(rowPanel, podcast);
+        rowPanelSizer->Add(itemPanel, wxID_ANY, wxRIGHT | wxEXPAND, 10);
+    }
+
+    rowPanel->SetSizer(rowPanelSizer);
+    mainSizer->Add(rowPanel, 1, wxALL | wxEXPAND, 5);
 }

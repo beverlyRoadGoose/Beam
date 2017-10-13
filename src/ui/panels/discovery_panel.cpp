@@ -33,7 +33,7 @@ DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxScrolledWindow(parent) {
 
     wrapperPanel->SetSizer(wrapperPanelSizer);
 
-    panelSizer->Add(wrapperPanel, 1, wxALL | wxEXPAND, 4);
+    panelSizer->Add(wrapperPanel, 1, wxALL | wxEXPAND, 5);
     this->SetSizer(panelSizer);
 
     this->FitInside();
@@ -42,5 +42,5 @@ DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxScrolledWindow(parent) {
 
 void DiscoveryPanel::setupTopPodcastsSection() {
     topPodcastsPanel = new TopPodcastsPanel(wrapperPanel, panelManager);
-    wrapperPanelSizer->Add(topPodcastsPanel, 1, wxBOTTOM | wxEXPAND, 4);
+    wrapperPanelSizer->Add(topPodcastsPanel, 1, wxLEFT | wxBOTTOM | wxEXPAND, 5);
 }

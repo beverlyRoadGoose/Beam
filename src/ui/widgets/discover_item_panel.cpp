@@ -28,19 +28,33 @@ DiscoverItemPanel::DiscoverItemPanel(wxWindow * parent, Podcast & podcast) : wxP
 
 void DiscoverItemPanel::setupItemImage() {
     auto * imagePanel = new wxPanel(this);
-    imagePanel->SetSize(100, 100);
+    imagePanel->SetSize(120, 120);
 
     wxImage::AddHandler(new wxPNGHandler);
     wxBitmap bitmap(podcast.getLocalImageDir(), wxBITMAP_TYPE_PNG);
-    bitmap.SetWidth(100);
-    bitmap.SetHeight(100);
+    bitmap.SetWidth(120);
+    bitmap.SetHeight(120);
 
     auto * staticBitmap = new wxStaticBitmap(imagePanel, wxID_ANY, bitmap);
-    staticBitmap->SetSize(100, 100);
+    staticBitmap->SetSize(120, 120);
 
-    panelSizer->Add(imagePanel, 3, wxBOTTOM | wxEXPAND, 3);
+    panelSizer->Add(imagePanel);
 }
 
 void DiscoverItemPanel::setupItemText() {
+    auto * titlePanel = new wxPanel(this);
+    auto * titlePanelSizer = new wxBoxSizer(wxHORIZONTAL);
+    const char * title = podcast.getTitle().c_str();
+    auto * sectionTitle = new wxStaticText(titlePanel, wxID_ANY, title);
 
+    sectionTitle->Wrap(120);
+    wxFont sectionTitleFont = sectionTitle->GetFont();
+    sectionTitleFont.SetPointSize(12);
+    sectionTitle->SetFont(sectionTitleFont);
+
+    titlePanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
+    titlePanelSizer->Add(sectionTitle);
+    titlePanel->SetSizer(titlePanelSizer);
+
+    panelSizer->Add(titlePanel);
 }
