@@ -53,7 +53,7 @@ void NetworkUtils::downloadPodcastImage(Podcast & podcast, std::string & extensi
     boost::uuids::random_generator generator;
 
     std::stringstream saveLocaleStream;
-    saveLocaleStream << "build/.cache/" << generator() << "." << extension;
+    saveLocaleStream << "build/.cache/img/" << generator() << "." << extension;
     std::string saveLocale = saveLocaleStream.str();
 
     CURL * curl;
