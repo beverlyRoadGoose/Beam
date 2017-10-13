@@ -28,7 +28,8 @@ private:
     wxBoxSizer * panelSizer;
 
     void setupItemImage();
-    void setupItemText();
+    void setupItemName();
+    void setupItemAuthor();
 public:
     DiscoverItemPanel(wxWindow * parent, Podcast & podcast);
 };

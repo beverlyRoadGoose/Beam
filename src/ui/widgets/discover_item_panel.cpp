@@ -21,7 +21,8 @@ DiscoverItemPanel::DiscoverItemPanel(wxWindow * parent, Podcast & podcast) : wxP
     panelSizer = new wxBoxSizer(wxVERTICAL);
 
     setupItemImage();
-    setupItemText();
+    setupItemName();
+    setupItemAuthor();
 
     this->SetSizer(panelSizer);
 }
@@ -41,13 +42,14 @@ void DiscoverItemPanel::setupItemImage() {
     panelSizer->Add(imagePanel);
 }
 
-void DiscoverItemPanel::setupItemText() {
+void DiscoverItemPanel::setupItemName() {
     auto * titlePanel = new wxPanel(this);
     auto * titlePanelSizer = new wxBoxSizer(wxHORIZONTAL);
     const char * title = podcast.getTitle().c_str();
-    auto * sectionTitle = new wxStaticText(titlePanel, wxID_ANY, title);
 
+    auto * sectionTitle = new wxStaticText(titlePanel, wxID_ANY, title, wxDefaultPosition, wxSize(120, 20), wxELLIPSIZE_END);
     sectionTitle->Wrap(120);
+
     wxFont sectionTitleFont = sectionTitle->GetFont();
     sectionTitleFont.SetPointSize(12);
     sectionTitle->SetFont(sectionTitleFont);
@@ -57,4 +59,24 @@ void DiscoverItemPanel::setupItemText() {
     titlePanel->SetSizer(titlePanelSizer);
 
     panelSizer->Add(titlePanel);
+}
+
+void DiscoverItemPanel::setupItemAuthor() {
+    auto * authorPanel = new wxPanel(this);
+    auto * authorPanelSizer = new wxBoxSizer(wxHORIZONTAL);
+    const char * author = podcast.getPublisher().c_str();
+
+    auto * sectionTitle = new wxStaticText(authorPanel, wxID_ANY, author, wxDefaultPosition, wxSize(120, 20), wxELLIPSIZE_END);
+    sectionTitle->Wrap(120);
+    sectionTitle->SetForegroundColour(wxColour(wxT("#808080")));
+
+    wxFont sectionTitleFont = sectionTitle->GetFont();
+    sectionTitleFont.SetPointSize(10);
+    sectionTitle->SetFont(sectionTitleFont);
+
+    authorPanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
+    authorPanelSizer->Add(sectionTitle);
+    authorPanel->SetSizer(authorPanelSizer);
+
+    panelSizer->Add(authorPanel);
 }
