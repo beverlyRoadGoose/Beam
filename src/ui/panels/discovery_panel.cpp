@@ -52,5 +52,5 @@ void DiscoveryPanel::setupTopPodcastsSection() {
     wrapperPanelSizer->Add(titlePanel, 0, wxLEFT | wxTOP, 15);
 
     topPodcastsPanel = new TopPodcastsPanel(wrapperPanel, panelManager);
-    wrapperPanelSizer->Add(topPodcastsPanel, 1, wxLEFT | wxBOTTOM | wxEXPAND, 5);
+    wrapperPanelSizer->Add(topPodcastsPanel, 1, wxLEFT | wxBOTTOM | wxRIGHT | wxEXPAND, 5);
 }

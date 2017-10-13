@@ -27,7 +27,6 @@ TopPodcastsPanel::TopPodcastsPanel(wxWindow * parent, DiscoveryPanelManager & pa
 
     this->SetBackgroundColour(wxColour(wxT("#ffffff")));
     this->SetSizer(mainSizer);
-
     this->FitInside();
     this->SetScrollRate(5, 5);
 }
