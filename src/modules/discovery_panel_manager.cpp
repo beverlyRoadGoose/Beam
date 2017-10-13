@@ -57,3 +57,34 @@ std::vector<Podcast> DiscoveryPanelManager::getTopPodcasts() {
 
     return podcasts;
 }
+
+std::vector<Podcast> DiscoveryPanelManager::getSocietyAndCulturePodcasts() {
+    std::vector<Podcast> podcasts;
+
+    std::string url = "https://itunes.apple.com/search?term=podcast&genreId=1324&limit=100";
+    std::string response = NetworkUtils::query(url);
+    rapidjson::Document responseJson = JSONUtils::parseJSONString(response);
+
+    const rapidjson::Value & podcastsJSONArray = responseJson["results"];
+    assert(podcastsJSONArray.IsArray());
+
+    for (rapidjson::SizeType i = 0; i < podcastsJSONArray.Size(); i++) {
+        const rapidjson::Value & JSONObject = podcastsJSONArray[i];
+
+        long id = (long)(JSONObject["collectionId"].GetInt());
+        std::string title = JSONObject["collectionName"].GetString();
+        std::string publisher = JSONObject["artistName"].GetString();
+        std::string feedUrl = JSONObject["feedUrl"].GetString();
+        std::string description = JSONObject["collectionName"].GetString();
+        std::string imageUrl = JSONObject["artworkUrl600"].GetString();
+        std::string url = JSONObject["collectionViewUrl"].GetString();
+
+        Podcast podcast = Podcast(id, title, publisher, feedUrl, description, imageUrl, url);
+        std::string imageExtension = "jpg";
+        NetworkUtils::downloadPodcastImage(podcast, imageExtension);
+
+        podcasts.push_back(podcast);
+    }
+
+    return podcasts;
+}

@@ -31,8 +31,8 @@ void DiscoverItemPanel::setupItemImage() {
     auto * imagePanel = new wxPanel(this);
     imagePanel->SetSize(120, 120);
 
-    wxImage::AddHandler(new wxPNGHandler);
-    wxBitmap bitmap(podcast.getLocalImageDir(), wxBITMAP_TYPE_PNG);
+    wxInitAllImageHandlers();
+    wxBitmap bitmap(podcast.getLocalImageDir(), wxBITMAP_TYPE_ANY);
     bitmap.SetWidth(120);
     bitmap.SetHeight(120);
 

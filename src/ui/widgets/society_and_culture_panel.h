@@ -15,28 +15,23 @@
  *
  */
 
-#ifndef BEAM_DISCOVERY_PANEL_H
-#define BEAM_DISCOVERY_PANEL_H
+#ifndef BEAM_SOCIETY_AND_CULTURE_PANEL_H
+#define BEAM_SOCIETY_AND_CULTURE_PANEL_H
 
+#include <vector>
+#include <wx/wx.h>
+#include <entities/podcast.h>
 #include <modules/discovery_panel_manager.h>
-#include <src/ui/widgets/top_podcasts_panel.h>
-#include <src/ui/widgets/society_and_culture_panel.h>
 
-class DiscoveryPanel : public wxScrolledWindow {
+class SocietyAndCulturePanel : public wxScrolledWindow {
 private:
-    DiscoveryPanelManager panelManager;
+    wxBoxSizer * mainSizer;
+    std::vector<Podcast> podcasts;
 
-    wxBoxSizer * panelSizer;
-    wxPanel * wrapperPanel;
-    wxBoxSizer * wrapperPanelSizer;
-    TopPodcastsPanel * topPodcastsPanel;
-    SocietyAndCulturePanel * societyAndCulturePanel;
-
-    void setupTopPodcastsSection();
-    void setupSocietyAndCultureSection();
+    void setupFirstRow();
+    void setupSecondRow();
 public:
-    explicit DiscoveryPanel(wxWindow * parent);
+    SocietyAndCulturePanel(wxWindow * parent, DiscoveryPanelManager & panelManager);
 };
 
-
-#endif //BEAM_DISCOVERY_PANEL_H
+#endif //BEAM_SOCIETY_AND_CULTURE_PANEL_H

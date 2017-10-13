@@ -26,6 +26,7 @@ public:
     DiscoveryPanelManager();
     ~DiscoveryPanelManager();
     std::vector<Podcast> getTopPodcasts();
+    std::vector<Podcast> getSocietyAndCulturePodcasts();
 };
 
 #endif //BEAM_DISCOVERY_PANEL_MANAGER_H
