@@ -64,5 +64,7 @@ add_library(beam-ui
         src/ui/widgets/top_podcasts_panel.cpp
         src/ui/widgets/top_podcasts_panel.h
         src/ui/widgets/society_and_culture_panel.cpp
-        src/ui/widgets/society_and_culture_panel.h)
+        src/ui/widgets/society_and_culture_panel.h
+        src/ui/widgets/comedy_panel.cpp
+        src/ui/widgets/comedy_panel.h)
 target_link_libraries(beam-ui ${wxWidgets_LIBRARIES} beam-modules beam-entities)

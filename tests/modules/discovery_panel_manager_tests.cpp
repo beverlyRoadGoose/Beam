@@ -33,3 +33,9 @@ TEST_CASE("get society and culture podcasts test", "[discoveryPanelManagerTests]
     REQUIRE_FALSE(podcasts.empty());
 }
 
+TEST_CASE("get comedy podcasts test", "[discoveryPanelManagerTests]") {
+    DiscoveryPanelManager discoveryPanelManager;
+    std::vector<Podcast> podcasts = discoveryPanelManager.getComedyPodcasts();
+    REQUIRE_FALSE(podcasts.empty());
+}
+

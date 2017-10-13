@@ -15,19 +15,25 @@
  *
  */
 
-#ifndef BEAM_DISCOVERY_PANEL_MANAGER_H
-#define BEAM_DISCOVERY_PANEL_MANAGER_H
+#ifndef BEAM_COMEDY_PANEL_H
+#define BEAM_COMEDY_PANEL_H
 
+
+#include <vector>
+#include <wx/wx.h>
 #include <entities/podcast.h>
+#include <modules/discovery_panel_manager.h>
 
-class DiscoveryPanelManager {
+class ComedyPanel : public wxScrolledWindow {
 private:
+    wxBoxSizer * mainSizer;
+    std::vector<Podcast> podcasts;
+
+    void setupFirstRow();
+    void setupSecondRow();
 public:
-    DiscoveryPanelManager();
-    ~DiscoveryPanelManager();
-    std::vector<Podcast> getTopPodcasts();
-    std::vector<Podcast> getSocietyAndCulturePodcasts();
-    std::vector<Podcast> getComedyPodcasts();
+    ComedyPanel(wxWindow * parent, DiscoveryPanelManager & panelManager);
 };
 
-#endif //BEAM_DISCOVERY_PANEL_MANAGER_H
+
+#endif //BEAM_COMEDY_PANEL_H

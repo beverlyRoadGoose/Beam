@@ -15,12 +15,12 @@
  *
  */
 
+#include "comedy_panel.h"
 #include "discover_item_panel.h"
-#include "society_and_culture_panel.h"
 
-SocietyAndCulturePanel::SocietyAndCulturePanel(wxWindow * parent, DiscoveryPanelManager & panelManager) : wxScrolledWindow(parent) {
+ComedyPanel::ComedyPanel(wxWindow *parent, DiscoveryPanelManager &panelManager) : wxScrolledWindow(parent){
     mainSizer = new wxBoxSizer(wxVERTICAL);
-    podcasts = panelManager.getSocietyAndCulturePodcasts();
+    podcasts = panelManager.getComedyPodcasts();
 
     setupFirstRow();
     setupSecondRow();
@@ -32,7 +32,7 @@ SocietyAndCulturePanel::SocietyAndCulturePanel(wxWindow * parent, DiscoveryPanel
     this->SetMinSize(wxSize(-1, 380));
 }
 
-void SocietyAndCulturePanel::setupFirstRow() {
+void ComedyPanel::setupFirstRow() {
     auto * rowPanel = new wxPanel(this);
     auto * rowPanelSizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -46,7 +46,7 @@ void SocietyAndCulturePanel::setupFirstRow() {
     mainSizer->Add(rowPanel, 0, wxALL | wxEXPAND, 5);
 }
 
-void SocietyAndCulturePanel::setupSecondRow() {
+void ComedyPanel::setupSecondRow() {
     auto * rowPanel = new wxPanel(this);
     auto * rowPanelSizer = new wxBoxSizer(wxHORIZONTAL);
 

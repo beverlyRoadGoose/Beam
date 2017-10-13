@@ -31,6 +31,7 @@ DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxScrolledWindow(parent) {
 
     setupTopPodcastsSection();
     setupSocietyAndCultureSection();
+    setupComedySection();
 
     wrapperPanel->SetSizer(wrapperPanelSizer);
     panelSizer->Add(wrapperPanel, 1, wxALL | wxEXPAND, 5);
@@ -68,4 +69,19 @@ void DiscoveryPanel::setupSocietyAndCultureSection() {
 
     societyAndCulturePanel = new SocietyAndCulturePanel(wrapperPanel, panelManager);
     wrapperPanelSizer->Add(societyAndCulturePanel, 1, wxLEFT | wxBOTTOM | wxRIGHT | wxEXPAND, 5);
+}
+
+void DiscoveryPanel::setupComedySection() {
+    auto * titlePanel = new wxPanel(this);
+    titlePanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
+
+    auto * sectionTitle = new wxStaticText(titlePanel, wxID_ANY, wxT("Comedy"));
+    wxFont sectionTitleFont = sectionTitle->GetFont();
+    sectionTitleFont.SetPointSize(16);
+    sectionTitle->SetFont(sectionTitleFont);
+
+    wrapperPanelSizer->Add(titlePanel, 0, wxLEFT | wxTOP, 15);
+
+    comedyPanel = new ComedyPanel(wrapperPanel, panelManager);
+    wrapperPanelSizer->Add(comedyPanel, 1, wxLEFT | wxBOTTOM | wxRIGHT | wxEXPAND, 5);
 }
