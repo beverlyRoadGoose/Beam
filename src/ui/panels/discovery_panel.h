@@ -18,10 +18,11 @@
 #ifndef BEAM_DISCOVERY_PANEL_H
 #define BEAM_DISCOVERY_PANEL_H
 
-#include <modules/discovery_panel_manager.h>
+#include <ui/widgets/comedy_panel.h>
 #include <ui/widgets/top_podcasts_panel.h>
+#include <ui/widgets/news_and_politics_panel.h>
 #include <ui/widgets/society_and_culture_panel.h>
-#include <src/ui/widgets/comedy_panel.h>
+#include <modules/discovery_panel_manager.h>
 
 class DiscoveryPanel : public wxScrolledWindow {
 private:
@@ -33,10 +34,12 @@ private:
 
     TopPodcastsPanel * topPodcastsPanel;
     SocietyAndCulturePanel * societyAndCulturePanel;
+    NewsAndPoliticsPanel * newsAndPoliticsPanel;
     ComedyPanel * comedyPanel;
 
     void setupTopPodcastsSection();
     void setupSocietyAndCultureSection();
+    void setupNewsAndPoliticsSection();
     void setupComedySection();
 public:
     explicit DiscoveryPanel(wxWindow * parent);
