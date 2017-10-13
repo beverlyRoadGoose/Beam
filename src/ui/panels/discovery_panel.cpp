@@ -41,6 +41,16 @@ DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxScrolledWindow(parent) {
 }
 
 void DiscoveryPanel::setupTopPodcastsSection() {
+    auto * titlePanel = new wxPanel(this);
+    titlePanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
+
+    auto * sectionTitle = new wxStaticText(titlePanel, wxID_ANY, wxT("Top Podcasts"));
+    wxFont sectionTitleFont = sectionTitle->GetFont();
+    sectionTitleFont.SetPointSize(16);
+    sectionTitle->SetFont(sectionTitleFont);
+
+    wrapperPanelSizer->Add(titlePanel, 0, wxLEFT | wxTOP, 15);
+
     topPodcastsPanel = new TopPodcastsPanel(wrapperPanel, panelManager);
     wrapperPanelSizer->Add(topPodcastsPanel, 1, wxLEFT | wxBOTTOM | wxEXPAND, 5);
 }

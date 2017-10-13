@@ -18,11 +18,12 @@
 #include "top_podcasts_panel.h"
 #include "discover_item_panel.h"
 
-TopPodcastsPanel::TopPodcastsPanel(wxWindow * parent, DiscoveryPanelManager & panelManager) : wxScrolledWindow(parent) {
+TopPodcastsPanel::TopPodcastsPanel(wxWindow * parent, DiscoveryPanelManager & panelManager) :
+        wxScrolledWindow(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL) {
+
     mainSizer = new wxBoxSizer(wxVERTICAL);
     topPodcasts = panelManager.getTopPodcasts();
 
-    setupSectionHeader();
     setupFirstRow();
     setupSecondRow();
 
@@ -33,18 +34,6 @@ TopPodcastsPanel::TopPodcastsPanel(wxWindow * parent, DiscoveryPanelManager & pa
     this->FitInside(); // ask the sizer about the needed size
     this->SetScrollRate(5, 5);
 
-}
-
-void TopPodcastsPanel::setupSectionHeader() {
-    auto * titlePanel = new wxPanel(this);
-    titlePanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
-
-    auto * sectionTitle = new wxStaticText(titlePanel, wxID_ANY, wxT("Top Podcasts"));
-    wxFont sectionTitleFont = sectionTitle->GetFont();
-    sectionTitleFont.SetPointSize(16);
-    sectionTitle->SetFont(sectionTitleFont);
-
-    mainSizer->Add(titlePanel, 0, wxLEFT | wxBOTTOM, 5);
 }
 
 void TopPodcastsPanel::setupFirstRow() {
