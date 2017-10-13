@@ -29,6 +29,7 @@ SocietyAndCulturePanel::SocietyAndCulturePanel(wxWindow *parent, DiscoveryPanelM
     this->SetSizer(mainSizer);
     this->FitInside();
     this->SetScrollRate(5, 5);
+    this->SetMinSize(wxSize(-1, 380));
 }
 
 void SocietyAndCulturePanel::setupFirstRow() {

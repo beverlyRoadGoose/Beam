@@ -33,7 +33,6 @@ DiscoveryPanel::DiscoveryPanel(wxWindow * parent) : wxScrolledWindow(parent) {
     setupSocietyAndCultureSection();
 
     wrapperPanel->SetSizer(wrapperPanelSizer);
-
     panelSizer->Add(wrapperPanel, 1, wxALL | wxEXPAND, 5);
     this->SetSizer(panelSizer);
 
@@ -60,7 +59,7 @@ void DiscoveryPanel::setupSocietyAndCultureSection() {
     auto * titlePanel = new wxPanel(this);
     titlePanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
 
-    auto * sectionTitle = new wxStaticText(titlePanel, wxID_ANY, wxT("Society & Culture"));
+    auto * sectionTitle = new wxStaticText(titlePanel, wxID_ANY, wxT("Society and Culture"));
     wxFont sectionTitleFont = sectionTitle->GetFont();
     sectionTitleFont.SetPointSize(16);
     sectionTitle->SetFont(sectionTitleFont);
