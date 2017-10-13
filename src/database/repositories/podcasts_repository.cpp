@@ -18,6 +18,7 @@
 #include <sstream>
 #include <iostream>
 #include <boost/lexical_cast.hpp>
+
 #include "podcasts_repository.h"
 
 std::vector<Podcast> retrievedPodcastsList;

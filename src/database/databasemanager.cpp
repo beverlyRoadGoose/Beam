@@ -16,6 +16,7 @@
  */
 
 #include <sstream>
+
 #include "databasemanager.h"
 
 DatabaseManager::DatabaseManager() {

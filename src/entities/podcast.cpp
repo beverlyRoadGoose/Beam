@@ -16,10 +16,10 @@
  */
 
 #include <iostream>
+
 #include "podcast.h"
 
-Podcast::Podcast(long & id, std::string & title, std::string & publisher, std::string & feedUrl, std::string & description,
-                 std::string & imageUrl, std::string & url)
+Podcast::Podcast(long & id, std::string & title, std::string & publisher, std::string & feedUrl, std::string & description, std::string & imageUrl, std::string & url)
         : id(id), title(title), publisher(publisher), feedUrl(feedUrl), description(description), imageUrl(imageUrl), url(url) {}
 
 Podcast::~Podcast() = default;

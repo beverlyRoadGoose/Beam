@@ -32,8 +32,7 @@ private:
     std::string localImageDir = "";
     std::string url;
 public:
-    Podcast(long & id, std::string & title, std::string & publisher, std::string & feedUrl, std::string & description,
-            std::string & imageUrl, std::string & url);
+    Podcast(long & id, std::string & title, std::string & publisher, std::string & feedUrl, std::string & description, std::string & imageUrl, std::string & url);
     ~Podcast();
     long getId();
     std::string getTitle();

@@ -33,8 +33,6 @@ std::string DigitalPodcasts::getAppId() {
 /*
  * query the api with the passed search string and return a vector
  * of the matching podcasts
- *
- * TODO change return type to vector
  */
 std::vector<Podcast> DigitalPodcasts::search(std::string & searchString) {
     std::vector<Podcast> podcasts;
