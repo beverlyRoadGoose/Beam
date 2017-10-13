@@ -38,12 +38,7 @@ link_directories(${PROJECT_SOURCE_DIR}/lib/curlpp)
 link_directories(${PROJECT_SOURCE_DIR}/lib/pugixml)
 
 # create required dirs during build
-add_custom_target(make-cache-directory ALL COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/build/.cache)
-add_custom_target(make-img-cache-directory ALL COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/build/.cache/img)
-add_custom_target(make-audio-cache-directory ALL COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/build/.cache/audio)
-add_custom_target(make-persistence-directory ALL COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/build/.persistence)
-add_custom_target(make-img-persistence-directory ALL COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/build/.persistence/img)
-add_custom_target(make-audio-persistence-directory ALL COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/build/.persistence/audio)
+include(${PROJECT_SOURCE_DIR}/cmake/directories.cmake)
 
 # internal app libraries
 include(${PROJECT_SOURCE_DIR}/cmake/libraries.cmake)
