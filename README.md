@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## About
-![Beam](https://i.imgur.com/D9Zd3IT.jpg)
+![Beam](https://i.imgur.com/SiA61hH.jpg)
 
 Beam is a cross platform desktop podcast client still at the very beginning of development.
 I'm building it for my personal use and to learn the [wxWidgets](https://www.wxwidgets.org) GUI library.
