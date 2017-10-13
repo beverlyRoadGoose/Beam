@@ -37,18 +37,14 @@ TopPodcastsPanel::TopPodcastsPanel(wxWindow * parent, DiscoveryPanelManager & pa
 
 void TopPodcastsPanel::setupSectionHeader() {
     auto * titlePanel = new wxPanel(this);
-    auto * titlePanelSizer = new wxBoxSizer(wxHORIZONTAL);
-    auto * sectionTitle = new wxStaticText(titlePanel, wxID_ANY, wxT("Top Podcasts"));
+    titlePanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
 
+    auto * sectionTitle = new wxStaticText(titlePanel, wxID_ANY, wxT("Top Podcasts"));
     wxFont sectionTitleFont = sectionTitle->GetFont();
     sectionTitleFont.SetPointSize(16);
     sectionTitle->SetFont(sectionTitleFont);
 
-    titlePanel->SetBackgroundColour(wxColour(wxT("#ffffff")));
-    titlePanelSizer->Add(sectionTitle, 1, wxALL, 5);
-    titlePanel->SetSizer(titlePanelSizer);
-
-    mainSizer->Add(titlePanel, 1, wxEXPAND, 5);
+    mainSizer->Add(titlePanel, 0, wxLEFT | wxBOTTOM, 5);
 }
 
 void TopPodcastsPanel::setupFirstRow() {
