@@ -22,11 +22,13 @@
 
 class DiscoveryPanelManager {
 private:
+    std::vector<Podcast> getPodcastGenre(std::string & genreId);
 public:
     DiscoveryPanelManager();
     ~DiscoveryPanelManager();
     std::vector<Podcast> getTopPodcasts();
     std::vector<Podcast> getSocietyAndCulturePodcasts();
+    std::vector<Podcast> getNewsAndPoliticsPodcasts();
     std::vector<Podcast> getComedyPodcasts();
 };
 
