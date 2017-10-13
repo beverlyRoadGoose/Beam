@@ -18,9 +18,7 @@
 #include "top_podcasts_panel.h"
 #include "discover_item_panel.h"
 
-TopPodcastsPanel::TopPodcastsPanel(wxWindow * parent, DiscoveryPanelManager & panelManager) :
-        wxScrolledWindow(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL) {
-
+TopPodcastsPanel::TopPodcastsPanel(wxWindow * parent, DiscoveryPanelManager & panelManager) : wxScrolledWindow(parent) {
     mainSizer = new wxBoxSizer(wxVERTICAL);
     topPodcasts = panelManager.getTopPodcasts();
 
@@ -30,20 +28,18 @@ TopPodcastsPanel::TopPodcastsPanel(wxWindow * parent, DiscoveryPanelManager & pa
     this->SetBackgroundColour(wxColour(wxT("#ffffff")));
     this->SetSizer(mainSizer);
 
-    // this part makes the scrollbars show up
-    this->FitInside(); // ask the sizer about the needed size
+    this->FitInside();
     this->SetScrollRate(5, 5);
-
 }
 
 void TopPodcastsPanel::setupFirstRow() {
     auto * rowPanel = new wxPanel(this);
     auto * rowPanelSizer = new wxBoxSizer(wxHORIZONTAL);
 
-    for (std::vector<int>::size_type i = 0; i != topPodcasts.size()/2; i++) {
+    for (std::vector<int>::size_type i = 0; i != (topPodcasts.size()/2); i++) {
         Podcast podcast = topPodcasts[i];
         auto * itemPanel = new DiscoverItemPanel(rowPanel, podcast);
-        rowPanelSizer->Add(itemPanel, wxID_ANY, wxRIGHT | wxEXPAND, 10);
+        rowPanelSizer->Add(itemPanel, 0, wxRIGHT | wxEXPAND, 10);
     }
 
     rowPanel->SetSizer(rowPanelSizer);
@@ -54,10 +50,10 @@ void TopPodcastsPanel::setupSecondRow() {
     auto * rowPanel = new wxPanel(this);
     auto * rowPanelSizer = new wxBoxSizer(wxHORIZONTAL);
 
-    for (std::vector<int>::size_type i = 24; i != topPodcasts.size(); i++) {
+    for (std::vector<int>::size_type i = 50; i != topPodcasts.size(); i++) {
         Podcast podcast = topPodcasts[i];
         auto * itemPanel = new DiscoverItemPanel(rowPanel, podcast);
-        rowPanelSizer->Add(itemPanel, wxID_ANY, wxRIGHT | wxEXPAND, 10);
+        rowPanelSizer->Add(itemPanel, 0, wxRIGHT | wxEXPAND, 10);
     }
 
     rowPanel->SetSizer(rowPanelSizer);

@@ -21,14 +21,13 @@
 #include <vector>
 #include <wx/wx.h>
 #include <entities/podcast.h>
-#include <src/modules/discovery_panel_manager.h>
+#include <modules/discovery_panel_manager.h>
 
 class TopPodcastsPanel : public wxScrolledWindow {
 private:
     wxBoxSizer * mainSizer;
     std::vector<Podcast> topPodcasts;
 
-    void setupSectionHeader();
     void setupFirstRow();
     void setupSecondRow();
 public:
