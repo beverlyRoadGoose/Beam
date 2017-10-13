@@ -58,7 +58,7 @@ void TopPodcastsPanel::setupFirstRow() {
     }
 
     rowPanel->SetSizer(rowPanelSizer);
-    mainSizer->Add(rowPanel, 1, wxALL | wxEXPAND, 5);
+    mainSizer->Add(rowPanel, 0, wxALL | wxEXPAND, 5);
 }
 
 void TopPodcastsPanel::setupSecondRow() {
@@ -72,5 +72,5 @@ void TopPodcastsPanel::setupSecondRow() {
     }
 
     rowPanel->SetSizer(rowPanelSizer);
-    mainSizer->Add(rowPanel, 1, wxALL | wxEXPAND, 5);
+    mainSizer->Add(rowPanel, 0, wxALL | wxEXPAND, 5);
 }
