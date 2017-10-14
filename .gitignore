@@ -1,6 +1,9 @@
 /.idea
 /Testing
 
+/.persistence
+/.tmp
+
 /build/*
 !/build/assets/
 !/build/assets/*

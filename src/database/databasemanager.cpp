@@ -16,10 +16,15 @@
  */
 
 #include <sstream>
+#include "config/beam_config.h"
 
 #include "databasemanager.h"
 
 DatabaseManager::DatabaseManager() {
+    std::stringstream ss;
+    ss << BeamConfig::PERSISTENCE_DIR << "Beam.sqlite";
+    DATABASE_FILE = ss.str();
+
     createPodcastsTable();
     createEpisodesTable();
 }

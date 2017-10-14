@@ -21,6 +21,10 @@ add_library(Catch lib/catch/catch.hpp lib/catch/catch.cpp)
 add_library(TestUtils tests/testutils.h tests/testutils.cpp)
 target_link_libraries(TestUtils beam-database)
 
+add_executable(tests-setup tests/test_setup.cpp)
+target_link_libraries(tests-setup Catch TestUtils beam-database beam-entities ${wxWidgets_LIBRARIES})
+add_test(NAME TestsSetup COMMAND tests-setup)
+
 add_executable(podcast-tests tests/entities/podcasttests.cpp)
 target_link_libraries(podcast-tests Catch TestUtils sqlite3 beam-database beam-entities)
 add_test(NAME PodcastTests COMMAND podcast-tests)
@@ -60,3 +64,7 @@ add_test(NAME XMLUtilsTests COMMAND xml-utils-tests)
 add_executable(discovery-panel-manager-tests tests/modules/discovery_panel_manager_tests.cpp)
 target_link_libraries(discovery-panel-manager-tests Catch beam-modules)
 add_test(NAME DiscoveryPanelManagerTests COMMAND discovery-panel-manager-tests)
+
+add_executable(tests-cleanup tests/test_cleanup.cpp)
+target_link_libraries(tests-cleanup Catch TestUtils beam-database beam-entities ${wxWidgets_LIBRARIES})
+add_test(NAME TestsCleanup COMMAND tests-cleanup)

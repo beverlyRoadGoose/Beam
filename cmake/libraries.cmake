@@ -14,6 +14,15 @@
 #  limitations under the License.
 #
 
+add_library(beam-entities
+        src/entities/podcast.h
+        src/entities/podcast.cpp
+        src/entities/episode.h
+        src/entities/episode.cpp)
+
+add_library(beam-config src/config/beam_config.cpp src/config/beam_config.h)
+target_link_libraries(beam-config ${wxWidgets_LIBRARIES})
+
 add_library(beam-utils
         src/utils/json_utils.cpp
         src/utils/json_utils.h
@@ -28,13 +37,7 @@ add_library(beam-database
         src/database/repositories/podcasts_repository.cpp
         src/database/repositories/episodes_repository.h
         src/database/repositories/episodes_repository.cpp)
-target_link_libraries(beam-database sqlite3)
-
-add_library(beam-entities
-        src/entities/podcast.h
-        src/entities/podcast.cpp
-        src/entities/episode.h
-        src/entities/episode.cpp)
+target_link_libraries(beam-database sqlite3 beam-config)
 
 add_library(beam-modules
         src/modules/discovery_panel_manager.cpp
@@ -46,7 +49,7 @@ add_library(beam-networking
         src/networking/network_utils.h
         src/networking/apis/digital_podcasts.cpp
         src/networking/apis/digital_podcasts.h)
-target_link_libraries(beam-networking curlpp ${CURL_LIBRARIES} beam-utils beam-entities)
+target_link_libraries(beam-networking curlpp ${CURL_LIBRARIES} beam-utils beam-entities beam-config)
 
 add_library(beam-ui
         src/ui/mainframe.h

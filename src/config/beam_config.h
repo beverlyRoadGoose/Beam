@@ -15,15 +15,16 @@
  *
  */
 
-#ifndef BEAM_NETWORK_UTILS_H
-#define BEAM_NETWORK_UTILS_H
+#include <wx/dir.h>
 
-#include <string>
-#include <entities/podcast.h>
+namespace BeamConfig {
+    const static wxString TMP_IMG_DIR = wxGetCwd() + "/.tmp/img/";
+    const static wxString TMP_AUDIO_DIR = wxGetCwd() + "/.tmp/audio/";
+    const static wxString PERSISTENCE_DIR = wxGetCwd() + "/.persistence/";
+    const static wxString PERSISTENCE_IMG_DIR = wxGetCwd() + "/.persistence/img/";
+    const static wxString PERSISTENCE_AUDIO_DIR = wxGetCwd() + "/.persistence/audio/";
 
-namespace NetworkUtils {
-    std::string query(std::string & url);
-    void downloadPodcastImage(Podcast & podcast, std::string & extension, bool tmp = true);
+    void setupTempDirectory();
+    void removeTempDirectory();
+    void setupPersistenceDirectory();
 }
-
-#endif //BEAM_NETWORK_UTILS_H

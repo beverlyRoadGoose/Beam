@@ -21,6 +21,7 @@
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_io.hpp>
 #include <boost/uuid/uuid_generators.hpp>
+#include "config/beam_config.h"
 
 #include "network_utils.h"
 
@@ -49,11 +50,14 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
     return written;
 }
 
-void NetworkUtils::downloadPodcastImage(Podcast & podcast, std::string & extension) {
+void NetworkUtils::downloadPodcastImage(Podcast & podcast, std::string & extension, bool tmp) {
     boost::uuids::random_generator generator;
 
     std::stringstream saveLocaleStream;
-    saveLocaleStream << "build/.cache/img/" << generator() << "." << extension;
+
+    if (tmp) saveLocaleStream << BeamConfig::TMP_IMG_DIR << generator() << "." << extension;
+    else saveLocaleStream << BeamConfig::PERSISTENCE_IMG_DIR << generator() << "." << extension;
+
     std::string saveLocale = saveLocaleStream.str();
 
     CURL * curl;

@@ -20,10 +20,11 @@
 
 #include <iostream>
 #include <sqlite3.h>
+#include <main.h>
 
 class DatabaseManager {
 private:
-    const std::string DATABASE_FILE = "build/.persistence/Beam.sqlite";
+    std::string DATABASE_FILE;
     sqlite3 * database = nullptr;
     void createPodcastsTable();
     void createEpisodesTable();

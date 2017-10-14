@@ -19,7 +19,6 @@
 
 #include <catch/catch.hpp>
 #include "tests/testutils.h"
-#include "entities/podcast.h"
 
 TEST_CASE("create podcast from json object", "[podcastTests]") {
 

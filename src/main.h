@@ -22,7 +22,8 @@
 
 class Beam : public wxApp {
 public:
-    virtual bool OnInit();
+    bool OnInit() override;
+    int OnExit() override;
 };
 
 #endif

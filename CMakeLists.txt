@@ -37,15 +37,12 @@ link_directories(${PROJECT_SOURCE_DIR}/lib/curlpp)
 # link pugixml libraries
 link_directories(${PROJECT_SOURCE_DIR}/lib/pugixml)
 
-# create required dirs during build
-include(${PROJECT_SOURCE_DIR}/cmake/directories.cmake)
-
 # internal app libraries
 include(${PROJECT_SOURCE_DIR}/cmake/libraries.cmake)
 
 # create app executable
 add_executable(Beam src/main.h src/main.cpp)
-target_link_libraries(Beam beam-database beam-entities beam-ui beam-networking)
+target_link_libraries(Beam beam-database beam-entities beam-ui beam-networking beam-config)
 
 # Testing
 include(${PROJECT_SOURCE_DIR}/cmake/testing.cmake)

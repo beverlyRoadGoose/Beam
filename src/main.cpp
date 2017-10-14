@@ -15,13 +15,25 @@
  *
  */
 
+#include <wx/dir.h>
+
 #include "main.h"
 #include "ui/mainframe.h"
+#include "config/beam_config.h"
 
 IMPLEMENT_APP(Beam)
 
 bool Beam::OnInit() {
+    BeamConfig::setupTempDirectory();
+    BeamConfig::setupPersistenceDirectory();
+
     MainFrame * mainFrame = new MainFrame(wxT("Beam"));
     mainFrame->Show(true);
+
     return true;
+}
+
+int Beam::OnExit() {
+    BeamConfig::removeTempDirectory();
+    return wxAppBase::OnExit();
 }

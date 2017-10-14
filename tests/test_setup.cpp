@@ -15,15 +15,15 @@
  *
  */
 
-#ifndef BEAM_NETWORK_UTILS_H
-#define BEAM_NETWORK_UTILS_H
+#define CATCH_CONFIG_MAIN
 
-#include <string>
-#include <entities/podcast.h>
+#include <catch/catch.hpp>
 
-namespace NetworkUtils {
-    std::string query(std::string & url);
-    void downloadPodcastImage(Podcast & podcast, std::string & extension, bool tmp = true);
+#include "testutils.h"
+#include "config/beam_config.h"
+
+SCENARIO("setting up test environment", "[testsSetup]") {
+    BeamConfig::setupTempDirectory();
+    BeamConfig::setupPersistenceDirectory();
+    TestUtils::emptyDatabase();
 }
-
-#endif //BEAM_NETWORK_UTILS_H
