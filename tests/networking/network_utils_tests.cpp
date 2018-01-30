@@ -21,7 +21,7 @@
 #include <networking/network_utils.h>
 
 TEST_CASE("url query test", "[networkUtilsTests]") {
-    std::string testDomain = "https://www.tobiadeyinka.com";
+    std::string testDomain = "https://www.google.com";
     std::string response = NetworkUtils::query(testDomain);
 
     REQUIRE_FALSE(response.empty());

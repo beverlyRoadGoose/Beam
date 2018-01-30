@@ -19,13 +19,15 @@
 echo ---------- starting dependencies setup ----------
 echo
 
-# cmake & curl -- osx has curl by default
+# cmake, boost & curl -- osx has curl by default
 if [[ "$(uname)" == "Darwin" ]]; then # osx
     brew install cmake
+    brew install boost
 elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # linux
     sudo apt-get install cmake
     sudo apt-get install curl
     sudo apt-get install libcurl4-gnutls-dev
+    sudo apt-get install libboost-all-dev
 fi
 
 
@@ -191,7 +193,7 @@ cd build-debug
 echo ---------- building wxWidgets: this could take 20 minutes or more ----------
 
 if [[ "$(uname)" == "Darwin" ]]; then # osx
-    ../configure --enable-debug --enable-monolithic --with-macosx-version-min=10.9
+    ../configure CPPFLAGS=-D__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=1 --enable-debug --enable-monolithic --with-macosx-version-min=10.9
 elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then # linux
     ../configure --enable-debug --enable-monolithic
 fi

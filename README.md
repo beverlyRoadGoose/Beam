@@ -14,6 +14,7 @@ I'm building it for my personal use and to learn the [wxWidgets](https://www.wxw
 ##### Dependencies & Build tools
 
 - [curl](https://curl.haxx.se)
+- [Boost](http://www.boost.org)
 - [curlpp](http://www.curlpp.org)
 - [CMake](https://cmake.org)
 - [Catch](http://catch-lib.net)
